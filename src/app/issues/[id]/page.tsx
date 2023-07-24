@@ -23,7 +23,7 @@ interface IIssueViewProps {
     searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export async function generateMetadata({ params, searchParams }: IIssueViewProps, parent?: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: IIssueViewProps, parent: ResolvingMetadata): Promise<Metadata> {
     const id = parseInt(params.id);
     if (isNaN(id)) return { title: 'Error!' };
 
