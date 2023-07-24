@@ -34,9 +34,9 @@ export default function IssuePage() {
             setTotal(res.totalCount);
         }
         catch(err) {
-            console.error('Unexpected error!', err);
+            console.error(`Unexpected error!`, err);
         }
-    }, [error]);
+    }, [error, issues]);
 
     const issueRow = (i: any) => {
         return (
