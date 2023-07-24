@@ -294,7 +294,7 @@ export async function getIssueComments(id: number): Promise<IGitHubCommentsRespo
 
     const query = issueComments(id, GITHUB_NAME, GITHUB_OWNER);
 
-    console.log(query)
+    // console.log(query)
 
     if (typeof(id) !== 'number' || isNaN(id)) throw new ErrorWithHTTPCode(400, 'Invalid Issue ID: '+id)
 
@@ -308,7 +308,7 @@ export async function getIssueComments(id: number): Promise<IGitHubCommentsRespo
         next: { revalidate: 0 }
     })
     const resp: IGitHubCommentsResponse = (await result.json())
-    console.log('Response', resp)
+    // console.log('Response', resp)
     if (!result.ok || resp.errors?.length) {
         console.log('Error issue from GitHub', resp.errors)
         const statusText = `Could not get GitHub issues: ${!result.ok ? `${result.statusText}\n${resp.message}` : resp.errors?.map(e => e.message).join('\n')}`

@@ -12,12 +12,34 @@ import Image from 'next/image';
 import { getServerSession } from 'next-auth';
 import { signIn } from 'next-auth/react';
 import OAuthProviders from '@/util/auth/oauth';
+import { Metadata, ResolvingMetadata } from 'next'
 
 const orb = Orbitron({ subsets: ['latin'] })
 
 interface IIssueViewProps {
     params: {
         id: string
+    }
+    searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata({ params, searchParams }: IIssueViewProps, parent?: ResolvingMetadata): Promise<Metadata> {
+    const id = parseInt(params.id);
+    if (isNaN(id)) return { title: 'Error!' };
+
+    try {
+        const req = await getSingleIssue(id);
+        const issue = req.data?.repository.issue;
+        return ({
+            title: `${issue?.title} - Issue #${id} - Starfield Community Patch`
+        })
+    }
+    catch(err) {
+        if ((err as any).code === 'ERR_INVALID_URL') {
+            console.log('Invalid URL error', (err as any).input)
+        }
+        else console.log('Error fetching metadata', err);
+        return { title: `Issue #${id} - Starfield Community Patch` }
     }
 }
 

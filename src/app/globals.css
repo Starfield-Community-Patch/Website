@@ -36,4 +36,6 @@ blockquote {
   background-color: lightgray;
   border-left: 4px solid #000;
   padding-left: 4px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
