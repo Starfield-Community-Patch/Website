@@ -1,8 +1,12 @@
+'use client'
+
+import Header from '@/components/header'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import Sidebar from '@/components/sidebar/sidebar'
+import Footer from '@/components/footer'
+import { useEffect, useState } from 'react';
+import { SessionProvider } from "next-auth/react"
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,9 +18,53 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const [showNav, setShowNav] = useState<boolean>(false);
+
+  const toggleNav = () => setShowNav(!showNav)
+
+  const handleResize = () => {
+    if (window.innerWidth > 640) setShowNav(false)
+  }
+
+  useEffect(() => {
+    window?.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className='bg-[#0b192b]'>
+      <body>
+      <Header toggleNav={toggleNav} />
+      <SessionProvider>
+      <div className='grid grid-cols-1 lg:grid-cols-[30%_70%] gap-1 w-full bg-white text-black lg: pt-16'>
+        <Sidebar showMobile={showNav} />
+        <div className={`mb-4 p-4 ${showNav ? 'pt-8 opacity-50' : null}`} onClick={() => showNav ? setShowNav(false) : null}>{children}</div>
+      </div>
+      </SessionProvider>
+      <Footer />
+      </body>
     </html>
   )
 }
+
+// function useWindowSize() {
+//   const [windowSize, setWindowSize] = useState<{[key: string]: number | undefined}>({ width: undefined, height: undefined });
+
+//   useEffect(() => {
+//     function handleResize() {
+//       console.log('Handle resize', {windowSize, w: window.innerWidth, h: window.innerHeight})
+//       setWindowSize({
+//         width: window.innerWidth,
+//         height: window.innerHeight
+//       });
+//     }
+
+//     window.addEventListener('resize', handleResize)
+
+//     handleResize();
+
+//     return () => window.removeEventListener('resize', handleResize);
+//   }, []);
+
+//   return  windowSize;
+// }

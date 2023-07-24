@@ -15,11 +15,20 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.10",
+    "graphql-request": "^6.1.0",
     "next": "13.4.10",
+    "next-auth": "^4.22.3",
     "postcss": "8.4.26",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-remark": "^2.1.0",
+    "remark-gfm": "^3.0.1",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@mdi/js": "^7.2.96",
+    "@mdi/react": "^1.6.1",
+    "gql-query-builder": "^3.8.0"
   }
 }
