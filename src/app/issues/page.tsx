@@ -2,7 +2,7 @@
 
 import { Orbitron } from 'next/font/google'
 import { useMemo, useState } from 'react'
-import type { Metadata } from 'next'
+// import type { Metadata } from 'next'
 import UserAvatar from '@/components/useravatar'
 import TableSkeletonRow from '@/components/tableskeletonrow'
 import { useRouter } from 'next/navigation';
@@ -10,9 +10,9 @@ import { ErrorWithHTTPCode } from '@/util/errors'
 
 const orb = Orbitron({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-    title: 'Issue List - Starfield Community Patch'
-}
+// export const metadata: Metadata = {
+//     title: 'Issue List - Starfield Community Patch'
+// }
 
 export default function IssuePage() {
     const router = useRouter()
