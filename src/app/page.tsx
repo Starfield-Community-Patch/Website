@@ -34,7 +34,7 @@ export default function Home() {
       <hr />
       <h1 className={`text-4xl text-center my-4 `+orb.className}>The Community Patch needs you!</h1>
       <p>
-        Calling all pilots! We need your help to find, document and fix bugs as part of this project. If you've spotted something weird in Starfield and can reproduce it on a new save please report an issue.
+        Calling all pilots! We need your help to find, document and fix bugs as part of this project. If you&apos;ve spotted something weird in Starfield and can reproduce it on a new save please report an issue.
       </p>
     </main>
   )
