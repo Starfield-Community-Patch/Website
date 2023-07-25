@@ -28,6 +28,7 @@ export default function IssueComments(props: IIssueCommentProps) {
             else throw new Error(`Request failed: ${request.status} ${request.statusText}`)
         }
         catch(err) {
+            if ((err as any).cause.code === 'ERR_INVALID_URL') return console.log('Fetch error: Invalid URL(?)')
             console.error('Failed to get comments from GitHub', err);
             setCommentError(err as Error);
         }

@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   const [showNav, setShowNav] = useState<boolean>(false);
 
-  const toggleNav = () => setShowNav(!showNav)
+  const toggleNav = (newState?: boolean) => setShowNav(newState !== undefined ? newState : !showNav)
 
   const handleResize = () => {
     if (window.innerWidth > 640) setShowNav(false)
@@ -37,7 +37,7 @@ export default function RootLayout({
       <Header toggleNav={toggleNav} />
       <SessionProvider>
       <div className='grid grid-cols-1 lg:grid-cols-[30%_70%] gap-1 w-full bg-white text-black lg: pt-16'>
-        <Sidebar showMobile={showNav} />
+        <Sidebar showMobile={showNav} toggleNav={toggleNav} />
         <div className={`mb-4 p-4 ${showNav ? 'pt-8 opacity-50' : null}`} onClick={() => showNav ? setShowNav(false) : null}>{children}</div>
       </div>
       </SessionProvider>

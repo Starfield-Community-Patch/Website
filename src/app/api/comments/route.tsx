@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     if (isNaN(id)) return NextResponse.json({}, { status: 400, statusText: 'Bad Request' })
 
 
-    console.log('Params', params, id);
+    // console.log('Params', params, id);
 
     let issue: IGitHubCommentsResponse;
     

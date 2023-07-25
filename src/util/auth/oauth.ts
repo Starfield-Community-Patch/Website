@@ -18,7 +18,30 @@ const OAuthProviders: NextAuthOptions = {
             clientSecret: process.env.NEXUSMODS_SECRET!
         })   
     ],
-    secret: process.env.NEXTAUTH_SECRET
+    secret: process.env.NEXTAUTH_SECRET,
+    callbacks: {
+        // async jwt(params: { 
+        //     token: any,
+        //     user: any,
+        //     account: any,
+        //     profile?: any,
+        //     trigger?: string,
+        //     isNewUser?: boolean,
+        //     session?: any
+        //  }): Promise<any> {
+            
+        //     if (params.account?.accessToken) {
+        //         params.token.accessToken = params.account?.accessToken
+        //         console.log('Account token', { access: params.account.accessToken, token: params.token })
+        //     }
+        //     // else console.log('JWT CALLBACK', params);
+        //     return params.token
+        // },
+        // async session(params: { session: any, token: any }): Promise<any> {
+        //     console.log('Session callback', params);
+        //     return params.session;
+        // }
+    }
 }
 
 export default OAuthProviders;
