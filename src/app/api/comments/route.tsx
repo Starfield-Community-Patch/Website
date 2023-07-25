@@ -7,16 +7,18 @@ export async function GET(request: NextRequest) {
     const params = new URL(request.url).searchParams;
 
     const id: number = parseInt(params.get('id') || '');
+    const before: string | null = params.get('before');
+    const after: string | null = params.get('after');
 
     if (isNaN(id)) return NextResponse.json({}, { status: 400, statusText: 'Bad Request' })
 
 
-    // console.log('Params', params, id);
+    // console.log('Params', params);
 
     let issue: IGitHubCommentsResponse;
     
     try {
-        issue = await getIssueComments(id);
+        issue = await getIssueComments(id, after, before);
     }
     catch(err) {
         console.log('Error', err)

@@ -56,8 +56,8 @@ export interface IGitHubCommentsResponse {
 
 export interface IGitHubIssueComments {
     totalCount: number;
-    pageInfo: IGitHubCommentPageInfo;
     comments: {
+        pageInfo: IGitHubCommentPageInfo;
         nodes: IGitHubComment[]
     }
 }
@@ -228,7 +228,7 @@ const singleIssueQuery = (id: number, name: string, owner: string) => query({
     ]
 })
 
-const issueComments = (id: number, name: string, owner: string) => query({
+const issueComments = (id: number, name: string, owner: string, after?: string | null, before?: string | null) => query({
     operation: 'repository',
     variables: {
         name: {
@@ -253,9 +253,19 @@ const issueComments = (id: number, name: string, owner: string) => query({
                     operation: 'comments',
                     variables: {
                         first: {
-                            name: 'first',
+                            name: 'last',
                             type: 'Int',
                             value: 10
+                        },
+                        before: {
+                            name: 'before',
+                            type: 'String',
+                            value: before
+                        },
+                        after: {
+                            name: 'after',
+                            type: 'String',
+                            value: after
                         }
                     },
                     fields: [ 
@@ -287,12 +297,12 @@ const issueComments = (id: number, name: string, owner: string) => query({
     ]
 })
 
-export async function getIssueComments(id: number): Promise<IGitHubCommentsResponse> {
+export async function getIssueComments(id: number, after?: string | null, before?: string | null): Promise<IGitHubCommentsResponse> {
     const { GITHUB_TOKEN, GITHUB_OWNER, GITHUB_NAME } = process.env;
 
     if (!GITHUB_NAME || !GITHUB_OWNER || !GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
 
-    const query = issueComments(id, GITHUB_NAME, GITHUB_OWNER);
+    const query = issueComments(id, GITHUB_NAME, GITHUB_OWNER, after, before);
 
     // console.log(query)
 

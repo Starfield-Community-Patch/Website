@@ -4,6 +4,7 @@ import { IGitHubComment, IGitHubCommentPageInfo, IGitHubCommentsResponse } from 
 import { useMemo, useState } from "react";
 import CommentLoader from "../commentskeleton";
 import IssueComment from "./comment";
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface IIssueCommentProps {
     id: number;
@@ -11,19 +12,29 @@ interface IIssueCommentProps {
 }
 
 export default function IssueComments(props: IIssueCommentProps) {
+    const router = useRouter();
+    // Try to use the URL params to pre-fetch the right comments.
+    // const params = useSearchParams();
+    // console.log(params)
     const { id, className } = props;
     const [comments, setComments] = useState<IGitHubComment[] | undefined>(undefined)
     const [commentError, setCommentError] = useState<Error | undefined>(undefined);
     const [pageInfo, setPageInfo] = useState<IGitHubCommentPageInfo | undefined>(undefined)
+    const [cursor, setCursor] = useState<{ before?: string, after?: string } | undefined>(undefined);
 
     useMemo(async () => {
-        if (!!comments || !!commentError) return;
+        if ((!!comments && !cursor) || !!commentError) return;
         try {
-            const request = await fetch(`/api/comments?id=${id}`);
+            const params = new URLSearchParams()
+            params.set('id', id.toString())
+            if (cursor?.after) params.set('after', cursor.after)
+            else if (cursor?.before) params.set('before', cursor.before)
+            const request = await fetch(`/api/comments?${params.toString()}`);
             if (request.ok) {
                 const res: IGitHubCommentsResponse = await request.json()
                 setComments(res.data?.repository.issue.comments.nodes || [])
-                setPageInfo(res.data?.repository.issue.pageInfo)
+                setPageInfo(res.data?.repository.issue.comments.pageInfo)
+                setCursor(undefined)
             }
             else throw new Error(`Request failed: ${request.status} ${request.statusText}`)
         }
@@ -32,7 +43,7 @@ export default function IssueComments(props: IIssueCommentProps) {
             console.error('Failed to get comments from GitHub', err);
             setCommentError(err as Error);
         }
-    }, [id, comments, commentError]);
+    }, [id, comments, commentError, cursor]);
 
     const loading = () => {
         return (
@@ -56,6 +67,22 @@ export default function IssueComments(props: IIssueCommentProps) {
         )
     }
 
+    const earlierComments = () => {
+        if (!pageInfo?.startCursor) return console.error('No start cursor to paginate', pageInfo);
+        setCursor({ before: pageInfo?.startCursor })
+        const params = new URLSearchParams()
+        params.append('before', pageInfo?.startCursor)
+        router.push(`/issues/${id}?${params.toString()}`)
+    }
+
+    const laterComments = () => {
+        if (!pageInfo?.endCursor) return console.error('No end cursor to paginate', pageInfo);
+        setCursor({ after: pageInfo?.endCursor })
+        const params = new URLSearchParams()
+        params.append('after', pageInfo?.startCursor)
+        router.push(`/issues/${id}?${params.toString()}`)
+    }
+
     return (
         <div className={className}>
             <div>
@@ -64,7 +91,10 @@ export default function IssueComments(props: IIssueCommentProps) {
             : !commentError ? loading() : errorState()
             }
             </div>
-            <div>{`<- Prev`} {`Next ->`}</div>
+            <div className="w-full grid grid-cols-3">
+                {pageInfo?.hasPreviousPage ? <button className="" onClick={() => earlierComments()}>{`<- Prev`}</button> : null}
+                {pageInfo?.hasNextPage ? <button className="col-start-3" onClick={() => laterComments()}>{`Next ->`}</button> : null}
+            </div>
         </div>
     )
 }

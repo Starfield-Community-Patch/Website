@@ -10,7 +10,6 @@ import IssueComments from '@/components/comments/issueComments';
 import GitHub from '../../../components/sidebar/github-mark.svg'
 import Image from 'next/image';
 import { getServerSession } from 'next-auth';
-import { signIn } from 'next-auth/react';
 import OAuthProviders from '@/util/auth/oauth';
 import { Metadata, ResolvingMetadata } from 'next'
 
