@@ -57,10 +57,10 @@ export default async function getMultipleUsers(ids: Set<number>) {
             let newIds = [...ids];
             for(const error of response.errors) {
                 // We have to remove invalid user IDs are retrun the entire query.
-                const badUserId = error.message.match(/User with id ([0-9])+ not found/)?.[1];
+                const badUserId = error.message.match(/User with id ([0-9]+) not found/)?.[1];
                 if (badUserId) {
                     newIds = newIds.filter(id => id !== parseInt(badUserId));
-                    retry = true
+                    retry = newIds.length > 0
                 } 
                 else console.log('Unhandled GQL error', error)                   
             }

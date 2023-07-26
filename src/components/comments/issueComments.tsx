@@ -1,6 +1,6 @@
 'use client'
 
-import { IGitHubComment, IGitHubCommentPageInfo, IGitHubCommentsResponse } from "@/util/GitHub/issues";
+import { IGitHubComment, IGitHubCommentPageInfo, IGitHubCommentsResponse } from "@/util/GitHub/issue-comments";
 import { useMemo, useState } from "react";
 import CommentLoader from "../commentskeleton";
 import IssueComment from "./comment";
@@ -15,12 +15,13 @@ export default function IssueComments(props: IIssueCommentProps) {
     const router = useRouter();
     // Try to use the URL params to pre-fetch the right comments.
     // const params = useSearchParams();
+    // const paramCursor = params.get('before') ? { before: params.get('before') } : params.get('after') ? { after: params.get('after') } : null
     // console.log(params)
     const { id, className } = props;
     const [comments, setComments] = useState<IGitHubComment[] | undefined>(undefined)
     const [commentError, setCommentError] = useState<Error | undefined>(undefined);
     const [pageInfo, setPageInfo] = useState<IGitHubCommentPageInfo | undefined>(undefined)
-    const [cursor, setCursor] = useState<{ before?: string, after?: string } | undefined>(undefined);
+    const [cursor, setCursor] = useState<{ before?: string | null, after?: string | null } | null>(null);
 
     useMemo(async () => {
         if ((!!comments && !cursor) || !!commentError) return;
@@ -29,12 +30,12 @@ export default function IssueComments(props: IIssueCommentProps) {
             params.set('id', id.toString())
             if (cursor?.after) params.set('after', cursor.after)
             else if (cursor?.before) params.set('before', cursor.before)
-            const request = await fetch(`/api/comments?${params.toString()}`);
+            const request = await fetch(`/api/comments?${params.toString()}`, { next: { revalidate: 5, tags: [`${id}_comments`] } });
             if (request.ok) {
                 const res: IGitHubCommentsResponse = await request.json()
                 setComments(res.data?.repository.issue.comments.nodes || [])
                 setPageInfo(res.data?.repository.issue.comments.pageInfo)
-                setCursor(undefined)
+                setCursor(null)
             }
             else throw new Error(`Request failed: ${request.status} ${request.statusText}`)
         }

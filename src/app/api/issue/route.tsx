@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server'
-import { getSingleIssue, IGitHubSingleIssueResponse } from '@/util/GitHub/issues';
+import { getSingleIssue, IGitHubSingleIssueResponse } from '@/util/GitHub/issue';
 import { ErrorWithHTTPCode } from '@/util/errors';
 
 export async function GET(request: NextRequest) {

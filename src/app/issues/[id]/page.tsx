@@ -1,6 +1,6 @@
 import { Orbitron } from 'next/font/google'
 import UserAvatar from '@/components/useravatar'
-import { getSingleIssue } from "@/util/GitHub/issues";
+import { getSingleIssue } from "@/util/GitHub/issue";
 import BackButton from "@/components/backbutton";
 import { mdiArrowLeft, mdiCreation, mdiUpdate } from '@mdi/js';
 import StatusLabel from '@/components/statusLabel';
@@ -12,6 +12,7 @@ import Image from 'next/image';
 import { getServerSession } from 'next-auth';
 import OAuthProviders from '@/util/auth/oauth';
 import { Metadata, ResolvingMetadata } from 'next'
+import CommentInput from '@/components/comments/commentInput';
 
 const orb = Orbitron({ subsets: ['latin'] })
 
@@ -114,13 +115,7 @@ export default async function IssueView(props: IIssueViewProps) {
             </div>
             <h2 id='comments' className={`text-2xl my-4 `+orb.className}>Comments ({issue?.comments?.totalCount ?? 0})</h2>
             <IssueComments id={issueId} />
-            {!!session
-            ? <textarea rows={10} className='w-full border-black border-2 mx-auto'></textarea>
-            : <p>Not Logged in! <a href={'/api/auth/signin'}>Sign In</a></p>                
-            }            
-            <div>
-            <button>Post Comment</button>
-            </div>
+            <CommentInput commentId={issue?.id} />
         </div>
     )
 }

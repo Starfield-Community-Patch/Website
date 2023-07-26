@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server'
 import getMultipleUsers, { INexusModsUser } from '@/util/NexusMods/multiuserquery';
-import { getIssueList, IGitHubIssueResponse, IGitHubIssueList } from '@/util/GitHub/issues';
+import { getIssueList, IGitHubIssueResponse, IGitHubIssueList } from '@/util/GitHub/issues-list';
 import { ErrorWithHTTPCode } from '@/util/errors';
 
 export async function GET(request: NextRequest) {

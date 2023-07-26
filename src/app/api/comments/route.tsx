@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server'
-import { getIssueComments, IGitHubCommentsResponse } from '@/util/GitHub/issues';
+import { getIssueComments, IGitHubCommentsResponse } from '@/util/GitHub/issue-comments';
 import { ErrorWithHTTPCode } from '@/util/errors';
 
 export async function GET(request: NextRequest) {
