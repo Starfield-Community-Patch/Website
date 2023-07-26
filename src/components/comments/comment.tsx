@@ -1,4 +1,4 @@
-import { IGitHubComment } from "@/util/GitHub/issue";
+import { IGitHubComment } from "@/util/GitHub/issue-comments";
 import RelativeDate from "../relativeDate";
 import { mdiUpdate } from "@mdi/js";
 import UserAvatar from "../useravatar";
