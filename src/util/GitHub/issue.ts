@@ -31,10 +31,17 @@ export interface IGitHubIssueDetail {
         login: string;
         avatarUrl: string;
     }
-    NexusMods?: INexusModsUser
     comments: {
         totalCount: number;
     }
+    labels: {
+        nodes: {
+            id: string;
+            name: string;
+            color: string;
+        }[]
+    }
+    NexusMods?: INexusModsUser
 }
 
 const singleIssueQuery = (id: number, name: string, owner: string) => query({
@@ -79,6 +86,19 @@ const singleIssueQuery = (id: number, name: string, owner: string) => query({
                         }
                     },
                     fields: [ 'totalCount' ]
+                },
+                {
+                    operation: 'labels',
+                    variables: {
+                        firstLabels: {
+                            name: 'first',
+                            type: 'Int',
+                            value: 10
+                        }
+                    },
+                    fields: [
+                        { nodes: ['id', 'name', 'color'] }
+                    ]
                 }
             ]
 
@@ -114,7 +134,7 @@ export async function getSingleIssue(id: number): Promise<IGitHubSingleIssueResp
     }
 
     // Check for Nexus Mods data
-    const nexusModsData = resp.data?.repository.issue.body.match(/<!-- ?NexusMods:([0-9]+):([0-9a-zA-Z]+) ?-->/);
+    const nexusModsData = resp.data?.repository.issue.body.match(/<!-- ?NexusMods:([0-9]+).+-->/);
     if (nexusModsData) {
         const [ comment, idString, name ] = nexusModsData
         const id: number = parseInt(idString.trim())

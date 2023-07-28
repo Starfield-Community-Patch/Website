@@ -89,7 +89,7 @@ export default function IssueComments(props: IIssueCommentProps) {
         <div className={className}>
             <div>
             {!!comments && !commentError
-            ? comments.length ? comments.map(c => (<IssueComment comment={c} key={c.id} />)) : <b>NO COMMENTS!</b>
+            ? comments.length ? comments.map(c => (<IssueComment comment={c} key={c.id} />)) : null
             : !commentError ? loading() : errorState()
             }
             </div>

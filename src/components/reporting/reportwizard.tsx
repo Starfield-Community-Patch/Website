@@ -1,16 +1,13 @@
-import { Orbitron } from 'next/font/google'
 import { getRepoAndLabels } from '@/util/GitHub/get-repo-labels';
 import VASCOTip from './vascotip';
-
-const orb = Orbitron({ subsets: ['latin'] })
 
 export default async function ReportWizard() {
 
     const env: 'development' | 'production' | 'test' = process.env.NODE_ENV;
 
-    const repoInfo = await getRepoAndLabels();
-
     if (env === 'production') return <p>Not available yet!</p>
+
+    const repoInfo = await getRepoAndLabels();
 
     return (
         <div>

@@ -50,6 +50,9 @@ module.exports = {
       },
       transitionProperty: {
         'trans': 'transform'
+      },
+      gridTemplateRows: {
+        'comment': '3rem minmax(0, 1fr) minmax(0, 1fr)'
       }
     },
   },

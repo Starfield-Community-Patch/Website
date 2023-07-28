@@ -67,13 +67,22 @@ export default async function IssueView(props: IIssueViewProps) {
         console.error('Failed to fetch issue', err);
         return (
         <div>
-            <h1 className={`text-4xl text-center mb-4 `+orb.className}>Issue #{props.params.id}</h1>
+            <h1 className={`text-4xl text-center m-4 `+orb.className}>Issue #{props.params.id}</h1>
             <BackButton href='/issues' label="Back to Issue List" icon={mdiArrowLeft} />
             <div className='w-full bg-red-500 text-white text-center py-10'>
                 Error: {(err as Error).message}
             </div>
         </div>
         )
+    }
+
+    const label = (l: { id: string, name: string, color:string}) => {
+        const customColor = `#${l.color}`
+        return (
+        <div className={`px-2 py-0.5 mr-1 border-2 inline rounded-md text-sm`} style={{borderColor: customColor, color: customColor}} key={l.id}>
+            {l.name}
+        </div>
+        );
     }
 
     return (
@@ -96,6 +105,7 @@ export default async function IssueView(props: IIssueViewProps) {
             </div>
             <div className='border-2 border-black py-2 px-8'>
             <IssueBody body={issue?.body !== "" ? issue?.body! : '*No issue description provided.*'} />
+            { (issue?.labels.nodes ?? []).length ? <div className='my-2 border-t-2 pt-2'>{(issue?.labels.nodes ?? []).map(label)}</div> : null}
             </div>
             <div className="grid grid-flow-row grid-cols-3 mt-2 gap-4 border-2 border-black py-2 px-8 bg-[#2f4dd445] items-center">
                 <div>
@@ -115,6 +125,7 @@ export default async function IssueView(props: IIssueViewProps) {
             </div>
             <h2 id='comments' className={`mt-4 `+orb.className}>Comments ({issue?.comments?.totalCount ?? 0})</h2>
             <IssueComments id={issueId} />
+            <hr />
             <CommentInput commentId={issue?.id} />
         </div>
     )

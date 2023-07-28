@@ -21,7 +21,7 @@ export default function UserAvatar(props: IAvatarProps) {
     const fallBack = () => {
         return (
             <div className={`rounded-full ${sizeClass} bg-stripe-blue text-white text-center leading-8 select-none`} title={githubUser?.login}>
-                {githubUser?.login[0].toUpperCase()}
+                {githubUser?.login[0]?.toUpperCase() ?? ''}
             </div>
         )
     }

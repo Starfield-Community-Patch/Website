@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
     const nexusModsIDs = new Set<number>()
 
     for (const i of issues) {
-        const nexusModsData = (i.body as string).match(/<!-- ?NexusMods:([0-9]+):([0-9a-zA-Z]+) ?-->/);
+        const nexusModsData = (i.body as string).match(/<!-- ?NexusMods:([0-9]+).+-->/);
         if (nexusModsData) {
             const [ comment, idString, name ] = nexusModsData
             const memberId: number = parseInt(idString.trim())

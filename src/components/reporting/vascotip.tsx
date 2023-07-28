@@ -6,8 +6,6 @@ import { PropsWithChildren } from 'react';
 const orb = Orbitron({ subsets: ['latin'] })
 
 export default function VASCOTip(props : PropsWithChildren<{}>) {
-    console.log(props)
-
     const { children } = props
 
     return (
