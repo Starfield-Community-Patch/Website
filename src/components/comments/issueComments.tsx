@@ -1,6 +1,7 @@
 'use client'
 
-import { IGitHubComment, IGitHubCommentPageInfo, IGitHubCommentsResponse } from "@/util/GitHub/issue-comments";
+import { IGitHubComment, IGitHubCommentsResponse } from "@/util/GitHub/issue-comments";
+import { IGitHubPageInfo } from '@/util/GitHub/common'
 import { useMemo, useState } from "react";
 import CommentLoader from "../commentskeleton";
 import IssueComment from "./comment";
@@ -20,7 +21,7 @@ export default function IssueComments(props: IIssueCommentProps) {
     const { id, className } = props;
     const [comments, setComments] = useState<IGitHubComment[] | undefined>(undefined)
     const [commentError, setCommentError] = useState<Error | undefined>(undefined);
-    const [pageInfo, setPageInfo] = useState<IGitHubCommentPageInfo | undefined>(undefined)
+    const [pageInfo, setPageInfo] = useState<IGitHubPageInfo | undefined>(undefined)
     const [cursor, setCursor] = useState<{ before?: string | null, after?: string | null } | null>(null);
 
     useMemo(async () => {
