@@ -2,7 +2,14 @@ export const gitHubGQL: string = 'https://api.github.com/graphql';
 export type IGitHubIssueStates = 'OPEN' | 'CLOSED';
 import { ErrorWithHTTPCode } from '../errors';
 
-export async function fetchRequest(TOKEN: string, query: { query: string, variables: string }) {
+export interface IGitHubPageInfo {
+    startCursor: string;
+    endCursor: string;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+}
+
+export async function fetchRequest(TOKEN: string, query: { query: string, variables: string }, options?: NextFetchRequestConfig) {
     const result = await fetch(gitHubGQL, {
         method: 'POST',
         body: JSON.stringify(query),
@@ -10,7 +17,7 @@ export async function fetchRequest(TOKEN: string, query: { query: string, variab
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${TOKEN}`
         },
-        next: { revalidate: 0 }
+        next: options ?? { revalidate: 0 }
     })
     const resp = (await result.json())
     // console.log('Response', resp)

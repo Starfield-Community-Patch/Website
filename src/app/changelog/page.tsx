@@ -10,7 +10,7 @@ const orb = Orbitron({ subsets: ['latin'] })
 export default function ChangelogPage() {
     return (
         <div>
-            <h1 className={`text-4xl text-center mb-4 `+orb.className}>Changelog</h1>
+            <h1 className={orb.className}>Changelog</h1>
             Nothing to see here!
         </div>
     )

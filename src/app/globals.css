@@ -26,6 +26,55 @@ body {
     rgb(var(--background-start-rgb)); */
 }
 
+h1, h2 {
+  color: black;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.25em;
+  line-height: 2.5rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+ol, ul, menu {
+  list-style-type: disc;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  padding-left: 2em;
+}
+
+.sb-1:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-right: 10px solid black;
+  border-left: 10px solid transparent;
+  border-top: 10px solid black;
+  border-bottom: 10px solid transparent;
+  left: -20px;
+  top: -2px;
+}
+
+.sb-1:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 8px solid transparent;
+  border-right: 10px solid #fff;
+  border-top: 10px solid #fff;
+  border-bottom: 8px solid transparent;
+  left: -16px;
+  top: 0px; 
+}
+
 .nav-item:hover .nav-stripes {
   .stripe {
     transform:scaleX(1);

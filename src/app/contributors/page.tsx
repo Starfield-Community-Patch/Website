@@ -10,7 +10,7 @@ const orb = Orbitron({ subsets: ['latin'] })
 export default function ContributorsPage() {
     return (
         <div>
-            <h1 className={`text-4xl text-center mb-4 `+orb.className}>Contributors</h1>
+            <h1 className={orb.className}>Contributors</h1>
             Could your name end up here?
         </div>
     )

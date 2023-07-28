@@ -1,5 +1,5 @@
 import { query } from 'gql-query-builder';
-import { gitHubGQL } from "./common";
+import { gitHubGQL, IGitHubPageInfo } from "./common";
 import { ErrorWithHTTPCode } from '../errors';
 import getMultipleUsers, { INexusModsUser } from '../NexusMods/multiuserquery';
 
@@ -21,16 +21,9 @@ export interface IGitHubCommentsResponse {
 export interface IGitHubIssueComments {
     totalCount: number;
     comments: {
-        pageInfo: IGitHubCommentPageInfo;
+        pageInfo: IGitHubPageInfo;
         nodes: IGitHubComment[]
     }
-}
-
-export interface IGitHubCommentPageInfo {
-    startCursor: string;
-    endCursor: string;
-    hasNextPage: boolean;
-    hasPreviousPage: boolean;
 }
 
 export interface IGitHubComment {

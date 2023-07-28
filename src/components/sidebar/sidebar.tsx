@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Reddit from './reddit.svg'
 import Discord from './discord-mark-black.svg'
 import GitHub from './github-mark.svg'
+import NexusModsMono from './Nexus Logo Icon - Monocrom.svg'
 import { signIn, signOut, useSession } from "next-auth/react"
 import Image from 'next/image'
 
@@ -17,7 +18,7 @@ export default function Sidebar(props: ISidebarProps) {
     const { data: session, status } = useSession()
 
     return (
-        <div className={`bg-white z-50 lg:z-auto lg:flex-initial overflow-auto lg:border-black lg:border-2 lg:m-4 pt-2 pb-2 pl-2 ${showMobile ? 'float-left absolute top-16 w-auto h-5/6' : 'collapse h-0 lg:h-auto lg:visible'}`}>
+        <div className={`bg-white z-50 lg:z-auto lg:flex-initial overflow-auto lg:border-black lg:border-2 lg:m-4 pt-2 pb-2 pl-2 ${showMobile ? 'float-left absolute top-16 w-auto h-full' : 'collapse h-0 lg:h-auto lg:visible'}`}>
             <Link href='/' onClick={() => toggleNav(false)}><NavButton icon={mdiEarth} label={'Home'} /></Link>
             <Link href='/mission' onClick={() => toggleNav(false)}><NavButton icon={mdiRocketLaunch} label={'Mission Statement'} /></Link>
             <Link href='/download' onClick={() => toggleNav(false)}><NavButton icon={mdiDownload} label={'Download'} /></Link>
@@ -27,6 +28,7 @@ export default function Sidebar(props: ISidebarProps) {
             <Link href='/report' onClick={() => toggleNav(false)}><NavButton icon={mdiBug} label={'Report'} /></Link>
             <Link href='/contributors' onClick={() => toggleNav(false)}><NavButton icon={mdiMedal} label={'Contributors'} /></Link>
             <hr />
+            <Link href='https://nexusmods.com/starfield/mods/1' target='_blank'><NavButton customIcon={NexusModsMono} label={'Nexus Mods ↗'} /></Link>
             <Link href='https://forums.nexusmods.com/index.php?/forum/6928-starfield/' target='_blank'><NavButton icon={mdiMessage} label={'Forums ↗'} /></Link>
             <Link href='https://discord.gg/6R4Yq5KjW2' target='_blank'><NavButton customIcon={Discord} label={'Discord ↗'} /></Link>
             <Link href='https://www.reddit.com/r/starfieldmods/' target='_blank'><NavButton customIcon={Reddit} label={'Reddit ↗'} /></Link>  

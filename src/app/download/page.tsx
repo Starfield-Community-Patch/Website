@@ -7,11 +7,11 @@ export default function DownloadPage() {
     return (
         <div>
             <div>
-                <h1 className={`text-4xl text-center mb-4 `+orb.className} id='PC'>Download for PC</h1>
+                <h1 className={orb.className} id='PC'>Download for PC</h1>
                 Get it on Nexus Mods, or an alternative
             </div>
             <div>
-                <h1 className={`text-4xl text-center mb-4 `+orb.className} id='Xbox'>Download for Xbox</h1>
+                <h1 className={orb.className} id='Xbox'>Download for Xbox</h1>
                 Get it on Bethesda.net, or an alternative
             </div>
         </div>
