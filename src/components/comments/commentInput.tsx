@@ -24,12 +24,15 @@ export default function CommentInput(props: IProps) {
             const form = new FormData();
             form.append('comment', comment)
             const post = await fetch(`/api/comments/add?comment_id=${commentId}`, { method: 'POST', body: form });
-            if (!post.ok) throw new Error(post.statusText)
+            if (!post.ok) {
+                console.warn('Network error', post.status, post.statusText)
+                throw new Error(post.statusText)
+            }
             setWorking(false)
         }
         catch(err) {
             console.error('Failed to post comment', err);
-            setPostError(err as Error)
+            setPostError((err as Error) ?? new Error('Unknown error'))
             setWorking(false)
         }
     }
