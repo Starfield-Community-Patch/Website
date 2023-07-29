@@ -12,9 +12,11 @@ type ReportStage = 'start' | 'platform' | 'type' | 'questions' | 'review' | 'com
 interface IReportBody {
     summary?: string;
     questions?: {
-        title: string;
-        answer: string;
-    }[]
+        [key: string] : {
+            title: string;
+            answer: string;
+        }
+    }
 }
 
 const stages: ReportStage[] = ['start' , 'platform' , 'type' , 'questions' , 'review' , 'complete']
