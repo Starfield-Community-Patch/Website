@@ -35,9 +35,9 @@ export default function IssuesTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    <Suspense fallback={loadingRows()}>
+                    {/* <Suspense fallback={loadingRows()}>
                         <IssueRows setIssues={setIssues} query={query} />                    
-                    </Suspense>
+                    </Suspense> */}
                 </tbody>
             </table>
         </div>
