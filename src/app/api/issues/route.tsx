@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({issues, totalCount: issueList.data?.repository.issues.totalCount});
 }
 
-export async function addNexusModsToIssueList(issues: IGitHubIssueList[]): Promise<IGitHubIssueList[]> {
+async function addNexusModsToIssueList(issues: IGitHubIssueList[]): Promise<IGitHubIssueList[]> {
     // Get the Nexus Mods account IDs for the various issues
     const nexusModsIDs = new Set<number>()
 
