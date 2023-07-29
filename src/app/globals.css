@@ -71,11 +71,26 @@ button:disabled {
   opacity: 0.5;
 }
 
-.sb-1:before {
+button.secondary {
+  background-color: white;
+  border: 2px solid rgb(var(--stripe-blue-rgb));
+  color: rgb(var(--stripe-blue-rgb));
+}
+
+button.secondary:hover {
+  background-color: white;
+  border: 2px solid rgb(var(--stripe-orange-rgb));
+  color: rgb(var(--stripe-orange-rgb));
+}
+
+.sb-l::before, .sb-l::after, .sb-r:after, .sb-l::before {
   content: "";
   width: 0px;
   height: 0px;
   position: absolute;
+}
+
+.sb-r:before {
   border-right: 10px solid black;
   border-left: 10px solid transparent;
   border-top: 10px solid black;
@@ -84,11 +99,7 @@ button:disabled {
   top: -2px;
 }
 
-.sb-1:after {
-  content: "";
-  width: 0px;
-  height: 0px;
-  position: absolute;
+.sb-r:after {
   border-left: 8px solid transparent;
   border-right: 10px solid #fff;
   border-top: 10px solid #fff;
@@ -97,10 +108,32 @@ button:disabled {
   top: 0px; 
 }
 
+.sb-l:before {
+  border-right: 10px solid transparent;
+  border-left: 10px solid black;
+  border-top: 10px solid black;
+  border-bottom: 10px solid transparent;
+  right: -20px;
+  top: -2px;
+}
+
+.sb-l:after {
+  border-left: 8px solid #fff;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #fff;
+  border-bottom: 8px solid transparent;
+  right: -16px;
+  top: 0px; 
+}
+
 .nav-item:hover .nav-stripes {
   .stripe {
     transform:scaleX(1);
   }
+}
+
+input[type=text] {
+  border: 2px black solid;
 }
 
 blockquote {

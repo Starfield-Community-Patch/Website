@@ -114,7 +114,7 @@ export async function getIssueList(query: string | null): Promise<IGitHubIssueRe
 
     const gitHubQuery = gitHubIssuesQuery(GITHUB_NAME, GITHUB_OWNER, query)
 
-    console.log(gitHubQuery);
+    // console.log(gitHubQuery);
 
     const result = await fetch(gitHubGQL, {
         method: 'POST',

@@ -79,7 +79,7 @@ export default async function IssueView(props: IIssueViewProps) {
     const label = (l: { id: string, name: string, color:string}) => {
         const customColor = `#${l.color}`
         return (
-        <div className={`px-2 py-0.5 mr-1 border-2 inline rounded-md text-sm`} style={{borderColor: customColor, color: customColor}} key={l.id}>
+        <div className={`px-2 py-0.5 mr-1 my-1 border-2 inline-block rounded-md text-sm`} style={{borderColor: customColor, color: customColor}} key={l.id}>
             {l.name}
         </div>
         );

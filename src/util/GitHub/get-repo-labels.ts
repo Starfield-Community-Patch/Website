@@ -20,13 +20,16 @@ export interface IGitHubRepoDetail {
     nameWithOwner: string;
     labels: {
         pageInfo: IGitHubPageInfo;
-        nodes: {
-            id: string;
-            name: string;
-            color: string;
-        }[]
+        nodes: IGitHubLabel[]
         totalCount: number;
     }
+}
+
+export interface IGitHubLabel {
+    id: string;
+    name: string;
+    color: string;
+    description: string;
 }
 
 const repoQuery = (name: string, owner: string) => query({
@@ -56,7 +59,7 @@ const repoQuery = (name: string, owner: string) => query({
                     pageInfo: ['hasNextPage', 'hasPreviousPage', 'startCursor', 'endCursor']
                 },
                 {
-                    nodes: ['id', 'name', 'color']
+                    nodes: ['id', 'name', 'color', 'description']
                 },
                 'totalCount'
             ]
