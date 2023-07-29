@@ -39,6 +39,8 @@ interface IMultiUserResult {
 }
 
 export default async function getMultipleUsers(ids: Set<number>) {
+    if (!ids.size) return {};
+
     const nexusQuery = multiUserQuery([...ids])
 
     const nexusReq = await fetch(v2API, {
@@ -62,7 +64,7 @@ export default async function getMultipleUsers(ids: Set<number>) {
                     newIds = newIds.filter(id => id !== parseInt(badUserId));
                     retry = newIds.length > 0
                 } 
-                else console.log('Unhandled GQL error', error)                   
+                else console.log('Unhandled GQL error', {error, newIds})                   
             }
             if (retry) return getMultipleUsers(new Set(newIds));
             else throw new Error(`Unrecognised server error(s): ${response.errors?.map(e => e.message).join('\n')}`)

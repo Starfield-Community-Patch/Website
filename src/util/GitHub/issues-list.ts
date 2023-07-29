@@ -35,11 +35,13 @@ export interface IGitHubIssueList {
         memberId: number;
         avatar?: string;
     }
-    comments: number;
+    comments: {
+        totalCount: number;
+    }
     updatedAt: Date;
 }
 
-const gitHubIssuesQuery = (name: string, owner: string, states?: IGitHubIssueStates[] ) => query({
+const gitHubIssuesQuery = (name: string, owner: string, mentioned: string | null, states?: IGitHubIssueStates[] ) => query({
     operation: 'repository',
     variables: {
         name: {
@@ -75,6 +77,11 @@ const gitHubIssuesQuery = (name: string, owner: string, states?: IGitHubIssueSta
                     type: 'IssueState!',
                     value: states ?? 'OPEN',
                     list: true
+                },
+                filterBy: {
+                    name: 'filterBy',
+                    type: 'IssueFilters',
+                    value: { mentioned: mentioned }
                 }
             },
             fields: [
@@ -100,12 +107,14 @@ const gitHubIssuesQuery = (name: string, owner: string, states?: IGitHubIssueSta
     ]
 });
 
-export async function getIssueList(): Promise<IGitHubIssueResponse> {
+export async function getIssueList(query: string | null): Promise<IGitHubIssueResponse> {
     const { GITHUB_TOKEN, GITHUB_OWNER, GITHUB_NAME } = process.env;
 
     if (!GITHUB_NAME || !GITHUB_OWNER || !GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
 
-    const gitHubQuery = gitHubIssuesQuery(GITHUB_NAME, GITHUB_OWNER)
+    const gitHubQuery = gitHubIssuesQuery(GITHUB_NAME, GITHUB_OWNER, query)
+
+    console.log(gitHubQuery);
 
     const result = await fetch(gitHubGQL, {
         method: 'POST',

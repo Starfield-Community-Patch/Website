@@ -68,21 +68,9 @@ export default function CommentInput(props: IProps) {
                 <div><i>Markdown is supported in comments.</i></div>
                 <button disabled={comment === '' || working} onClick={() => addComment()}>Add Comment</button>
             </div>
-            { postError ? <div className="text-red-500">Error posting comment: {postError.message}</div> : null }
+            { postError ? <div className="text-red-500">Error posting comment: {postError.message ?? 'Unknown error'}</div> : null }
             </div>
             : loggedOut() }
         </CommentFrame>
-    )
-
-    return (
-        <div>
-            <form>
-                <textarea rows={5} className='w-full border-black border-2 mx-auto' disabled={status !== 'authenticated'} />
-            </form>
-            {status === 'authenticated'
-            ? <button>Post Comment</button>
-            : <p>Not Logged in! <a onClick={() => signIn()}>Sign In</a></p>                
-            }
-        </div>
     )
 }
