@@ -50,7 +50,7 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
     
     const env: 'development' | 'production' | 'test' = process.env.NODE_ENV;
 
-    if (env === 'production') return <p>Not available yet!</p>
+    // if (env === 'production') return <p>Not available yet!</p>
 
     const unknownStage = (
     <div>
