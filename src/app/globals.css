@@ -83,7 +83,7 @@ button.secondary:hover {
   color: rgb(var(--stripe-orange-rgb));
 }
 
-.sb-l::before, .sb-l::after, .sb-r:after, .sb-l::before {
+.sb-l::before, .sb-l::after, .sb-r:after, .sb-r::before {
   content: "";
   width: 0px;
   height: 0px;

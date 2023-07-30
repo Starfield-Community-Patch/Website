@@ -123,7 +123,7 @@ export default async function IssueView(props: IIssueViewProps) {
             <h2 id='comments' className={`mt-4 `+orb.className}>Comments ({issue?.comments?.totalCount ?? 0})</h2>
             <IssueComments id={issueId} />
             <hr />
-            <CommentInput commentId={issue?.id} />
+            <CommentInput issueId={issue?.id} issueNumber={parseInt(props.params.id)} />
         </div>
     )
 }

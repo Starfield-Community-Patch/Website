@@ -4,6 +4,7 @@ import { createIssue } from '@/util/GitHub/create-issue';
 import { getServerSession } from "next-auth/next"
 import { getToken } from "next-auth/jwt"
 import OAuthProviders from '@/util/auth/oauth';
+import { revalidatePath } from 'next/cache';
 
 
 export async function POST(request: NextRequest) {
@@ -34,6 +35,7 @@ export async function POST(request: NextRequest) {
      try {
         const reference = (Math.random() + 1).toString(36).substring(7);
         const sendIssue = await createIssue(id, title, body, labels, reference);
+        revalidatePath('/api/issues');
         return NextResponse.json(sendIssue)
     }
     catch(err) {

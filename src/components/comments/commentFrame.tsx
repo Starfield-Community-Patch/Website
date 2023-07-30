@@ -5,7 +5,7 @@ interface IFrameProps {
     avatar: JSX.Element | JSX.Element[]
     userName: string;
     profileUrl: string;
-    platformIcon: JSX.Element;
+    platformIcon: JSX.Element | null;
     dateComponent?: JSX.Element
 }
 

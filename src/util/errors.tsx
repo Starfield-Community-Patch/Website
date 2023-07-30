@@ -4,5 +4,6 @@ export class ErrorWithHTTPCode extends Error {
     constructor(code: number, message: string) {
         super(message);
         this.code = code || 500 
+        this.message = message
     }
 }

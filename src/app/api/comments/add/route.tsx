@@ -4,6 +4,7 @@ import { addIssueComment } from '@/util/GitHub/add-issue-comment';
 import { getServerSession } from "next-auth/next"
 import { getToken } from "next-auth/jwt"
 import OAuthProviders from '@/util/auth/oauth';
+import { revalidateTag } from 'next/cache';
 
 export async function POST(request: NextRequest) {
 
@@ -11,7 +12,8 @@ export async function POST(request: NextRequest) {
     const body = await request.formData()
     let comment: string = body.get('comment') as string;
 
-    const id: string | null = params.get('comment_id');
+    const id: string | null = params.get('issue_id');
+    const number: number | null = parseInt(params.get('issue_number') ?? '-1');
 
     if (!id) return NextResponse.json({}, { status: 400, statusText: 'Bad Request - Invalid Comment ID' })
     if (!comment || comment === '') return NextResponse.json({}, { status: 422, statusText: 'Bad Request - Invalid Comment Body' })
@@ -34,6 +36,7 @@ export async function POST(request: NextRequest) {
     try {
         const reference = (Math.random() + 1).toString(36).substring(7);
         const sendComment = await addIssueComment(id, comment, reference);
+        if (!isNaN(number)) revalidateTag(`${number}_comments`)
         return NextResponse.json(sendComment)
     }
     catch(err) {

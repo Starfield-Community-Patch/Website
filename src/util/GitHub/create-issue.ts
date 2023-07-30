@@ -45,9 +45,12 @@ export async function createIssue(repoId: string, title: string, body: string, l
 
     const query = addIssueQuery(repoId, title, body, labels, reference);
 
+    console.log('Create issue', { query, input: query.variables['input'] })
+
     try {
-        const req: IGitHubAddIssueResponse = await fetchRequest(GITHUB_TOKEN, query, { revalidate: 0 })
-        return req;
+        throw new ErrorWithHTTPCode(400, 'Access denied')
+        // const req: IGitHubAddIssueResponse = await fetchRequest(GITHUB_TOKEN, query, { revalidate: 0 })
+        // return req;
     }
     catch(err) {
         const httpErr = (err as ErrorWithHTTPCode)
