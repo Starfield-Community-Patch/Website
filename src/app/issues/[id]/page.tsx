@@ -13,6 +13,8 @@ import { getServerSession } from 'next-auth';
 import OAuthProviders from '@/util/auth/oauth';
 import { Metadata, ResolvingMetadata } from 'next'
 import CommentInput from '@/components/comments/commentInput';
+import { IGitHubLabel } from '@/util/GitHub/get-repo-labels';
+import IssueLabel from '@/components/issueLabel';
 
 const orb = Orbitron({ subsets: ['latin'] })
 
@@ -76,15 +78,6 @@ export default async function IssueView(props: IIssueViewProps) {
         )
     }
 
-    const label = (l: { id: string, name: string, color:string}) => {
-        const customColor = `#${l.color}`
-        return (
-        <div className={`px-2 py-0.5 mr-1 my-1 border-2 inline-block rounded-md text-sm`} style={{borderColor: customColor, color: customColor}} key={l.id}>
-            {l.name}
-        </div>
-        );
-    }
-
     return (
         <div>
             <h1 className={orb.className}>Issue #{props.params.id}</h1>
@@ -105,7 +98,11 @@ export default async function IssueView(props: IIssueViewProps) {
             </div>
             <div className='border-2 border-black py-2 px-8'>
             <IssueBody body={issue?.body !== "" ? issue?.body! : '*No issue description provided.*'} />
-            { (issue?.labels.nodes ?? []).length ? <div className='my-2 border-t-2 pt-2'>{(issue?.labels.nodes ?? []).map(label)}</div> : null}
+            { 
+            (issue?.labels.nodes ?? []).length 
+            ? <div className='my-2 border-t-2 pt-2'>{(issue?.labels.nodes ?? []).map((l) => <IssueLabel label={l} key={l.id} />)}</div> 
+            : null
+            }
             </div>
             <div className="grid grid-flow-row grid-cols-3 mt-2 gap-4 border-2 border-black py-2 px-8 bg-[#2f4dd445] items-center">
                 <div>

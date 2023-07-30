@@ -2,6 +2,7 @@ import { query } from 'gql-query-builder';
 import { IGitHubIssueStates, gitHubGQL } from "./common";
 import { ErrorWithHTTPCode } from '../errors';
 import getMultipleUsers, { INexusModsUser } from '../NexusMods/multiuserquery';
+import { IGitHubLabel } from './get-repo-labels';
 
 export interface IGitHubSingleIssueResponse {
     data?: {
@@ -35,11 +36,7 @@ export interface IGitHubIssueDetail {
         totalCount: number;
     }
     labels: {
-        nodes: {
-            id: string;
-            name: string;
-            color: string;
-        }[]
+        nodes: IGitHubLabel[]
     }
     NexusMods?: INexusModsUser
 }
@@ -97,7 +94,7 @@ const singleIssueQuery = (id: number, name: string, owner: string) => query({
                         }
                     },
                     fields: [
-                        { nodes: ['id', 'name', 'color'] }
+                        { nodes: ['id', 'name', 'color', 'description'] }
                     ]
                 }
             ]

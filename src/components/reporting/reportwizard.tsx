@@ -6,15 +6,19 @@ import StartStage from './startStage';
 import PlatformStage, { Platform } from './platformStage';
 import TypeStage from './typeStage';
 import QuestionStage from './questionsStage';
+import IssueLabel from '../issueLabel';
+import ReviewStage from './reviewStage';
 
 type ReportStage = 'start' | 'platform' | 'type' | 'questions' | 'review' | 'complete';
 
-interface IReportBody {
+export interface IReportBody {
+    title? : string;
     summary?: string;
     questions?: {
         [key: string] : {
             title: string;
             answer: string;
+            priority: number;
         }
     }
 }
@@ -27,6 +31,7 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
     const [ type, setType ] = useState<IGitHubLabel | undefined>(undefined);
     const [ stage, setStage ] = useState<ReportStage>('start');
     const [ body, setBody ] = useState<IReportBody>({});
+    const [ dlcs, setDlcs ] = useState<Set<IGitHubLabel>>(new Set())
 
     const nextStage = () => {
         const cur = stages.indexOf(stage);
@@ -40,6 +45,7 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
 
     const updatePlatform = (val: IGitHubLabel | undefined) => setPlatform(val);
     const updateType = (val: IGitHubLabel | undefined) => setType(val);
+    const updateDlcs = (val: Set<IGitHubLabel>) => setDlcs(val);
 
     
     const env: 'development' | 'production' | 'test' = process.env.NODE_ENV;
@@ -61,7 +67,7 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
             break;
         }
         case 'platform': {
-            page = <PlatformStage next={nextStage} prev={prevStage} setPlatform={updatePlatform} labels={repo.data?.repository.labels.nodes} platform={platform} />
+            page = <PlatformStage next={nextStage} prev={prevStage} setPlatform={updatePlatform} labels={repo.data?.repository.labels.nodes} platform={platform} dlcs={dlcs} setDlcs={updateDlcs} />
             break;
         }
         case 'type' : {
@@ -73,7 +79,7 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
             break;
         }
         case 'review' : {
-            page = unknownStage
+            page = <ReviewStage prev={prevStage} body={body} typeLabel={type} platformLabel={platform} dlcLabels={dlcs} repoId={repo.data?.repository.id!} />
             break;
         }
         case 'complete' : {
@@ -86,9 +92,12 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
         }
     }
 
+    const labels: (IGitHubLabel | undefined )[] = [platform, type, ...dlcs].filter(l => l !== undefined)
+
     return (
         <div>
             {page}
         </div>
+        
     )
 }

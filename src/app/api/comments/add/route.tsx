@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     if (!id) return NextResponse.json({}, { status: 400, statusText: 'Bad Request - Invalid Comment ID' })
     if (!comment || comment === '') return NextResponse.json({}, { status: 422, statusText: 'Bad Request - Invalid Comment Body' })
 
-    if (process.env.NODE_ENV === 'production') return NextResponse.json({}, { status: 403, statusText: 'This feature is currently unavailable.' })
+    // if (process.env.NODE_ENV === 'production') return NextResponse.json({}, { status: 403, statusText: 'This feature is currently unavailable.' })
 
     // Check OAuth Credentials 
     const session = await getServerSession(OAuthProviders);
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     // console.log('Create comment JWT', jwt);
 
     // Append the comment with the Nexus Mods ID
-    comment = `${comment}\n\n<!-- NexusMods:${176851023} -->`;
+    comment = `${comment}\n\n<!-- NexusMods:${329875} -->`;
 
 
     // Submit the comment to GitHub    

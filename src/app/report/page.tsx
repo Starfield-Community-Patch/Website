@@ -17,7 +17,6 @@ export default async function ReportPage() {
     return (
         <div>
             <h1 className={orb.className}>Report an Issue</h1>
-            Submissions are currently closed.
             <Suspense fallback={<p>Loading...</p>}>
                 <ReportWizard repo={repoInfo} />
             </Suspense>
