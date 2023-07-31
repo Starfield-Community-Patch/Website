@@ -14,6 +14,7 @@ type ReportStage = 'start' | 'platform' | 'type' | 'questions' | 'review' | 'com
 export interface IReportBody {
     title? : string;
     summary?: string;
+    details?: string;
     questions?: {
         [key: string] : {
             title: string;

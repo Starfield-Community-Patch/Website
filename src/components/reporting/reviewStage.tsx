@@ -85,6 +85,7 @@ export default function ReviewStage(props: IReviewProps) {
 function buildMarkdown(body: IReportBody): string {
     let result = ''
     if (body.summary) result = result + `${body.summary}\n\n---`;
+    if (body.details) result = `${result}\n\n## Details \n${body.details}`
     const qs = Object.values(body.questions!).sort((a,b) => a.priority - b.priority);
     const questions = qs.map(q => `## ${q.title}\n${q.answer}`);
     result = `${result}\n\n${questions.join('\n\n')}`

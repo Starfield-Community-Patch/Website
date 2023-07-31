@@ -43,6 +43,13 @@ export default function QuestionStage(props: IStageProps) {
         setBody(newBody)
     }
 
+    const updateDetails = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        const newBody = {...body};
+        if (!e.target.value) delete newBody.details;
+        else newBody.details = e.target.value;
+        setBody(newBody)
+    }
+
     const updateTitle = (e: ChangeEvent<HTMLInputElement>) => {
         const newBody = {...body};
         if (!e.target.value) delete newBody.title;
@@ -83,6 +90,18 @@ export default function QuestionStage(props: IStageProps) {
                 />
                 </div>
                 <hr />
+                <div className="my-4">
+                <h2 className={orb.className}>Details</h2>
+                <textarea 
+                    rows={3} 
+                    className="w-full mx-auto p-1" 
+                    onChange={updateDetails} 
+                    value={body.details} 
+                    maxLength={1024} 
+                    placeholder="Provide any technical details such as item IDs, quest IDs and stage numbers"
+                />
+                </div>
+                <hr />
                 <div  className="my-4">
                 <h2 className={orb.className}>Game Version</h2>
                 <input 
@@ -94,7 +113,7 @@ export default function QuestionStage(props: IStageProps) {
                     maxLength={25}
                 />
                 <VASCOTip side='right'>
-                    You can learn how to find your game version here.
+                    You can learn how to find your game version <a href='#'>here</a>.
                 </VASCOTip>
                 </div>
                 <hr/>
