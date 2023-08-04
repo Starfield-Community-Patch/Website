@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     // console.log('Create comment JWT', jwt);
 
     // Append the comment with the Nexus Mods ID
-    comment = `${comment}\n\n<!-- NexusMods:${329875} -->`;
+    comment = `${comment}\n\n<!-- NexusMods:${jwt?.sub} -->`;
 
 
     // Submit the comment to GitHub    

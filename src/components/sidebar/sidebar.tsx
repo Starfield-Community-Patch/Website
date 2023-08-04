@@ -45,7 +45,7 @@ export default function Sidebar(props: ISidebarProps) {
                     </div>
                 </div>
             </div>:
-            <button onClick={() => signIn(undefined, { redirect: false })}>Sign In</button>} 
+            <button onClick={() => signIn('nexusmods', { redirect: false })}>Sign In</button>} 
         </div>
     )
 }

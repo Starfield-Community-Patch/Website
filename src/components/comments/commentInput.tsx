@@ -56,7 +56,7 @@ export default function CommentInput(props: IProps) {
         return (
         <div className="text-center">
             You must be signed in to a Nexus Mods account to leave a comment.
-            <div className="mt-4"><button onClick={() => signIn()}>Sign In</button></div>
+            <div className="mt-4"><button onClick={() => signIn('nexusmods')}>Sign In</button></div>
         </div>
         )
     }

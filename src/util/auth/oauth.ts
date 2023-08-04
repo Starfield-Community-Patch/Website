@@ -9,10 +9,10 @@ const OAuthProviders: NextAuthOptions = {
         //     clientId: process.env.DISCORD_ID!,
         //     clientSecret: process.env.DISCORD_SECRET!
         // }),
-        GitHubProvider({
-            clientId: process.env.GITHUB_ID!,
-            clientSecret: process.env.GITHUB_SECRET!
-        }),
+        // GitHubProvider({
+        //     clientId: process.env.GITHUB_ID!,
+        //     clientSecret: process.env.GITHUB_SECRET!
+        // }),
         NexusModsProvider({
             clientId: process.env.NEXUSMODS_ID!,
             clientSecret: process.env.NEXUSMODS_SECRET!
