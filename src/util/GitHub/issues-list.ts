@@ -82,6 +82,11 @@ const gitHubIssuesQuery = (name: string, owner: string, mentioned: string | null
                     name: 'filterBy',
                     type: 'IssueFilters',
                     value: { mentioned: mentioned }
+                },
+                orderBy: {
+                    name: 'orderBy',
+                    type: 'IssueOrder',
+                    value: { field: 'UPDATED_AT', direction: 'DESC' }
                 }
             },
             fields: [

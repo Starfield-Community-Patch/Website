@@ -9,11 +9,8 @@ import IssueBody from '@/components/issueBody';
 import IssueComments from '@/components/comments/issueComments';
 import GitHub from '../../../components/sidebar/github-mark.svg'
 import Image from 'next/image';
-import { getServerSession } from 'next-auth';
-import OAuthProviders from '@/util/auth/oauth';
 import { Metadata, ResolvingMetadata } from 'next'
 import CommentInput from '@/components/comments/commentInput';
-import { IGitHubLabel } from '@/util/GitHub/get-repo-labels';
 import IssueLabel from '@/components/issueLabel';
 
 const orb = Orbitron({ subsets: ['latin'] })
@@ -46,8 +43,6 @@ export async function generateMetadata({ params, searchParams }: IIssueViewProps
 }
 
 export default async function IssueView(props: IIssueViewProps) {
-    const session = await getServerSession(OAuthProviders);
-
     const getIssue = async (id: number) => {
         try {
             if (isNaN(id)) throw new Error(`Issue ID "${id}" is not a valid number`)
