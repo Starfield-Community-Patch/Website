@@ -43,9 +43,11 @@ export async function generateMetadata({ params, searchParams }: IIssueViewProps
 }
 
 export default async function IssueView(props: IIssueViewProps) {
+    const { params } = props;
+    
     const getIssue = async (id: number) => {
         try {
-            if (isNaN(id)) throw new Error(`Issue ID "${id}" is not a valid number`)
+            if (isNaN(id)) throw new Error(`Issue ID "${params.id}" is not a valid number`)
             const req = await getSingleIssue(id);
             return req
         }
@@ -53,25 +55,12 @@ export default async function IssueView(props: IIssueViewProps) {
             throw err
         }
     }
-    const { params } = props;
     const issueId: number = parseInt(params.id);
     let issue;
-    try {
-        const req = await getIssue(issueId)
-        issue = req?.data?.repository.issue
-    }
-    catch(err) {
-        console.error('Failed to fetch issue', err);
-        return (
-        <div>
-            <h1 className={`text-4xl text-center m-4 `+orb.className}>Issue #{props.params.id}</h1>
-            <BackButton href='/issues' label="Back to Issue List" icon={mdiArrowLeft} />
-            <div className='w-full bg-red-500 text-white text-center py-10'>
-                Error: {(err as Error).message}
-            </div>
-        </div>
-        )
-    }
+    
+    const req = await getIssue(issueId)
+    issue = req?.data?.repository.issue
+
 
     return (
         <div>

@@ -126,7 +126,7 @@ export async function getSingleIssue(id: number): Promise<IGitHubSingleIssueResp
     const resp: IGitHubSingleIssueResponse = await result.json()
     if (!result.ok || resp.errors?.length) {
         console.log('Error issue from GitHub', resp.errors)
-        const statusText = `Could not get GitHub issues: ${!result.ok ? `${result.statusText}\n${resp.message}` : resp.errors?.map(e => e.message).join('\n')}`
+        const statusText = `Failed to load GitHub issue - ${!result.ok ? `${result.statusText}\n${resp.message}` : resp.errors?.map(e => e.message).join('\n')}`
         throw new ErrorWithHTTPCode(!result.ok ? result.status : 500, statusText)
     }
 
