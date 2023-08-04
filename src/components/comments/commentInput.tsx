@@ -26,19 +26,6 @@ export default function CommentInput(props: IProps) {
         setWorking(true)
         try {
             await onSubmit(comment);
-            // const form = new FormData();
-            // form.append('comment', comment)
-            // const params = new URLSearchParams()
-            // params.append('issue_id', issueId)
-            // params.append('issue_number', issueNumber.toString())
-            // const post = await fetch(`/api/comments/add?${params.toString()}`, { method: 'POST', body: form });
-            // if (!post.ok) {
-            //     console.warn('Network error', {code: post.status, msg: post.statusText ?? 'No message!'})
-            //     throw new Error(post.statusText ?? post.status)
-            // }
-            // setWorking(false)
-            // setComment('')
-            // router.refresh()
         }
         catch(err) {
             console.error('Failed to post comment', err);

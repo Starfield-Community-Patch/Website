@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     const jwt = await getToken({ req: request });
 
     // Append the issue with the Nexus Mods ID
-    body = `${body}\n\n<!-- NexusMods:${329875} -->`;
+    body = `${body}\n\n<!-- NexusMods:${jwt?.sub} -->`;
 
      // Submit the comment to GitHub    
      try {

@@ -1,7 +1,8 @@
-import { NextAuthOptions } from 'next-auth';
+import { NextAuthOptions, Session } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
 import GitHubProvider from 'next-auth/providers/github';
 import NexusModsProvider from './providers/nexusmods';
+import { JWT } from 'next-auth/jwt';
 
 const OAuthProviders: NextAuthOptions = {
     providers: [
@@ -37,10 +38,10 @@ const OAuthProviders: NextAuthOptions = {
         //     // else console.log('JWT CALLBACK', params);
         //     return params.token
         // },
-        // async session(params: { session: any, token: any }): Promise<any> {
-        //     console.log('Session callback', params);
-        //     return params.session;
-        // }
+        async session(params: { session: Session, token: JWT }): Promise<any> {
+            // console.log('Session callback', params);
+            return { id: params.token.sub, ...params.session};
+        }
     }
 }
 

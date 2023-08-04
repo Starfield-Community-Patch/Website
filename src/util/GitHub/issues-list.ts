@@ -1,12 +1,14 @@
 import { query } from 'gql-query-builder';
-import { IGitHubIssueStates, gitHubGQL } from "./common";
+import { IGitHubIssueStates, IGitHubPageInfo, gitHubGQL } from "./common";
 import { ErrorWithHTTPCode } from '../errors';
+import { IGitHubLabel } from './get-repo-labels';
 
 export interface IGitHubIssueResponse {
     data?: {
         repository: {
             issues: {
                 totalCount: number;
+                pageInfo: IGitHubPageInfo;
                 nodes: IGitHubIssueList[]
             }
             nameWithOwner: string;
@@ -39,9 +41,12 @@ export interface IGitHubIssueList {
         totalCount: number;
     }
     updatedAt: Date;
+    labels: {
+        nodes: IGitHubLabel[]
+    }
 }
 
-const gitHubIssuesQuery = (name: string, owner: string, mentioned: string | null, states?: IGitHubIssueStates[] ) => query({
+const gitHubIssuesQuery = (name: string, owner: string, states?: IGitHubIssueStates[] ) => query({
     operation: 'repository',
     variables: {
         name: {
@@ -78,11 +83,11 @@ const gitHubIssuesQuery = (name: string, owner: string, mentioned: string | null
                     value: states ?? 'OPEN',
                     list: true
                 },
-                filterBy: {
-                    name: 'filterBy',
-                    type: 'IssueFilters',
-                    value: { mentioned: mentioned }
-                },
+                // filterBy: {
+                //     name: 'filterBy',
+                //     type: 'IssueFilters',
+                //     value: { mentioned: mentioned }
+                // },
                 orderBy: {
                     name: 'orderBy',
                     type: 'IssueOrder',
@@ -91,6 +96,14 @@ const gitHubIssuesQuery = (name: string, owner: string, mentioned: string | null
             },
             fields: [
                 'totalCount',
+                {
+                    pageInfo: [
+                        'startCursor',
+                        'endCursor',
+                        'hasNextPage',
+                        'hasPreviousPage'
+                    ]
+                },
                 {
                     nodes: [ 
                         'id', 
@@ -103,6 +116,19 @@ const gitHubIssuesQuery = (name: string, owner: string, mentioned: string | null
                         },
                         {
                             author: ['login', 'avatarUrl']
+                        },
+                        {
+                            operation: 'labels',
+                            variables: {
+                                firstLabels: {
+                                    name: 'first',
+                                    type: 'Int',
+                                    value: 10
+                                }
+                            },
+                            fields: [
+                                { nodes: ['id', 'name', 'color', 'description'] }
+                            ]
                         }
                     ]
                 }
@@ -112,12 +138,12 @@ const gitHubIssuesQuery = (name: string, owner: string, mentioned: string | null
     ]
 });
 
-export async function getIssueList(query: string | null): Promise<IGitHubIssueResponse> {
+export async function getIssueList(): Promise<IGitHubIssueResponse> {
     const { GITHUB_TOKEN, GITHUB_OWNER, GITHUB_NAME } = process.env;
 
     if (!GITHUB_NAME || !GITHUB_OWNER || !GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
 
-    const gitHubQuery = gitHubIssuesQuery(GITHUB_NAME, GITHUB_OWNER, query)
+    const gitHubQuery = gitHubIssuesQuery(GITHUB_NAME, GITHUB_OWNER)
 
     // console.log(gitHubQuery);
 

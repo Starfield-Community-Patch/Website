@@ -10,17 +10,41 @@ interface IAvatarProps {
         name: string;
         avatar?: string;
     }
-    size?: 32 | 64 | 48;
+    size?: 32 | 64 | 48 | 16;
 }
 
 export default function UserAvatar(props: IAvatarProps) {
     const { githubUser, nexusMods, size } = props;
 
-    const sizeClass = (size === 64) ? 'w-16 h-16' : (size === 48) ? 'w-12 h-12' : 'w-8 h-8'
+    // const sizeClass = (size === 64) ? 'w-16 h-16' : (size === 48) ? 'w-12 h-12' : 'w-8 h-8'
+
+    let sizeClass = 'w-8 h-8'
+    switch(size) {
+        case 64: {
+            sizeClass = 'w-16 h-16'
+            break;
+        }
+        case 48: {
+            sizeClass = 'w-12 h-12'
+            break;
+        }
+        case 32: {
+            sizeClass = 'w-8 h-8'
+            break;
+        }
+        case 16: {
+            sizeClass = 'w-4 h-4'
+            break;
+        }
+        default: {
+            sizeClass = 'w-8 h-8'
+            break;
+        }
+    }
       
     const fallBack = () => {
         return (
-            <div className={`rounded-full ${sizeClass} bg-stripe-blue text-white text-center leading-8 select-none`} title={githubUser?.login}>
+            <div className={`rounded-full ${sizeClass} bg-stripe-blue text-white text-center leading-8 select-none inline-block`} title={githubUser?.login}>
                 {githubUser?.login[0]?.toUpperCase() ?? ''}
             </div>
         )
@@ -34,7 +58,7 @@ export default function UserAvatar(props: IAvatarProps) {
                 alt={githubUser.login}
                 width={size ?? 32}            
                 height={size ?? 32}
-                className={`${sizeClass} rounded-full`}
+                className={`${sizeClass} rounded-full inline-block`}
             />
         )
     }
@@ -46,7 +70,7 @@ export default function UserAvatar(props: IAvatarProps) {
             alt={nexusMods?.name ?? githubUser?.login}
             width={size ?? 32}            
             height={size ?? 32}
-            className={`${sizeClass} rounded-full`}
+            className={`${sizeClass} rounded-full inline-block`}
         />
     )
     else return gitHubAvatar();

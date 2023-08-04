@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation'
 import { ErrorWithHTTPCode } from '@/util/errors'
 import UserAvatar from '@/components/useravatar'
 import TableSkeletonRow from '@/components/tableskeletonrow'
+import RelativeDate from './relativeDate'
+import { mdiUpdate } from '@mdi/js'
 
 export default function IssueTable() {
     const router = useRouter()
@@ -39,6 +41,7 @@ export default function IssueTable() {
                         <div className='basis-3/4 w-10/12 inline object-center align-middle' >{i.NexusMods?.name ?? i.author.login}</div>
                     </div>
                 </td>
+                <td><RelativeDate date={i.updatedAt} label='updated' icon={mdiUpdate} /></td>
                 <td>💬 {i.comments.totalCount}</td>
             </tr>
         )
@@ -78,8 +81,9 @@ export default function IssueTable() {
             <table className='table-fixed w-full'>
                 <thead className=''>
                     <tr className=''>
-                        <th className='lg:w-1/2'>Issue</th>
-                        <th className='lg:w-3/8'>Reporter</th>
+                        <th className='lg:w-4/8'>Issue</th>
+                        <th className='lg:w-2/8'>Reporter</th>
+                        <th className='lg:w-1/8 w-3/12'>Updated</th>
                         <th className='lg:w-1/8 w-3/12'>Comments</th>
                     </tr>
                 </thead>
