@@ -13,7 +13,7 @@ export default function CommentPageButton({ type, id, issueNumber } : ICommentPa
     const setOffset = () => {
         const params = new URLSearchParams()
         type === 'before' ? params.append('before', id) : params.append('after', id)
-        router.push(`/issues/${issueNumber}?${params.toString()}`);
+        router.push(`/issues/${issueNumber}?${params.toString()}`, { scroll: false });
     }
 
     return (

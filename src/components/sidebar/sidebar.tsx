@@ -17,8 +17,10 @@ export default function Sidebar(props: ISidebarProps) {
     const { showMobile, toggleNav } = props;
     const { data: session, status } = useSession()
 
+    const showMobileClasses = showMobile ? 'float-left absolute top-16 w-auto h-screen' : 'collapse h-0 lg:h-auto lg:visible'
+
     return (
-        <div className={`bg-white z-50 lg:z-auto lg:flex-initial overflow-auto lg:border-black lg:border-2 lg:m-4 pt-2 pb-2 pl-2 ${showMobile ? 'float-left absolute top-16 w-auto h-full' : 'collapse h-0 lg:h-auto lg:visible'}`}>
+        <div className={`bg-white z-50 lg:z-auto lg:flex-initial overflow-auto lg:border-black lg:border-2 lg:m-4 pt-2 pb-2 pl-2 ${showMobileClasses}`}>
             <Link href='/' onClick={() => toggleNav(false)}><NavButton icon={mdiEarth} label={'Home'} /></Link>
             <Link href='/mission' onClick={() => toggleNav(false)}><NavButton icon={mdiRocketLaunch} label={'Mission Statement'} /></Link>
             <Link href='/download' onClick={() => toggleNav(false)}><NavButton icon={mdiDownload} label={'Download'} /></Link>
@@ -33,19 +35,21 @@ export default function Sidebar(props: ISidebarProps) {
             <Link href='https://discord.gg/6R4Yq5KjW2' target='_blank'><NavButton customIcon={Discord} label={'Discord ↗'} /></Link>
             <Link href='https://www.reddit.com/r/starfieldmods/' target='_blank'><NavButton customIcon={Reddit} label={'Reddit ↗'} /></Link>  
             <Link href='https://github.com/Starfield-Community-Patch' target='_blank'><NavButton customIcon={GitHub} label={'GitHub ↗'} /></Link>    
+            <div className='mt-4'>
             {status === 'authenticated' ?
             <div className=''>
-                <div className='grid grid-cols-6'> 
+                <div className='flex flex-row justify-start gap-2'> 
                     <div className=''>
                         <Image src={session?.user?.image ?? ''} alt={session?.user?.name ?? ''} width={32} height={32} className='rounded-full' />
                     </div>
-                    <div className='col-span-5'>
+                    <div className='col-span-2 flex flex-col pr-4'>
                         {session?.user?.name ?? 'Logged out'}
-                        <button onClick={() => signOut({ redirect: false })}>Sign Out</button>
+                        <a onClick={() => signOut({ redirect: false })}>Sign Out</a>
                     </div>
                 </div>
             </div>:
             <button onClick={() => signIn('nexusmods', { redirect: false })}>Sign In</button>} 
+            </div>
         </div>
     )
 }

@@ -67,7 +67,7 @@ export default function CommentInput(props: IProps) {
             {status === 'authenticated'
             ?<div>
             <textarea rows={5} className='w-full border-black border-2 mx-auto p-1' onChange={(e) => setComment(e.target.value)} value={comment} />
-            <div className='flex flex-row justify-between content-center'>
+            <div className='flex flex-col lg:flex-row justify-between content-center'>
                 <div><i>Markdown is supported in comments.</i></div>
                 <button disabled={comment === '' || working} onClick={() => addComment()}>Add Comment</button>
             </div>
