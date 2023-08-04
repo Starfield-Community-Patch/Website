@@ -2,16 +2,17 @@
 import { signIn, useSession } from "next-auth/react"
 import CommentFrame from "./commentFrame";
 import UserAvatar from "../useravatar";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { useRouter } from 'next/navigation'
 
 interface IProps {
     issueId?: string;
     issueNumber: number;
+    onSubmit: (c: string) => Promise<void>;
 }
 
 export default function CommentInput(props: IProps) {
-    const { issueId, issueNumber } = props;
+    const { issueId, issueNumber, onSubmit } = props;
     const router = useRouter()
     const { data: session, status } = useSession();
     const [comment, setComment] = useState<string>('');
@@ -24,32 +25,26 @@ export default function CommentInput(props: IProps) {
         setPostError(undefined)
         setWorking(true)
         try {
-            const form = new FormData();
-            form.append('comment', comment)
-            const params = new URLSearchParams()
-            params.append('issue_id', issueId)
-            params.append('issue_number', issueNumber.toString())
-            const post = await fetch(`/api/comments/add?${params.toString()}`, { method: 'POST', body: form });
-            if (!post.ok) {
-                console.warn('Network error', {code: post.status, msg: post.statusText ?? 'No message!'})
-                throw new Error(post.statusText ?? post.status)
-            }
-            setWorking(false)
-            setComment('')
-            router.refresh()
+            await onSubmit(comment);
+            // const form = new FormData();
+            // form.append('comment', comment)
+            // const params = new URLSearchParams()
+            // params.append('issue_id', issueId)
+            // params.append('issue_number', issueNumber.toString())
+            // const post = await fetch(`/api/comments/add?${params.toString()}`, { method: 'POST', body: form });
+            // if (!post.ok) {
+            //     console.warn('Network error', {code: post.status, msg: post.statusText ?? 'No message!'})
+            //     throw new Error(post.statusText ?? post.status)
+            // }
+            // setWorking(false)
+            // setComment('')
+            // router.refresh()
         }
         catch(err) {
             console.error('Failed to post comment', err);
             setPostError((err as Error) ?? new Error('Unknown error'))
             setWorking(false)
         }
-    }
-
-    let timeoutId: NodeJS.Timeout
-
-    const setCommentDelayed = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        if (!!timeoutId) clearTimeout(timeoutId)
-        timeoutId = setTimeout(() => setComment(e.target.value), 500)
     }
 
     const loggedOut = () => {

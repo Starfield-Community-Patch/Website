@@ -44,6 +44,12 @@ h2 {
   line-height: 2rem;
 }
 
+a {
+  cursor: pointer;
+  font-weight: 500;
+  color: rgb(var(--stripe-blue-rgb));
+}
+
 ol, ul, menu {
   list-style-type: disc;
   margin-bottom: 1em;

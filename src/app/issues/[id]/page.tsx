@@ -6,12 +6,11 @@ import { mdiArrowLeft, mdiCreation, mdiUpdate } from '@mdi/js';
 import StatusLabel from '@/components/statusLabel';
 import RelativeDate from '@/components/relativeDate';
 import IssueBody from '@/components/issueBody';
-import IssueComments from '@/components/comments/issueComments';
 import GitHub from '../../../components/sidebar/github-mark.svg'
 import Image from 'next/image';
 import { Metadata, ResolvingMetadata } from 'next'
-import CommentInput from '@/components/comments/commentInput';
 import IssueLabel from '@/components/issueLabel';
+import CommentContainer from '@/components/comments/commentContainer';
 
 const orb = Orbitron({ subsets: ['latin'] })
 
@@ -105,9 +104,7 @@ export default async function IssueView(props: IIssueViewProps) {
                 <div className='col-start-3'><RelativeDate date={issue?.updatedAt ?? 0} icon={mdiUpdate} label={'Updated'} /></div>
             </div>
             <h2 id='comments' className={`mt-4 `+orb.className}>Comments ({issue?.comments?.totalCount ?? 0})</h2>
-            <IssueComments id={issueId} />
-            <hr />
-            <CommentInput issueId={issue?.id} issueNumber={parseInt(props.params.id)} />
+            <CommentContainer id={issue?.id!} number={issueId}  />
         </div>
     )
 }

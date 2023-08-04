@@ -14,7 +14,7 @@ export default function NavButton(props: IProps) {
     const { icon, label, customIcon } = props;
 
     return (
-        <div className='uppercase leading-10 flex flex-wrap-nowrap justify-between h-12 nav-item align-middle items-center hover:font-extrabold'>
+        <div className='uppercase leading-10 flex flex-wrap-nowrap justify-between h-12 nav-item align-middle items-center font-normal hover:font-extrabold text-black'>
             <div className='text-ellipsis truncate'>
             {customIcon 
             ? <Image 
