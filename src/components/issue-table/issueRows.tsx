@@ -1,14 +1,14 @@
 import IssueRow from "./issueSingleRow";
 import { IGitHubIssueList } from "@/util/GitHub/issues-list";
-import { ErrorWithHTTPCode } from "@/util/errors";
 
 interface IIssueRowsProps {
-    issues: IGitHubIssueList[];
+    issues?: IGitHubIssueList[];
+    loader: () => JSX.Element[];
 }
 
 
 export default async function IssueRows(props: IIssueRowsProps) {
-    const { issues } = props;
+    const { issues, loader } = props;
     
 
     const noIssues = () => {
@@ -20,6 +20,7 @@ export default async function IssueRows(props: IIssueRowsProps) {
             </tr>
         )
     }
+    if (!issues) return loader();
     if (!issues.length) return noIssues();
 
     return issues.map((i: IGitHubIssueList) => <IssueRow i={i} key={i.id} />)

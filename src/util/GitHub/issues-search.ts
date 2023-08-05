@@ -1,17 +1,16 @@
 import { query } from 'gql-query-builder';
-import { IGitHubIssueStates, IGitHubPageInfo, gitHubGQL } from "./common";
+import { IGitHubPageInfo, gitHubGQL } from "./common";
 import { ErrorWithHTTPCode } from '../errors';
-import { IGitHubLabel } from './get-repo-labels';
+import { IGitHubIssueList } from './issues-list';
 
 export interface IGitHubIssueSearchResponse {
     data?: {
-        repository: {
-            issues: {
-                totalCount: number;
-                pageInfo: IGitHubPageInfo;
-                nodes: IGitHubIssueList[]
-            }
-            nameWithOwner: string;
+        search: {
+            issueCount: number;
+            pageInfo: IGitHubPageInfo;
+            edges: {
+                node: IGitHubIssueList
+            }[]
         }
     }
     errors?: {
@@ -23,30 +22,7 @@ export interface IGitHubIssueSearchResponse {
     message?: string;
 }
 
-export interface IGitHubIssueList {
-    id: string;
-    number: number;
-    title: string;
-    body: string;
-    author: {
-        login: string;
-        avatarUrl: string;
-    }
-    NexusMods?: {
-        name: string;
-        memberId: number;
-        avatar?: string;
-    }
-    comments: {
-        totalCount: number;
-    }
-    updatedAt: Date;
-    labels: {
-        nodes: IGitHubLabel[]
-    }
-}
-
-const gitHubIssuesQuery = (q: string ) => query({
+const gitHubSearchIssuesQuery = (q: string ) => query({
     operation: 'search',
     variables: {
         query: {
@@ -66,17 +42,18 @@ const gitHubIssuesQuery = (q: string ) => query({
     fields: [
         'issueCount',
         {
-            operation: 'edges',
-            fields: [
-                'totalCount',
+            pageInfo: ['hasNextPage', 'hasPreviousPage', 'endCursor', 'startCursor']
+        },
+        {
+            edges: [
                 {
-                    operation: 'node',
-                    fields: [
+                    node: [
                         {
                             operation: 'Issue',
                             fields: [
                                 'id',
                                 'number',
+                                'state',
                                 'title',
                                 'body',
                                 {
@@ -87,7 +64,11 @@ const gitHubIssuesQuery = (q: string ) => query({
                                 },
                                 'updatedAt',
                                 {
-                                    labels: [
+                                    operation: 'labels',
+                                    variables: {
+                                        first: 10
+                                    },
+                                    fields: [
                                         {
                                             nodes: [
                                                 'id',
@@ -104,22 +85,21 @@ const gitHubIssuesQuery = (q: string ) => query({
                     ]
                 },
             ]
-        }, 
-        'nameWithOwner'
+        },
     ]
 });
 
-export async function getIssueList(): Promise<IGitHubIssueSearchResponse> {
+export async function searchIssues(searchTerms: string|undefined, filter?: any, sort?: any): Promise<IGitHubIssueSearchResponse> {
     const { GITHUB_TOKEN, GITHUB_OWNER, GITHUB_NAME } = process.env;
 
     if (!GITHUB_NAME || !GITHUB_OWNER || !GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
 
     // NEED TO BUILD THIS UP TO SEND!
-    const queryString = `repo:${GITHUB_OWNER}/${GITHUB_NAME} is:issue is:open NexusMods:31179975 in:body`;
+    const queryString = `repo:${GITHUB_OWNER}/${GITHUB_NAME} is:issue ${searchTerms}`; //is:open
 
-    const gitHubQuery = gitHubIssuesQuery(queryString)
+    const gitHubQuery = gitHubSearchIssuesQuery(queryString)
 
-    console.log('Issue Search', gitHubQuery);
+    // console.log('Issue Search', gitHubQuery);
 
     const result = await fetch(gitHubGQL, {
         method: 'POST',
@@ -128,7 +108,7 @@ export async function getIssueList(): Promise<IGitHubIssueSearchResponse> {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${GITHUB_TOKEN}`
         },
-        next: { revalidate: 0 }
+        next: { revalidate: 1 }
     });
     const resp: IGitHubIssueSearchResponse = await result.json()
     if (!result.ok || resp.errors?.length) {

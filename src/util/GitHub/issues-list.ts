@@ -26,6 +26,7 @@ export interface IGitHubIssueResponse {
 export interface IGitHubIssueList {
     id: string;
     number: number;
+    state: 'OPEN' | 'CLOSED';
     title: string;
     body: string;
     author: {
@@ -108,6 +109,7 @@ const gitHubIssuesQuery = (name: string, owner: string, states?: IGitHubIssueSta
                     nodes: [ 
                         'id', 
                         'number', 
+                        'state',
                         'title', 
                         'body',
                         'updatedAt',

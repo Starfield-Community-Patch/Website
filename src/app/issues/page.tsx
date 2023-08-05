@@ -1,6 +1,6 @@
 import { Orbitron } from 'next/font/google'
 import type { Metadata } from 'next'
-import IssueTable from '@/components/issueTable'
+import IssueTable from '@/components/issue-table/issueTable'
 
 const orb = Orbitron({ subsets: ['latin'] })
 

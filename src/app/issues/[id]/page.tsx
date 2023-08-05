@@ -89,7 +89,7 @@ export default async function IssueView(props: IIssueViewProps) {
             </div>
             <div className="grid grid-flow-row grid-cols-3 mt-2 gap-4 border-2 border-black py-2 px-8 bg-[#2f4dd445] items-center">
                 <div>
-                    <a href={issue?.url}>
+                    <a href={issue?.url} target='_blank'>
                         <Image 
                             src={GitHub}
                             width={18}

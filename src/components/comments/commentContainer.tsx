@@ -51,7 +51,6 @@ export default function CommentContainer({ id, number }: { id: string, number: n
             </Suspense>
             <hr />
             <CommentInput 
-            issueNumber={number} 
             issueId={id}
             onSubmit={onSubmit}
             />

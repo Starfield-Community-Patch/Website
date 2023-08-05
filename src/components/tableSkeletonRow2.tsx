@@ -3,6 +3,9 @@ export default function TableLoadingRow(props: { id?: string | number }) {
 
     return (
         <tr key={rowkey}>
+            <td>
+            <div className='w-8 h-8 opacity-50 bg-gray-500 rounded-full inline-block mr-1'/>
+            </td>
             <td className='animate-pulse'>
                 <div className='w-1/2 h-6 opacity-50 bg-gray-500 rounded my-1' />
                 <div>

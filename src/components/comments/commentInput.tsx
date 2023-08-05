@@ -6,13 +6,12 @@ import { useState } from "react";
 import { useRouter } from 'next/navigation'
 
 interface IProps {
-    issueId?: string;
-    issueNumber: number;
+    issueId: string;
     onSubmit: (c: string) => Promise<void>;
 }
 
 export default function CommentInput(props: IProps) {
-    const { issueId, issueNumber, onSubmit } = props;
+    const { issueId, onSubmit } = props;
     const router = useRouter()
     const { data: session, status } = useSession();
     const [comment, setComment] = useState<string>('');
