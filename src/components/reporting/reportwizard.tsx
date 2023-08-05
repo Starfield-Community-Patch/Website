@@ -3,13 +3,13 @@
 import { IGitHubLabel, IGitHubRepoResponse } from '@/util/GitHub/get-repo-labels';
 import { useState } from 'react';
 import StartStage from './startStage';
-import PlatformStage, { Platform } from './platformStage';
+import PlatformStage from './platformStage';
 import TypeStage from './typeStage';
 import QuestionStage from './questionsStage';
-import IssueLabel from '../issueLabel';
 import ReviewStage from './reviewStage';
+import { useSession, signIn } from 'next-auth/react';
 
-type ReportStage = 'start' | 'platform' | 'type' | 'questions' | 'review' | 'complete';
+type ReportStage = 'start' | 'platform' | 'type' | 'questions' | 'review';
 
 export interface IReportBody {
     title? : string;
@@ -24,10 +24,11 @@ export interface IReportBody {
     }
 }
 
-const stages: ReportStage[] = ['start' , 'platform' , 'type' , 'questions' , 'review' , 'complete']
+const stages: ReportStage[] = ['start' , 'platform' , 'type' , 'questions' , 'review']
 
 export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
     const { repo } = props;
+    const {status} = useSession()
     const [ platform, setPlatform ] = useState<IGitHubLabel | undefined>(undefined);
     const [ type, setType ] = useState<IGitHubLabel | undefined>(undefined);
     const [ stage, setStage ] = useState<ReportStage>('start');
@@ -35,6 +36,7 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
     const [ dlcs, setDlcs ] = useState<Set<IGitHubLabel>>(new Set())
 
     const nextStage = () => {
+        if (status !== 'authenticated') return signIn('nexusmods', { redirect: false })
         const cur = stages.indexOf(stage);
         if (cur !== -1) setStage(stages[cur+1])
     }
@@ -64,7 +66,7 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
 
     switch(stage) {
         case 'start': {
-            page = <StartStage next={nextStage} />
+            page = <StartStage next={nextStage} status={status} />
             break;
         }
         case 'platform': {
@@ -83,20 +85,14 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
             page = <ReviewStage prev={prevStage} body={body} typeLabel={type} platformLabel={platform} dlcLabels={dlcs} repoId={repo.data?.repository.id!} />
             break;
         }
-        case 'complete' : {
-            page = unknownStage
-            break;
-        }
         default: {
             page = unknownStage
             break;
         }
     }
 
-    const labels: (IGitHubLabel | undefined )[] = [platform, type, ...dlcs].filter(l => l !== undefined)
-
     return (
-        <div>
+        <div className='border-2 border-black p-4'>
             {page}
         </div>
         

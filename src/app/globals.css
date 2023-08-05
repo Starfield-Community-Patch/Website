@@ -142,6 +142,16 @@ input[type=text], input[type=textarea], textarea {
   border: 2px black solid;
 }
 
+input[type=radio], input[type=checkbox] {
+  margin-left: 2rem;
+  color: red;
+  background-color: red;
+}
+
+.issue-report-option {
+  padding: 8px 0;
+}
+
 blockquote {
   background-color: lightgray;
   border-left: 4px solid #000;

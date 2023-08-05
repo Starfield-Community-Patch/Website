@@ -1,5 +1,9 @@
 import { IGitHubLabel } from "@/util/GitHub/get-repo-labels";
+import { Orbitron } from "next/font/google";
 import { FormEvent } from "react";
+import RadioButtonOption from "./radioOption";
+
+const orb = Orbitron({ subsets: ['latin'] })
 
 interface IStageProps {
     labels?: IGitHubLabel[]
@@ -12,25 +16,18 @@ interface IStageProps {
 export default function TypeStage(props: IStageProps) {
     const { labels, next, prev, setType, type } = props;
     const platformLabels = (props.labels ?? []).filter(l => l.name.startsWith('Type: ')).sort((a,b) => a.name.localeCompare(b.name))
+    const typeOptions = platformLabels.map((label) => (<RadioButtonOption name={label.name.replace('Type: ', '')} key={label.id} option={label} allOptions={labels ?? []} selected={type} setCb={setType} />))
 
-    const labelOption = (l: IGitHubLabel) => (
-        <div key={l.id}>
-            <label>
-            <input type='radio' value={l.id} name='platform' checked={l.id === type?.id} /> 
-            {l.name.replace('Type: ', '')} - <span className="text-slate-500">{l.description}</span>
-            </label>
-        </div>
-    )
-    const platformOptions = platformLabels.map(labelOption)
-
-    const onChangePlatform = (event: FormEvent<HTMLDivElement>) => setType(labels?.find(l => l.id === (event.target as any).value))
+    const onChangeType = (event: FormEvent<HTMLDivElement>) => setType(labels?.find(l => l.id === (event.target as any).value))
 
     return (
         <div>
-            <div onChange={onChangePlatform}>
-                {platformOptions}
+            <h2 className={orb.className}>Which category represents the issue you are reporting?</h2>
+            <p>If your issue falls into more than one category, pick the one you feel is most revelant.</p>
+            <div onChange={onChangeType}>
+                {typeOptions}
             </div>
-            <div className="flex flex-row justify-between my-2 mx-8">
+            <div className="flex flex-row justify-between my-2 mx-4 border-t-2 border-black pt-4">
                 <button className="secondary" onClick={prev}>Back</button>
                 <button onClick={next} disabled={!type}>Next</button>
             </div>

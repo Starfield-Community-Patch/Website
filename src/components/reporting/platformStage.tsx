@@ -1,5 +1,10 @@
 import { IGitHubLabel } from "@/util/GitHub/get-repo-labels";
+import { Orbitron } from "next/font/google";
 import { ChangeEvent, FormEvent } from "react";
+import RadioButtonOption from "./radioOption";
+
+const orb = Orbitron({ subsets: ['latin'] })
+
 
 export type Platform = 'PC (Xbox)' | 'PC (Steam)' | 'Xbox';
 
@@ -25,23 +30,23 @@ export default function PlatformStage(props: IStageProps) {
         event.target.checked ? newDlcs.add(dlc) :newDlcs.delete(dlc)
         setDlcs(newDlcs)
     }
+    const platformOptions = platformLabels.map(l => (<RadioButtonOption key={l.id} name={l.name.replace('Platform:', '')} option={l} setCb={setPlatform} allOptions={platformLabels} selected={platform}  />))
 
-    const platformOptions = platformLabels.map(l => (<div key={l.id}><input type='radio' value={l.id} name='platform' checked={l.id === platform?.id} /> {l.name.replace('Platform:', '')}</div>))
-    const dlcOptions = dlcLabels.map(d => (<div key={d.id}><input type='checkbox' value={d.id} checked={dlcs.has(d)} onChange={toggleDlcs} /> {d.name.replace('DLC:', '')}</div>))
+    const dlcOptions = dlcLabels.map(d => (<div key={d.id} className="issue-report-option"><input type='checkbox' value={d.id} checked={dlcs.has(d)} onChange={toggleDlcs} /> {d.name.replace('DLC:', '')}</div>))
 
     const onChangePlatform = (event: FormEvent<HTMLDivElement>) => setPlatform(labels?.find(l => l.id === (event.target as any).value))
 
     return (
         <div>
-            Platform: {platform?.name}
-            <div onChange={onChangePlatform}>
+            <h2 className={orb.className}>Which platform are you playing on?</h2>
+            <div onChange={onChangePlatform} className="mb-8">
                 {platformOptions}
             </div>
-            DLCs {[...dlcs].map(d => d.name)}
-            <div>
+            <h2 className={orb.className}>Which DLC(s) do you have installed?</h2>
+            <div className="mb-8">
                 {dlcOptions}
             </div>
-            <div className="flex flex-row justify-between my-2 mx-8">
+            <div className="flex flex-row justify-between my-2 mx-4 border-t-2 border-black pt-4">
                 <button className="secondary" onClick={prev}>Back</button>
                 <button onClick={next} disabled={!platform}>Next</button>
             </div>

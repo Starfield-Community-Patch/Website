@@ -2,6 +2,7 @@ import VASCOTip from "./vascotip";
 
 interface IStageProps {
     next: () => void;
+    status: string;
 }
 
 export default function StartStage(props: IStageProps) {
@@ -16,7 +17,8 @@ export default function StartStage(props: IStageProps) {
                 </ul>
             </VASCOTip>
             <div className='text-center my-4'>
-                <button onClick={props.next}>Start Reporting</button>
+                <button onClick={props.next}>{props.status !== 'authenticated' ? 'Sign In to Nexus Mods' : 'Start reporting'}</button>
+                <div>{props.status !== 'authenticated' && `You might be signed in to a Nexus Mods account to submit a report.`}</div>
             </div>
         </div>
     )

@@ -125,7 +125,7 @@ export default function QuestionStage(props: IStageProps) {
                 <div>
                     <input value='No' name='New Game' type='radio' checked={body.questions?.['New Game']?.answer === 'No'} onChange={() => null}/> No
                 </div>
-                {body.questions?.['New Game']?.answer === 'No' ? warning('If you cannot explain how to recreate the issue from a new game, the community may be able to identify and fix it.') : null}
+                {body.questions?.['New Game']?.answer === 'No' ? warning('If you cannot explain how to recreate the issue from a new game, the community may not be able to identify and fix it.') : null}
                 </div>
                 <hr />
                 <div  className="my-4">
