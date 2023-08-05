@@ -35,7 +35,11 @@ export default function IssueTable() {
 
     const paginate = (type: 'next' | 'prev', id: string) => {
         const newfilters = {...gh.filters}
-        if (type === 'next') {
+        if (gh.pageInfo?.startCursor === gh.pageInfo?.endCursor) {
+            delete newfilters.after
+            delete newfilters.before
+        }
+        else if (type === 'next') {
             newfilters.after = id;
             delete newfilters.before
         }
@@ -43,6 +47,7 @@ export default function IssueTable() {
             newfilters.before = id;
             delete newfilters.after
         }
+        // console.log({type, before: gh.filters, after: newfilters})
         gh.setFilters(newfilters);
     }
 
