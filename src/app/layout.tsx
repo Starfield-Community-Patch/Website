@@ -1,9 +1,9 @@
 'use client'
 
-import Header from '@/components/header'
+import Header from '@/components/layout/header'
 import './globals.css'
 import Sidebar from '@/components/sidebar/sidebar'
-import Footer from '@/components/footer'
+import Footer from '@/components/layout/footer'
 import { useEffect, useState } from 'react';
 import { SessionProvider } from "next-auth/react"
 

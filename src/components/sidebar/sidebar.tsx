@@ -1,5 +1,5 @@
 import { mdiEarth, mdiListStatus, mdiBug, mdiMedal, mdiRocketLaunch, mdiMessage, mdiDownload, mdiHistory } from '@mdi/js'
-import NavButton from '../navbutton'
+import NavButton from './navbutton'
 import Link from 'next/link'
 import Reddit from './reddit.svg'
 import Discord from './discord-mark-black.svg'

@@ -2,9 +2,9 @@
 import { Suspense, useState } from 'react'
 import IssueRows from './issueRows'
 import useGitHubIssues from '@/hooks/useGitHubIssues'
-import TableLoadingRow from '../tableSkeletonRow2'
 import { useSession, signIn } from "next-auth/react"
 import { useRouter, useSearchParams } from 'next/navigation'
+import TableLoadingRow from './tableskeletonrow'
 
 
 export default function IssueTable() {

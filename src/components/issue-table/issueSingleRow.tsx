@@ -7,6 +7,7 @@ import RelativeDateText from "../relativeDateText";
 import IssueLabel from "../issueLabel";
 import Image from "next/image";
 import Constellation from './constellation.webp';
+import Star from './star.webp';
 
 interface IRowProps {
     i: IGitHubIssueList
@@ -18,7 +19,7 @@ export default function IssueRow({i} : IRowProps) {
     const stateIndicator = () => (
         <span>
             <Image 
-            src={Constellation}
+            src={Star}
             alt={i.state}
             className={i.state === 'CLOSED' ? 'grayscale opacity-50' : undefined}
             width={32}

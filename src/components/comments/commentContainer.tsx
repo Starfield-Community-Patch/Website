@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation"
-import CommentLoader from "../commentskeleton";
+import CommentLoader from "./commentskeleton";
 import CommentInput from "./commentInput";
 import CommentView from "./commentView";
 import useComments from "@/hooks/useComment";
