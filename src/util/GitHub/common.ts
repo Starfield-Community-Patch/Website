@@ -9,6 +9,13 @@ export interface IGitHubPageInfo {
     hasPreviousPage: boolean;
 }
 
+export type GitHubIssueFilter = {
+    states?: Set<'OPEN' | 'CLOSED'>;
+    labels?: string[];
+    after?: string;
+    before?: string;
+}
+
 export async function fetchRequest(TOKEN: string, query: { query: string, variables: any }, options?: NextFetchRequestConfig) {
     const result = await fetch(gitHubGQL, {
         method: 'POST',

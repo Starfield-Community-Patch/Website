@@ -1,10 +1,10 @@
-import { IGitHubPageInfo } from "@/util/GitHub/common";
+import { GitHubIssueFilter, IGitHubPageInfo } from "@/util/GitHub/common";
 import { IGitHubIssueList, IGitHubIssueResponse } from "@/util/GitHub/issues-list";
 import { IGitHubIssueSearchResponse } from "@/util/GitHub/issues-search";
 import { ErrorWithHTTPCode } from "@/util/errors";
 import { useEffect, useState } from "react";
 
-const fetchIssues = async (url: string, sort: GitHubIssueSort, filters?: any): Promise<{ issues: IGitHubIssueList[], pageInfo: IGitHubPageInfo | undefined, total: number }> => {    
+const fetchIssues = async (url: string, sort: GitHubIssueSort, filters?: GitHubIssueFilter): Promise<{ issues: IGitHubIssueList[], pageInfo: IGitHubPageInfo | undefined, total: number }> => {    
     try {
         const req = await fetch(
             url, 
@@ -32,7 +32,7 @@ const fetchIssues = async (url: string, sort: GitHubIssueSort, filters?: any): P
     return { issues: [], pageInfo: undefined, total: 0 }
 }
 
-const fetchSearch = async (url: string, query?: string): Promise<{ issues: IGitHubIssueList[], total: number, pageInfo: IGitHubPageInfo | undefined }> => {
+const fetchSearch = async (url: string, query?: string, filters?: GitHubIssueFilter): Promise<{ issues: IGitHubIssueList[], total: number, pageInfo: IGitHubPageInfo | undefined }> => {
     // Not actually doing a search
     if (!query) return { issues: [], total: 0, pageInfo: undefined };
     try {
@@ -40,7 +40,7 @@ const fetchSearch = async (url: string, query?: string): Promise<{ issues: IGitH
             url, 
             { 
                 method: 'POST', 
-                body: JSON.stringify({ query }),
+                body: JSON.stringify({ query, filters }),
                 next: { revalidate: 1 } 
             }
         );
@@ -68,15 +68,7 @@ type GitHubIssueSort = {
     direction: 'ASC' | 'DESC'
 }
 
-type GitHubIssueFilter = {
-    states?: Set<'OPEN' | 'CLOSED'>;
-    labels?: string[];
-    mentioned?: string;
-}
-
 export default function useGitHubIssues(initialSearch?: string) {
-    console.log('Initial search', initialSearch)
-
     const [filters, setFilters] = useState<GitHubIssueFilter>({});
     const [sort, setSort] = useState<GitHubIssueSort>({ field: 'UPDATED_AT', direction: 'DESC' });
     const [searchQuery, setSearchQuery] = useState<string | undefined>(initialSearch);

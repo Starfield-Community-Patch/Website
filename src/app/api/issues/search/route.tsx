@@ -1,3 +1,4 @@
+import { GitHubIssueFilter } from "@/util/GitHub/common";
 import { IGitHubIssueSearchResponse, searchIssues } from "@/util/GitHub/issues-search";
 import getMultipleUsers, { INexusModsUser } from "@/util/NexusMods/multiuserquery";
 import { NextRequest, NextResponse } from "next/server";
@@ -6,13 +7,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
 
-    const body: { query: string | undefined } = await req.json();
+    const body: { query: string | undefined, filters?: GitHubIssueFilter } = await req.json();
 
     
     let results: IGitHubIssueSearchResponse | undefined;
 
     try {
-        results = await searchIssues(body.query)
+        results = await searchIssues(body.query, body.filters)
     }
     catch(err) {
         return NextResponse.json(undefined, { status: 500, statusText: (err as Error).message });
@@ -32,7 +33,7 @@ export async function POST(req: NextRequest) {
 
     try {
         const nexusModsUsers: {[key: string] : INexusModsUser}  = await getMultipleUsers(nexusModsIDs);
-        console.log('Got Nexus Mods data', nexusModsUsers)
+        // console.log('Got Nexus Mods data', nexusModsUsers)
         for (const issue of results?.data?.search.edges ?? []) {
             if (!issue.node.NexusMods?.memberId) continue;
             const nexusModsUser = nexusModsUsers[`user_${issue.node.NexusMods.memberId}`]

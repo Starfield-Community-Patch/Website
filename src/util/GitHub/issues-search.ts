@@ -1,5 +1,5 @@
 import { query } from 'gql-query-builder';
-import { IGitHubPageInfo, gitHubGQL } from "./common";
+import { GitHubIssueFilter, IGitHubPageInfo, gitHubGQL } from "./common";
 import { ErrorWithHTTPCode } from '../errors';
 import { IGitHubIssueList } from './issues-list';
 
@@ -22,7 +22,7 @@ export interface IGitHubIssueSearchResponse {
     message?: string;
 }
 
-const gitHubSearchIssuesQuery = (q: string ) => query({
+const gitHubSearchIssuesQuery = (q: string, filters?: GitHubIssueFilter ) => query({
     operation: 'search',
     variables: {
         query: {
@@ -37,7 +37,9 @@ const gitHubSearchIssuesQuery = (q: string ) => query({
             required: true,
             value: 'ISSUE'
         },
-        first: 10
+        first: 10,
+        after: filters?.after,
+        before: filters?.before
     },
     fields: [
         'issueCount',
@@ -89,7 +91,7 @@ const gitHubSearchIssuesQuery = (q: string ) => query({
     ]
 });
 
-export async function searchIssues(searchTerms: string|undefined, filter?: any, sort?: any): Promise<IGitHubIssueSearchResponse> {
+export async function searchIssues(searchTerms: string|undefined, filter?: GitHubIssueFilter, sort?: any): Promise<IGitHubIssueSearchResponse> {
     const { GITHUB_TOKEN, GITHUB_OWNER, GITHUB_NAME } = process.env;
 
     if (!GITHUB_NAME || !GITHUB_OWNER || !GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
@@ -97,7 +99,7 @@ export async function searchIssues(searchTerms: string|undefined, filter?: any, 
     // NEED TO BUILD THIS UP TO SEND!
     const queryString = `repo:${GITHUB_OWNER}/${GITHUB_NAME} is:issue ${searchTerms}`; //is:open
 
-    const gitHubQuery = gitHubSearchIssuesQuery(queryString)
+    const gitHubQuery = gitHubSearchIssuesQuery(queryString, filter)
 
     // console.log('Issue Search', gitHubQuery);
 

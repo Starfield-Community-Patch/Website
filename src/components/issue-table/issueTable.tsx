@@ -24,7 +24,7 @@ export default function IssueTable() {
         gh.setSearchQuery(mentioned)
         setTab('mine');
         router.push(`/issues?tab=mine`, { scroll: false });
-        // updateFilters({ mentioned });        
+        gh.setFilters({});
     }
 
     const setAllIssues = async () => {
@@ -33,13 +33,26 @@ export default function IssueTable() {
         gh.setSearchQuery(undefined);
     }
 
+    const paginate = (type: 'next' | 'prev', id: string) => {
+        const newfilters = {...gh.filters}
+        if (type === 'next') {
+            newfilters.after = id;
+            delete newfilters.before
+        }
+        else {
+            newfilters.before = id;
+            delete newfilters.after
+        }
+        gh.setFilters(newfilters);
+    }
+
     
 
     return (
         <div>
             <div className='grid grid-cols-2 my-4 border-b-2 select-none border-black w-full text-center'>
                 <div className={`${tab === 'all' ? 'bg-slate-300' : null} hover:bg-slate-300 px-4 py-2`} onClick={setAllIssues}>All Issues</div>
-                <div className={`${tab === 'mine' ? 'bg-slate-300' : null} hover:bg-slate-300 cursor-not-allowed px-4 py-2`} onClick={setMyIssues} title='Not implemented'>My Issues</div>
+                <div className={`${tab === 'mine' ? 'bg-slate-300' : null} hover:bg-slate-300 px-4 py-2`} onClick={setMyIssues} title='Not implemented'>My Issues</div>
             </div>
             <table className='table-fixed w-full border-collapse caption-bottom border-spacing-x-2'>
                 <thead className=''>
@@ -56,8 +69,8 @@ export default function IssueTable() {
                 </tbody>
             </table>
             <div className='flex flex-row justify-between my-4'>
-                {gh.pageInfo?.hasPreviousPage && <button>Previous</button>}
-                {gh.pageInfo?.hasNextPage && <button>Next</button>}
+                <div>{gh.pageInfo?.hasPreviousPage && <button onClick={() => paginate('next', gh.pageInfo?.startCursor!)}>Previous</button>}</div>
+                <div>{gh.pageInfo?.hasNextPage && <button onClick={() => paginate('next', gh.pageInfo?.endCursor!)}>Next</button>}</div>
             </div>
         </div>
     )

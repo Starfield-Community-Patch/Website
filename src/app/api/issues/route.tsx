@@ -57,13 +57,13 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-    const body: { sort: any, filters: any } = await request.json();
+    const body: { sort: any, filters?: any } = await request.json();
     // console.log('Request body', body)
 
     let issueList: IGitHubIssueResponse;
     
     try {
-        issueList = await getIssueList();
+        issueList = await getIssueList(body.filters);
     }
     catch(err) {
         const httpErr = err as ErrorWithHTTPCode;
