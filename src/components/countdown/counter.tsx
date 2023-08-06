@@ -13,7 +13,7 @@ export default function CountDown(props: IProps) {
     const { days, hours, minutes, seconds } = props;
 
     return (
-        <div className="grid grid-cols-7 m-2 lg:m-4 p-4 border-2 border-black text-center text-lg lg:text-3xl">   
+        <div className="grid grid-cols-7 m-1 lg:m-4 py-4 px-2 lg:p-4 border-2 border-black text-center text-lg lg:text-3xl">   
             <CountDownDisplay value={days} type={'Days'} isDanger={days <= 3} />
             <p>:</p>
             <CountDownDisplay value={hours} type={'Hours'} isDanger={days <= 3} />
