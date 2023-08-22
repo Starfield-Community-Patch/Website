@@ -15,7 +15,7 @@ export default async function ReportPage() {
 
     const repoInfo = await getRepoAndLabels();
 
-    const showCountdown = new Date().getTime() <= 1693530000000
+    const showCountdown = new Date().getTime() <= 1693526400000
 
     const isProduction = process.env.NODE_ENV === 'production'
 
@@ -26,7 +26,7 @@ export default async function ReportPage() {
                 {(!showCountdown || !isProduction) && <ReportWizard repo={repoInfo} />}
                 {showCountdown && <div className='text-center border-2 border-black p-4'>
                     <h2 className={orb.className}>Starfield launches in:</h2>
-                    <CountDownTimer date={1693530000000} />
+                    <CountDownTimer date={1693526400000} />
                     <p>Come back once you&#39;ve played the game to report issues!</p>
                 </div>}
             </Suspense>
