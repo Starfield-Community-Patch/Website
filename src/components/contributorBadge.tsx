@@ -1,11 +1,11 @@
-import { mdiLightbulbOnOutline, mdiStarFourPointsCircle, mdiStarFourPointsCircleOutline } from "@mdi/js";
+import { mdiStarBox, mdiStarFourPointsCircle, mdiStarFourPointsCircleOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 
 type BadgeType = 'Founder' | 'Core Team';
 
 export default function ContributorBadge({ type } : { type: BadgeType }) {
-    let color = undefined;
-    let icon = undefined;
+    let color = '#000000';
+    let icon = mdiStarBox;
 
     switch(type) {
         case 'Core Team': {
