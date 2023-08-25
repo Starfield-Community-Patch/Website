@@ -5,7 +5,7 @@ export default async function ChangeLog() {
     // Fetch the changelog from GitHub
     let changelog = '';
     try {
-        const req = await fetch('https://raw.githubusercontent.com/Starfield-Community-Patch/Starfield-Community-Patch/main/CHANGELOG.md');
+        const req = await fetch('https://raw.githubusercontent.com/Starfield-Community-Patch/Starfield-Community-Patch/main/CHANGELOG.md', { next: { revalidate: 600 } });
         if (req.ok) {
             changelog = await req.text()
         }
