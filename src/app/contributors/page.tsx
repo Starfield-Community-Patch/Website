@@ -82,16 +82,9 @@ export default function ContributorsPage() {
         <div>
             <h1 className={orb.className}>Contributors</h1>
             <Suspense fallback={'Loading...'}>
-            {/* <h2 className={orb.className}>Core Team</h2>
-            <p>The current, active members of the Core Team. These users are currently in charge of maintaining the Starfield Community Patch.</p> */}
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1'>
                 { exampleContributors.map((c, i) => (<ContributorTile key={`${c.name}-${i}`} contributor={c} />)) }
             </div>
-            {/* <h2 className={orb.className}>Contributors</h2>
-            <p>These users have submitted valuable fixes, raised detailed issues or generally been very helpful to the project.</p>
-            <div className='grid grid-cols-2 lg:grid-cols-4'>
-
-            </div> */}
             </Suspense>
         </div>
     )
