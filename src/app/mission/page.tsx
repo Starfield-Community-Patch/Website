@@ -45,7 +45,7 @@ export default function MissionPage() {
             There is intended to be a core team of contributors who are likely to be trusted content creators who will manage the merging and applying of the fixes before shipping it to users.
             </div>
             <div className='mb-4'>
-            The project uses the <b>[TBC!]</b> license which means the patch itself is open source, but any mods that depend it are welcome to use any permissions or license defined by the mod author.
+            The project uses <a href='https://github.com/Starfield-Community-Patch/Starfield-Community-Patch/blob/main/LICENSE' target='_blank'>an MIT license</a> which means the patch itself is open source, but any mods that depend it are welcome to use any permissions or license defined by the mod author.
             </div>
             <div className='mb-4'>
             The Community Patch (in whole or in part) should never require payment to access, this includes any &quot;early access&quot; builds. The patch itself will allow donations and will earn reward points via the Nexus Mods Donation Points Scheme. These donations will be distributed (as fairly as possible) among the core contributors to the project. The details of which should be posted publicly for accountability.
