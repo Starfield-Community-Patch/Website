@@ -3,8 +3,13 @@ import NexusMods from '@/components/sidebar/Nexus Icon.svg';
 import GitHub from '@/components/sidebar/github-mark-white.svg';
 import Bethesda from '@/components/sidebar/Bethesda.svg';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-const orb = Orbitron({ subsets: ['latin'] })
+const orb = Orbitron({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+    title: 'Download - Starfield Community Patch'
+}
 
 export default function DownloadPage() {
     return (
