@@ -65,7 +65,7 @@ export default function DownloadPage() {
                 <h2 className={orb.className} id='InstallPC'>Installation on PC</h2>
                 <p>
                     It is recommended you install the Community Patch with a mod manager to avoid any confusion on where to place the files. 
-                    The recommended applications are <a href='https://nexusmods.com/site/mods/1' target='_blank'>Vortex</a> or <a>Mod Organizer 2 (Steam only)</a>. Install the ZIP file with your mod manager and ensure that Starfield Community Patch.esm is enabled in the load order section.
+                    The recommended applications are <a href='https://nexusmods.com/site/mods/1' target='_blank'>Vortex</a> or <a href='https://www.nexusmods.com/skyrimspecialedition/mods/6194' target='_blank'>Mod Organizer 2 (Steam only)</a>. Install the ZIP file with your mod manager and ensure that Starfield Community Patch.esm is enabled in the load order section.
                     <br /> <br/>
                     To install the patch manually, extract the contents of ZIP file into the Starfield game folder (where Starfield.exe is stored). To verify it is installed properly, check the Data subfolder includes <code>StarfieldCommunityPatch.esm</code>.
                     With the files installed, next navigate to <code>%localappdata%\Starfield</code> (you can paste this into the address bar of Windows Explorer) and locate the file plugins.txt. Open plugins.txt and add <code>* StarfieldCommunityPatch.esm</code> below the main Starfield plugin and any DLCs.
