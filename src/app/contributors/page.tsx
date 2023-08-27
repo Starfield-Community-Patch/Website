@@ -54,7 +54,7 @@ const exampleContributors: IContributor[] = [
         avatar: 'https://avatars.githubusercontent.com/u/24981326?v=4',
         roles: [ 'Core Team', 'Founder' ],
         profiles: {
-            nexusMods: undefined,
+            nexusMods: 'https://www.nexusmods.com/users/862590',
             gitHub: 'https://github.com/Noggog',
         },
         donateLink: undefined,
