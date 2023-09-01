@@ -18,7 +18,7 @@ export default function StartStage(props: IStageProps) {
             </VASCOTip>
             <div className='text-center my-4'>
                 <button onClick={props.next}>{props.status !== 'authenticated' ? 'Sign In to Nexus Mods' : 'Start reporting'}</button>
-                <div>{props.status !== 'authenticated' && `You might be signed in to a Nexus Mods account to submit a report.`}</div>
+                <div>{props.status !== 'authenticated' && `You must be signed in to a Nexus Mods account to submit a report.`}</div>
             </div>
         </div>
     )
