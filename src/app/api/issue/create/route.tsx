@@ -28,11 +28,12 @@ export async function POST(request: NextRequest) {
 
     const jwt = await getToken({ req: request });
 
-    console.error('Unable to determine your Nexus Mods account when posting an issue', {jwt, session});
+    const nexusModsId = jwt?.sub || (session as any)?.id;
 
-    const nexusModsId = jwt?.sub || (session.user as any)?.id;
-
-    if (!nexusModsId) return NextResponse.json({}, { status: 500, statusText: 'Unable to determine your Nexus Mods account. Please try signing out and back in.'+JSON.stringify(jwt) });
+    if (!nexusModsId) {
+        console.error('Unable to determine your Nexus Mods account when posting an issue', {jwt, session});
+        return NextResponse.json({}, { status: 500, statusText: 'Unable to determine your Nexus Mods account. Please try signing out and back in.' });
+    }
 
     // Append the issue with the Nexus Mods ID
     body = `${body}\n\n<!-- NexusMods:${nexusModsId} -->`;
