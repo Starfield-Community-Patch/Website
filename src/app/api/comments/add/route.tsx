@@ -28,8 +28,12 @@ export async function POST(request: NextRequest) {
     const jwt = await getToken({ req: request });
     // console.log('Create comment JWT', jwt);
 
+    const nexusModsId = jwt?.sub || (session.user as any)?.id;
+
+    if (!nexusModsId) return NextResponse.json({}, { status: 500, statusText: 'Unable to determine your Nexus Mods account. Please try signing out and back in.' });
+
     // Append the comment with the Nexus Mods ID
-    comment = `${comment}\n\n<!-- NexusMods:${jwt?.sub} -->`;
+    comment = `${comment}\n\n<!-- NexusMods:${nexusModsId} -->`;
 
 
     // Submit the comment to GitHub    
