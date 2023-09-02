@@ -28,6 +28,8 @@ export async function POST(request: NextRequest) {
 
     const jwt = await getToken({ req: request });
 
+    if (!jwt?.sub) return NextResponse.json({}, { status: 500, statusText: 'Unable to determine your Nexus Mods account. Please try signing out and back in.'+JSON.stringify(jwt) });
+
     // Append the issue with the Nexus Mods ID
     body = `${body}\n\n<!-- NexusMods:${jwt?.sub} -->`;
 
