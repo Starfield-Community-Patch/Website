@@ -1,3 +1,4 @@
+import { INexusModsUser } from '@/util/NexusMods/multiuserquery';
 import Image from 'next/image'
 
 interface IAvatarProps {
@@ -5,11 +6,7 @@ interface IAvatarProps {
         login: string;
         avatarUrl: string;
     };
-    nexusMods?: {
-        memberId: number
-        name: string;
-        avatar?: string;
-    }
+    nexusMods?: INexusModsUser;
     size?: 32 | 64 | 48 | 16;
 }
 
@@ -67,7 +64,7 @@ export default function UserAvatar(props: IAvatarProps) {
     else if (nexusMods?.avatar) return (
         <Image 
             src={nexusMods.avatar}
-            alt={nexusMods?.name ?? githubUser?.login}
+            alt={nexusMods?.name ?? githubUser?.login ?? ''}
             width={size ?? 32}            
             height={size ?? 32}
             className={`${sizeClass} rounded-full inline-block`}
