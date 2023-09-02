@@ -34,7 +34,7 @@ export interface IGitHubIssueList {
         avatarUrl: string;
     }
     NexusMods?: {
-        name: string;
+        name?: string;
         memberId: number;
         avatar?: string;
     }

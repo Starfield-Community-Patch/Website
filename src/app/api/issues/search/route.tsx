@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     const nexusModsIDs = new Set<number>()
     
     for (const issue of results?.data?.search.edges ?? []) {
-        const nexusModsData = (issue.node.body as string).match(/<!-- ?NexusMods:([0-9]+).+-->/);
+        const nexusModsData = (issue.node.body as string).match(/<!-- ?NexusMods:([0-9]+).*-->/);
         if (nexusModsData) {
             const [ comment, idString, name ] = nexusModsData
             const memberId: number = parseInt(idString.trim())

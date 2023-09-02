@@ -28,9 +28,9 @@ export async function GET(request: NextRequest) {
     for (const i of issues) {
         const nexusModsData = (i.body as string).match(/<!-- ?NexusMods:([0-9]+).+-->/);
         if (nexusModsData) {
-            const [ comment, idString, name ] = nexusModsData
+            const [ comment, idString ] = nexusModsData
             const memberId: number = parseInt(idString.trim())
-            i.NexusMods = { memberId, name };
+            i.NexusMods = { memberId };
             nexusModsIDs.add(memberId);
         }
     }
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
     const nexusModsIDs = new Set<number>()
 
     for (const i of issues) {
-        const nexusModsData = (i.body as string).match(/<!-- ?NexusMods:([0-9]+).+-->/);
+        const nexusModsData = (i.body as string).match(/<!-- ?NexusMods:([0-9]+).*-->/);
         if (nexusModsData) {
             const [ comment, idString, name ] = nexusModsData
             const memberId: number = parseInt(idString.trim())
@@ -98,11 +98,11 @@ async function addNexusModsToIssueList(issues: IGitHubIssueList[]): Promise<IGit
     const nexusModsIDs = new Set<number>()
 
     for (const i of issues) {
-        const nexusModsData = (i.body as string).match(/<!-- ?NexusMods:([0-9]+).+-->/);
+        const nexusModsData = (i.body as string).match(/<!-- ?NexusMods:([0-9]+).*-->/);
         if (nexusModsData) {
-            const [ comment, idString, name ] = nexusModsData
+            const [ comment, idString ] = nexusModsData
             const memberId: number = parseInt(idString.trim())
-            i.NexusMods = { memberId, name };
+            i.NexusMods = { memberId };
             nexusModsIDs.add(memberId);
         }
     }

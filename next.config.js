@@ -9,6 +9,10 @@ const nextConfig = {
           },
           { 
             protocol: 'https',
+            hostname: 'nexusmods.com'
+          },
+          { 
+            protocol: 'https',
             hostname: 'forums.nexusmods.com'
           },
           { 

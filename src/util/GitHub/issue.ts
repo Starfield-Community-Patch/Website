@@ -131,9 +131,10 @@ export async function getSingleIssue(id: number): Promise<IGitHubSingleIssueResp
     }
 
     // Check for Nexus Mods data
-    const nexusModsData = resp.data?.repository.issue.body.match(/<!-- ?NexusMods:([0-9]+).+-->/);
+    const nexusModsData = resp.data?.repository.issue.body.match(/<!-- ?NexusMods:([0-9]+).*-->/);
     if (nexusModsData) {
-        const [ comment, idString, name ] = nexusModsData
+        const [ comment, idString ] = nexusModsData
+        // console.log('Nexus Mods ID', [ idString ])
         const id: number = parseInt(idString.trim())
         try {
             const nxmData = await getMultipleUsers(new Set([id]));

@@ -138,11 +138,11 @@ export async function getIssueComments(id: number, after?: string | null, before
     // Check for Nexus Mods data
     let NexusModsIDs = new Set<number>();
     for (const comment of resp.data?.repository?.issue?.comments?.nodes || []) {
-        const matches = comment.body.match(/<!-- ?NexusMods:([0-9]+).+-->/)
+        const matches = comment.body.match(/<!-- ?NexusMods:([0-9]+).*-->/)
         if (matches) {
-            const [ post, idString, name ] = matches
+            const [ post, idString ] = matches
             const id: number = parseInt(idString.trim())
-            comment.NexusMods = { name, memberId: id };
+            comment.NexusMods = { memberId: id };
             NexusModsIDs.add(id);
         }
 

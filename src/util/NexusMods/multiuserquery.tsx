@@ -21,7 +21,7 @@ const multiUserQuery = (users: number[]) => query(users.map(u => (
 )), null, { operationName: 'MultiUsersByID' })
 
 export interface INexusModsUser {
-    name: string;
+    name?: string;
     memberId: number;
     avatar?: string;
 }
