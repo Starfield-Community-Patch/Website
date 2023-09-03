@@ -144,7 +144,7 @@ button.secondary:hover {
   }
 }
 
-input[type=text], input[type=textarea], textarea {
+input[type=text], input[type=email], input[type=textarea], textarea {
   border: 2px black solid;
 }
 
@@ -164,4 +164,38 @@ blockquote {
   padding-left: 4px;
   padding-top: 8px;
   padding-bottom: 8px;
+}
+
+.teamsSelector {
+  margin-top: 12px;
+}
+
+.teamsList {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  padding-left: 24px;
+
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.teamsList > li {
+  display: block;
+  margin-bottom: 8px;
+}
+
+button.remove {
+  background-color: rgb(var(--stripe-red-rgb));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.1rem 0.5rem;
+  cursor: pointer;
+  margin-right: 0.3rem;
+}
+
+input[type=email]{
+  width: 320px;
 }
