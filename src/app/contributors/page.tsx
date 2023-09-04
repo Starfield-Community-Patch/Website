@@ -4,7 +4,8 @@ import { Suspense } from 'react'
 import ContributorTile from '@/components/contributor'
 
 export const metadata: Metadata = {
-    title: 'Contributors - Starfield Community Patch'
+    title: 'Contributors',
+    description: 'The people who make the Starfield Community Patch possible.',
 }
 
 const orb = Orbitron({ subsets: ['latin'] })
