@@ -3,7 +3,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-    title: 'Our Mission - Starfield Community Patch'
+    title: 'Our Mission',
+    description: 'The Starfield Community Patch (SFCP) project is a collective effort by mod authors and the wider player community of Starfield to fix bugs, errors and other inconsistencies present in the game. This includes tweaks, typos and other changes that may have been missed (or not yet released) by the developers. The overall goal is to improve the vanilla experience for all players.'
 }
 
 const orb = Orbitron({ subsets: ['latin'] })
@@ -13,7 +14,7 @@ export default function MissionPage() {
         <div>
             <h1 className={orb.className}>Mission Statement</h1>
             <div className='mb-4'>
-                The Starfield Community Patch (SCP) project is a collective effort by mod authors and the wider player community of Starfield to fix bugs, errors and other inconsistencies present in the game. This includes tweaks, typos and other changes that may have been missed (or not yet released) by the developers. The overall goal is to improve the vanilla experience for all players.
+                The Starfield Community Patch (SFCP) project is a collective effort by mod authors and the wider player community of Starfield to fix bugs, errors and other inconsistencies present in the game. This includes tweaks, typos and other changes that may have been missed (or not yet released) by the developers. The overall goal is to improve the vanilla experience for all players.
             </div>
             <h2 className={orb.className}>Scope</h2>
             <div className='mb-4'>

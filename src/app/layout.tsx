@@ -1,64 +1,49 @@
-'use client'
+import { Metadata } from 'next'
+import ClientLayout from './layoutClient'
 
-import Header from '@/components/layout/header'
 import './globals.css'
-import Sidebar from '@/components/sidebar/sidebar'
-import Footer from '@/components/layout/footer'
-import { useEffect, useState } from 'react';
-import { SessionProvider } from "next-auth/react"
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  const [showNav, setShowNav] = useState<boolean>(false);
-
-  const toggleNav = (newState?: boolean) => setShowNav(newState !== undefined ? newState : !showNav)
-
-  const handleResize = () => {
-    if (window.innerWidth > 640) setShowNav(false)
-  }
-
-  useEffect(() => {
-    window?.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  return (
-    <html lang="en" className='bg-[#0b192b]'>
-      <body>
-      <Header toggleNav={toggleNav} />
-      <SessionProvider>
-      <div className='grid grid-cols-1 lg:grid-cols-[30%_70%] gap-1 w-full bg-white text-black lg: pt-16'>
-        <Sidebar showMobile={showNav} toggleNav={toggleNav} />
-        <div className={`mb-4 p-4 ${showNav ? 'pt-8 opacity-50' : null}`} onClick={() => showNav ? setShowNav(false) : null}>{children}</div>
-      </div>
-      </SessionProvider>
-      <Footer />
-      </body>
-    </html>
-  )
+export const metadata: Metadata = {
+    title: {
+        default: 'Unknown Page | Starfield Community Patch',
+        template: '%s | Starfield Community Patch',
+    },
+    category: 'Starfield,Modding,Video Games',
+    classification: 'The Starfield Community Patch is a community-driven and open-source project to fix bugs in Bethesda\'s Starfield.',
+    creator: 'Starfield Community Patch Team',
+    colorScheme: 'only light',
+    formatDetection: {
+        address: false,
+        telephone: false,
+        email: false,
+        date: true,
+        url: true,
+    },
+    themeColor: '#334979',
+    icons: [{
+        url: '/favicon.ico',
+        color: '#6e95de',
+        sizes: '16x16,32x32,48x48',
+        type: 'image/x-icon',
+    }],
+    keywords: ['Starfield', ''],
+    metadataBase: new URL(new URL(process.env.NEXTAUTH_URL!).origin),
+    openGraph: {
+        type: 'website',
+        determiner: 'the',
+        siteName: 'Starfield Community Patch Website',
+    },
+    twitter: {
+        card: 'summary',
+    }
 }
 
-// function useWindowSize() {
-//   const [windowSize, setWindowSize] = useState<{[key: string]: number | undefined}>({ width: undefined, height: undefined });
-
-//   useEffect(() => {
-//     function handleResize() {
-//       console.log('Handle resize', {windowSize, w: window.innerWidth, h: window.innerHeight})
-//       setWindowSize({
-//         width: window.innerWidth,
-//         height: window.innerHeight
-//       });
-//     }
-
-//     window.addEventListener('resize', handleResize)
-
-//     handleResize();
-
-//     return () => window.removeEventListener('resize', handleResize);
-//   }, []);
-
-//   return  windowSize;
-// }
+export default function RootLayout({children}: {children: React.ReactNode}) {
+    return <html lang="en" className='bg-[#0b192b]'>
+        <body>
+            <ClientLayout>
+                {children}
+            </ClientLayout>
+        </body>
+    </html>
+}
