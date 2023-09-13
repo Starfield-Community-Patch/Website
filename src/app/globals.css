@@ -6,6 +6,10 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --stripe-blue-rgb: 47, 76, 121;
+  --stripe-orange-rgb: 224, 98, 54;
+  --stripe-red-rgb: 200, 35, 55;
+  --stripe-yellow-rgb: 215, 171, 97;
 }
 
 @media (prefers-color-scheme: dark) {
