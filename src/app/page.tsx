@@ -3,12 +3,15 @@ import type { Metadata } from 'next'
 import { Orbitron, Roboto } from 'next/font/google'
 import Link from 'next/link'
 import HomePageBanner from '@/components/homepageBanner'
+import { metadata as layoutMetadata } from './layout'
 
 const orb = Orbitron({ subsets: ['latin'] })
 const robo400 = Roboto({ weight: "400", subsets: ['latin'] })
 
+// Layout metadata sadly doesn't apply to routes at the same level so we have to manually add it here
 export const metadata: Metadata = {
-  title: 'Starfield Community Patch',
+  ...layoutMetadata,
+  title: 'Home | Starfield Community Patch',
   description: 'The home of the Starfield Community Patch project.',
 }
 
@@ -19,7 +22,7 @@ export default function Home() {
       <HomePageBanner />
       <span className={robo400.className}>
       <p className='mb-4'>
-        The Starfield Community Patch (SCP) project is a collective effort by mod authors and the wider player community of Starfield to fix bugs, errors and other inconsistencies present in the game. This includes tweaks, typos and other changes that may have been missed (or not yet released) by the developers. The overall goal is to improve the vanilla experience for all players.
+        The Starfield Community Patch (SFCP) project is a collective effort by mod authors and the wider player community of Starfield to fix bugs, errors and other inconsistencies present in the game. This includes tweaks, typos and other changes that may have been missed (or not yet released) by the developers. The overall goal is to improve the vanilla experience for all players.
       </p>
       </span>
       <hr />

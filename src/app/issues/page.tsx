@@ -6,7 +6,8 @@ import { Suspense } from 'react'
 const orb = Orbitron({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-    title: 'Issue List - Starfield Community Patch'
+    title: 'Issue List',
+    description: 'All of the issues tracked by the Starfield Community Patch, all in one place!',
 }
 
 export default function IssuePage() {

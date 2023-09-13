@@ -6,8 +6,8 @@ import { getRepoAndLabels } from '@/util/GitHub/get-repo-labels'
 import CountDownTimer from '@/components/countdown/countdownTimer'
 
 export const metadata: Metadata = {
-    title: 'Report an Issue - Starfield Community Patch',
-    description: 'The home of the Starfield Community Patch project. Remember, the Community Patch is only intended to fix bugs and errors in the base game.',
+    title: 'Report an Issue',
+    description: 'Report a bug to the Starfield Community Patch team for review and fixing. Only issues with the base game will be accepted.',
   }
 
 const orb = Orbitron({ subsets: ['latin'] })

@@ -8,7 +8,8 @@ import { Metadata } from 'next';
 const orb = Orbitron({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'Download - Starfield Community Patch'
+    title: 'Download',
+    description: 'Downloads for the Starfield Community Patch, no matter what platform you play on.',
 }
 
 export default function DownloadPage() {

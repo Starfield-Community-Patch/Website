@@ -28,8 +28,10 @@ export async function generateMetadata({ params, searchParams }: IIssueViewProps
     try {
         const req = await getSingleIssue(id);
         const issue = req.data?.repository.issue;
+        const trimmedBody = issue?.body.substring(0, 200);
         return ({
-            title: `${issue?.title} - Issue #${id} - Starfield Community Patch`
+            title: `${issue?.title} - Issue #${id}`,
+            description: `Issue #${id} - ${issue?.title}\n${trimmedBody}${(trimmedBody?.length ?? 0) < (issue?.body.length ?? 0) ? '...' : ''}}`,
         })
     }
     catch(err) {
@@ -37,13 +39,16 @@ export async function generateMetadata({ params, searchParams }: IIssueViewProps
             console.log('Invalid URL error', (err as any).input)
         }
         else console.log('Error fetching metadata', err);
-        return { title: `Issue #${id} - Starfield Community Patch` }
+        return {
+            title: `Issue #${id} - Unknown`,
+            description: `Issue #${id} - We couldn't find this issue, but you might be able to!`,
+        }
     }
 }
 
 export default async function IssueView(props: IIssueViewProps) {
     const { params } = props;
-    
+
     const getIssue = async (id: number) => {
         try {
             if (isNaN(id)) throw new Error(`Issue ID "${params.id}" is not a valid number`)
