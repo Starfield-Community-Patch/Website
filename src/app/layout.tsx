@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         type: 'image/x-icon',
     }],
     keywords: ['Starfield', ''],
-    metadataBase: new URL(new URL(process.env.NEXTAUTH_URL!).origin),
+    metadataBase: (()=>{try{ return new URL(new URL(process.env.NEXTAUTH_URL!).origin) } catch { return new URL('https://starfieldpatch.dev') }})(),
     openGraph: {
         type: 'website',
         determiner: 'the',
