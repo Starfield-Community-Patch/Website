@@ -113,7 +113,7 @@ export default function QuestionStage(props: IStageProps) {
                     maxLength={25}
                 />
                 <VASCOTip side='right'>
-                    You can learn how to find your game version <a href='#'>here</a>.
+                    You can learn how to find your game version <a href='https://modding.wiki/en/starfield/users/find-version' target='_blank'>here</a>.
                 </VASCOTip>
                 </div>
                 <hr/>
