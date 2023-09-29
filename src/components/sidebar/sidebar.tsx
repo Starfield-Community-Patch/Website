@@ -1,4 +1,4 @@
-import { mdiEarth, mdiListStatus, mdiBug, mdiMedal, mdiRocketLaunch, mdiMessage, mdiDownload, mdiHistory } from '@mdi/js'
+import { mdiEarth, mdiListStatus, mdiBug, mdiMedal, mdiRocketLaunch, mdiMessage, mdiDownload, mdiHistory, mdiBriefcasePlus } from '@mdi/js'
 import NavButton from './navbutton'
 import Link from 'next/link'
 import Reddit from './reddit.svg'
@@ -29,6 +29,7 @@ export default function Sidebar(props: ISidebarProps) {
             <Link href='/issues' onClick={() => toggleNav(false)}><NavButton icon={mdiListStatus} label={'Issue List'} /></Link>
             <Link href='/report' onClick={() => toggleNav(false)}><NavButton icon={mdiBug} label={'Report'} /></Link>
             <Link href='/contributors' onClick={() => toggleNav(false)}><NavButton icon={mdiMedal} label={'Contributors'} /></Link>
+            <Link href='/join-team' onClick={() => toggleNav(false)}><NavButton icon={mdiBriefcasePlus} label={'Join the Team'} /></Link>
             <hr />
             <Link href='https://nexusmods.com/starfield/mods/1' target='_blank'><NavButton customIcon={NexusModsMono} label={'Nexus Mods ↗'} /></Link>
             <Link href='https://forums.nexusmods.com/index.php?/forum/6928-starfield/' target='_blank'><NavButton icon={mdiMessage} label={'Forums ↗'} /></Link>

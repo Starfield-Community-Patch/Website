@@ -1,6 +1,11 @@
 export const gitHubGQL: string = 'https://api.github.com/graphql';
 export type IGitHubIssueStates = 'OPEN' | 'CLOSED';
 import { ErrorWithHTTPCode } from '../errors';
+import { Octokit } from '@octokit/rest';
+
+export const octokit = new Octokit({
+    auth: `Bearer ${process.env.GITHUB_TOKEN}`,
+});
 
 export interface IGitHubPageInfo {
     startCursor: string;
@@ -30,7 +35,7 @@ export async function fetchRequest(TOKEN: string, query: { query: string, variab
     console.log('Response', JSON.stringify(resp, null, 2))
     if (!result.ok || resp.errors?.length) {
         console.log('Error from GitHub', resp.errors)
-        const statusText = `Could not get GitHub issues: ${!result.ok ? `${result.statusText}\n${resp.message}` : resp.errors?.map((e: any) => e.message).join('\n')}`
+        const statusText = `Error from GitHub API: ${!result.ok ? `${result.statusText}\n${resp.message}` : resp.errors?.map((e: any) => e.message).join('\n')}`
         throw new ErrorWithHTTPCode(!result.ok ? result.status : 500, statusText)
     }
     return resp;
