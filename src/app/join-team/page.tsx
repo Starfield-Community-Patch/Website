@@ -15,7 +15,7 @@ export default function JoinPage() {
 
     const isProduction = process.env.NODE_ENV === 'production'
 
-    if (!isProduction) return (<div>Coming Soon!</div>)
+    if (isProduction) return (<div>Coming Soon!</div>)
 
     return (
         <div>
