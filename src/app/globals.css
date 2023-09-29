@@ -144,7 +144,7 @@ button.secondary:hover {
   }
 }
 
-input[type=text], input[type=textarea], textarea {
+input[type=text], input[type=email], input[type=textarea], textarea {
   border: 2px black solid;
 }
 

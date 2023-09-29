@@ -21,6 +21,22 @@ export type GitHubIssueFilter = {
     before?: string;
 }
 
+export interface GitHubTeam {
+    name: string;
+    id: number;
+    node_id: string;
+    slug: string;
+    description: string | null;
+    privacy?: string,
+    notification_setting?: string,
+    url: string;
+    html_url: string;
+    members_url: string;
+    repositories_url: string;
+    permission: string;
+    parent: any | null;
+}
+
 export async function fetchRequest(TOKEN: string, query: { query: string, variables: any }, options?: NextFetchRequestConfig) {
     const result = await fetch(gitHubGQL, {
         method: 'POST',
