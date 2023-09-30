@@ -8,15 +8,14 @@ export default async function JoinTeamWrapper() {
         const teamQuery = await getTeams(GITHUB_OWNER);
         const teamList = teamQuery.data;
 
-        return <JoinTeamForm teams={teamList} />
+        return <JoinTeamForm teams={teamList} org={process.env.GITHUB_OWNER} />
 
     }
     catch(err) {
-        return (
-            <div>
-                Error getting team list: {(err as Error).message}
-            </div>
-        )
-
+        return <>
+            <br />
+            <h2>Error getting team list:</h2>
+            <p>{err instanceof Error ? err.message : String(err)}</p>
+        </>
     }
 }
