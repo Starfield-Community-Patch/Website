@@ -4,20 +4,20 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
     const org = req.nextUrl.searchParams.get('org');
-    if (!org) return NextResponse.json({}, { status: 422, statusText: 'Unprocessable Content - No `org` query parameter' })
+    if (!org) return NextResponse.json({}, { status: 422, statusText: 'No `org` query parameter.' })
 
     const formData = await req.formData()
 
     const email = formData.get('email');
-    if (!email) return NextResponse.json({}, { status: 422, statusText: 'Unprocessable Content - No `email` form data' })
-    if (typeof email !== 'string') return NextResponse.json({}, { status: 422, statusText: 'Unprocessable Content - Invalid Email' })
+    if (!email) return NextResponse.json({}, { status: 422, statusText: 'No `email` form data.' })
+    if (typeof email !== 'string') return NextResponse.json({}, { status: 422, statusText: 'The email you have submitted is invalid.' })
     // If we were to validate the email ourselves, we'd undoubtedly have a different implementation than GitHub.
 
     const teamsRaw = formData.getAll('teams[]');
-    if (!teamsRaw || teamsRaw.length === 0) return NextResponse.json({}, { status: 422, statusText: 'Unprocessable Content - No `teams[]` form data' })
+    if (!teamsRaw || teamsRaw.length === 0) return NextResponse.json({}, { status: 422, statusText: 'No `teams[]` form data.' })
 
-    const team_ids = teamsRaw.map(t => parseInt(t.toString()))
-    if (!team_ids.every(t => !isNaN(t))) return NextResponse.json({}, { status: 422, statusText: 'Unprocessable Content - Invalid `teams[]` form data' })
+    const team_ids = teamsRaw.filter(t => t !== 'unselected').map(t => parseInt(t.toString()));
+    if (!team_ids.every(t => !isNaN(t))) return NextResponse.json({}, { status: 422, statusText: 'Invalid `teams[]` form data.' })
 
     const res = await inviteTeamMember({
         email,
