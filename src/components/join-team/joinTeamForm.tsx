@@ -88,6 +88,11 @@ export default function JoinTeamForm(props: IProps) {
                     return <>Loading...</>
                 case 201:
                     return <p>Invitation sent!</p>
+                case 401:
+                    return <>
+                        <p>An error has occurred. Please contact the site owner with the following information:</p>
+                        <p>Request failed at about {new Date().toISOString()} with error &quo;{statusText}&quo;.</p>
+                    </>
                 case 404:
                     return <>
                         <br />
