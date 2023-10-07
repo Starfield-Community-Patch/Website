@@ -14,7 +14,7 @@ const orb = Orbitron({ subsets: ['latin'] })
 
 export default async function JoinPage() {
 
-    if (process.env.NODE_ENV === 'production') return <p>Coming soon!</p>
+    // if (process.env.NODE_ENV === 'production') return <p>Coming soon!</p>
 
     return <div>
         <h1 className={orb.className}>Join the Starfield Community Patch Team!</h1>
