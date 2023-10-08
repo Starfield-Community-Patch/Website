@@ -4,6 +4,8 @@ import { Metadata, ResolvingMetadata } from "next";
 import { Orbitron } from "next/font/google";
 import { Suspense } from "react";
 
+export const dynamic = "force-dynamic";
+
 interface SearchProps {
     params: { q: string }
     searchParams: { [key: string]: string | string[] | undefined }
