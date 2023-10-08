@@ -34,7 +34,7 @@ export async function generateMetadata({ params, searchParams }:SearchProps, par
 }
 
 export default function PageSearchResults(props: SearchProps) {
-    const decodedProps = decodeQueryString((props.searchParams.q as string).trim());
+    const decodedProps = decodeQueryString((props.searchParams?.q as string)?.trim());
 
     return (
         <div>
