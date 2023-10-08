@@ -1,5 +1,5 @@
 import { query } from 'gql-query-builder';
-import { GitHubIssueFilter, IGitHubPageInfo, gitHubGQL } from "./common";
+import { GitHubIssueFilter, IGitHubPageInfo, gitHubGQL, octokit } from "./common";
 import { ErrorWithHTTPCode } from '../errors';
 import { IGitHubIssueList } from './issues-list';
 
@@ -97,7 +97,16 @@ export async function searchIssues(searchTerms: string|undefined, filter?: GitHu
     if (!GITHUB_NAME || !GITHUB_OWNER || !GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
 
     // NEED TO BUILD THIS UP TO SEND!
-    const queryString = `repo:${GITHUB_OWNER}/${GITHUB_NAME} is:issue ${searchTerms}`; //is:open
+    let queryString = `repo:${GITHUB_OWNER}/${GITHUB_NAME} is:issue ${searchTerms}`;
+    // Apply filter for open or closed issues
+    if (filter?.states?.size === 1) {
+        queryString += filter.states.has('OPEN') ? ' is:open' : ' is:closed'
+    }
+    // Apply label filter
+    if (filter?.labels?.length) {
+        queryString += filter.labels.map(l => l.indexOf(' ') !== -1 ? `label:"${l}"` : `label:${l}`).join(' ');
+    }
+    // console.log('Search issue terms', {searchTerms, queryString})
 
     const gitHubQuery = gitHubSearchIssuesQuery(queryString, filter)
 

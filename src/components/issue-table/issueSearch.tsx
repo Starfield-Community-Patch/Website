@@ -1,6 +1,12 @@
-import { FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useState } from "react"
 
-export default function IssueSearch() {
+interface IProps {
+    initialValue?: string;
+    onSubmit?: (newQuery?: string, event?: FormEvent) => void; 
+}
+
+export default function IssueSearch(props: IProps) {
+    const { initialValue } = props;
     const [query, setQuery] = useState<string>();
 
     const handleKeyPress = (event: React.KeyboardEvent) => {
@@ -10,15 +16,27 @@ export default function IssueSearch() {
         }
     }
 
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)
+
     // This is a temporary implementation until the search can be built into the website more effectively
     const onSubmit = (event?: FormEvent) => {
+        if (props.onSubmit) return props.onSubmit(query, event);
         event?.preventDefault();        
         window.open(buildSearchUrl(query), '_blank', 'noreferrer')
     }
 
+    console.log('Init value', initialValue)
+
     return (
         <form className='flex' onSubmit={onSubmit}>
-            <input type='text' className='w-full p-2' placeholder='🔍 Search Issues on GitHub' value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={handleKeyPress} />
+            <input 
+                type='text' 
+                className='w-full p-2' 
+                placeholder='🔍 Search Issues on GitHub' 
+                value={query ?? initialValue} 
+                onChange={handleChange} 
+                onKeyDown={handleKeyPress} 
+            />
             <button disabled={!query} className="p-2  w-1/6 mx-2" >
                 Search
             </button>

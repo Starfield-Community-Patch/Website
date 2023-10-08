@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import RelativeDateText from "../relativeDateText";
 import IssueLabel from "../issueLabel";
 import Image from "next/image";
-import Constellation from './constellation.webp';
 import Star from './star.webp';
 
 interface IRowProps {
