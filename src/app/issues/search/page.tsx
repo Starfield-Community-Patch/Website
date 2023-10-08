@@ -23,7 +23,7 @@ export async function generateMetadata({ params, searchParams }:SearchProps, par
     const labels = decoded.labels ?? [];
     const status = decoded.searchIn;
 
-    const localised = `${labels.length ? `label(s) [ ${labels.join(', ')} ]` : ''} ${status ? `status [ ${status} ]` : ''}`
+    const localised = `${labels.length ? `label(s) [ ${labels.join(', ')} ]` : ''}${status ? ` status [ ${status} ]` : ''}`.trim()
 
     // Rebuild into human readable format
 
