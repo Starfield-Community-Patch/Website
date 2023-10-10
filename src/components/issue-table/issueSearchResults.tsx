@@ -7,6 +7,7 @@ import useGitHubIssues from "@/hooks/useGitHubIssues";
 import IssueSearch from "./issueSearch";
 import { ParsedQuery, decodeQueryString, encodeQueryForUrl } from "@/util/GitHub/common";
 import { useRouter } from "next/navigation";
+import IssueFilters from "./issueFilters";
 
 interface IProps {
     query: ParsedQuery
@@ -38,6 +39,7 @@ export default function IssueSearchResults(props: IProps) {
     return (
     <div>
     <IssueSearch initialValue={query.query} onSubmit={onSubmit} />
+    <IssueFilters filters={query} />
     <table className='table-fixed w-full border-collapse caption-bottom border-spacing-x-2'>
         <thead className=''>
             <tr className=''>
