@@ -1,5 +1,5 @@
 'use client'
-import { Suspense, useState } from 'react'
+import { FormEvent, Suspense, useState } from 'react'
 import IssueRows from './issueRows'
 import useGitHubIssues from '@/hooks/useGitHubIssues'
 import { useSession, signIn } from "next-auth/react"
@@ -52,6 +52,14 @@ export default function IssueTable() {
         gh.setFilters(newfilters);
     }
 
+    const onSubmitSearch = (newQuery?: string, event?: FormEvent) => {
+        event?.preventDefault();
+        if (newQuery) {
+            const uri = newQuery.split(' ').map(s => encodeURI(s)).join('+');
+            router.push(`/issues/search?q=${uri}`);
+        }
+    }
+
     
 
     return (
@@ -60,7 +68,7 @@ export default function IssueTable() {
                 <div className={`${tab === 'all' ? 'bg-slate-300' : null} hover:bg-slate-300 px-4 py-2`} onClick={setAllIssues}>All Issues</div>
                 <div className={`${tab === 'mine' ? 'bg-slate-300' : null} hover:bg-slate-300 px-4 py-2`} onClick={setMyIssues} title='Not implemented'>My Issues</div>
             </div>
-            <IssueSearch />
+            <IssueSearch onSubmit={onSubmitSearch} />
             <table className='table-fixed w-full border-collapse caption-bottom border-spacing-x-2'>
                 <thead className=''>
                     <tr className=''>

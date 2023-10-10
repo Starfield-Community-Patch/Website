@@ -29,7 +29,7 @@ export default function IssueRow({i} : IRowProps) {
     )
 
     return (
-        <tr className='border-x-white border-2 hover:cursor-pointer py-2 hover:bg-slate-200' onClick={() => router.push(`issues/${i.number}`)}>
+        <tr className='border-x-white border-2 hover:cursor-pointer py-2 hover:bg-slate-200' onClick={() => router.push(`/issues/${i.number}`)}>
             <td>
                 {stateIndicator()}
             </td>
