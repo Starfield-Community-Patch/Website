@@ -32,7 +32,7 @@ export default function IssueSearch(props: IProps) {
             <input 
                 type='text' 
                 className='w-full p-2' 
-                placeholder='🔍 Search Issues on GitHub' 
+                placeholder='🔍 Search Issues' 
                 value={query ?? initialValue} 
                 onChange={handleChange} 
                 onKeyDown={handleKeyPress} 
