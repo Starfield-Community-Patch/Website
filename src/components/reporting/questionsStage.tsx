@@ -12,6 +12,19 @@ interface IStageProps {
     body: IReportBody;
 }
 
+const gameLocales = [
+    '',
+    'English (EN)',
+    'French (FR)',
+    'German (DE)',
+    'Italian (IT)',
+    'Spanish (ES)',
+    'Polish (PL)',
+    'Japanese (JA)',
+    'Brazilian Portuguese (PTBR)',
+    'Chinese - Simplified (ZHHANS)'
+];
+
 export default function QuestionStage(props: IStageProps) {
     const { next, prev, body, setBody } = props;
     
@@ -28,7 +41,7 @@ export default function QuestionStage(props: IStageProps) {
         return result
     }
 
-    const updateQuestion = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | FormEvent<HTMLDivElement>, q: string, p: number) => {
+    const updateQuestion = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement> | FormEvent<HTMLDivElement>, q: string, p: number) => {
         const newBody = {...body};
         if (!newBody.questions) newBody.questions = {}
         if (!(e.target as any).value || (e.target as any).value === '') delete newBody.questions[q];
@@ -117,6 +130,13 @@ export default function QuestionStage(props: IStageProps) {
                 </VASCOTip>
                 </div>
                 <hr/>
+                <div className="my-4">
+                <h2 className={orb.className}>Language</h2>
+                    <select value={body.questions?.['Language']?.answer} onChange={(e) => updateQuestion(e, 'Language', 11)}>
+                        {gameLocales.map(l => (<option key={l}>{l}</option>))}
+                    </select>
+                </div>
+                <hr />
                 <div  className="my-4" onChange={(e) => updateQuestion(e, 'New Game', 20)}>
                 <h2 className={orb.className}>Have you recreated this issue on a new game?</h2>
                 <div>

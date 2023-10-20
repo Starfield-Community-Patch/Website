@@ -36,12 +36,14 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
     const [ dlcs, setDlcs ] = useState<Set<IGitHubLabel>>(new Set())
 
     const nextStage = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         if (status !== 'authenticated') return signIn('nexusmods', { redirect: false })
         const cur = stages.indexOf(stage);
         if (cur !== -1) setStage(stages[cur+1])
     }
 
     const prevStage = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         const cur = stages.indexOf(stage);
         if (cur > 0 && cur !== -1) setStage(stages[cur-1])
     }
