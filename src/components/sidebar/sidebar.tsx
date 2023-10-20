@@ -20,7 +20,7 @@ export default function Sidebar(props: ISidebarProps) {
     const showMobileClasses = showMobile ? 'float-left absolute top-16 w-auto h-screen' : 'collapse h-0 lg:h-auto lg:visible'
 
     return (
-        <div className={`bg-white z-50 lg:z-auto lg:flex-initial overflow-auto lg:border-black lg:border-2 lg:m-4 pt-2 pb-2 pl-2 ${showMobileClasses}`}>
+        <div className={`sticky top-20 bg-white z-50 lg:z-auto lg:flex-initial overflow-auto lg:border-black lg:border-2 lg:m-4 pt-2 pb-2 pl-2 ${showMobileClasses}`}>
             <Link href='/' onClick={() => toggleNav(false)}><NavButton icon={mdiEarth} label={'Home'} /></Link>
             <Link href='/mission' onClick={() => toggleNav(false)}><NavButton icon={mdiRocketLaunch} label={'Mission Statement'} /></Link>
             <Link href='/download' onClick={() => toggleNav(false)}><NavButton icon={mdiDownload} label={'Download'} /></Link>
