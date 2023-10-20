@@ -15,7 +15,7 @@ export default function IssueComment(props: { comment: IGitHubComment }) {
     const profileUrl = comment.NexusMods ? `https://nexusmods.com/users/${comment.NexusMods.memberId}` : `https://github.com/${comment.author.login}`;
 
     return (
-    <div className="w-full grid grid-cols-10 grid-rows-3 p-4" key={`comment-${comment.id}`} id={comment.id}>
+    <div className="w-full grid grid-cols-10 grid-rows-comment p-4" key={`comment-${comment.id}`} id={comment.id}>
         <div className="hidden lg:block col-span-1 row-span-3 p-2">
             <UserAvatar nexusMods={comment.NexusMods} githubUser={comment.author} size={48} />
         </div>

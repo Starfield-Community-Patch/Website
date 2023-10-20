@@ -25,6 +25,7 @@ export default function CommentInput(props: IProps) {
         setWorking(true)
         try {
             await onSubmit(comment);
+            setComment('');
         }
         catch(err) {
             console.error('Failed to post comment', err);
