@@ -27,7 +27,7 @@ export default function ClientLayout({
   return <>
     <Header toggleNav={toggleNav} />
     <SessionProvider>
-    <div className='grid grid-cols-1 lg:grid-cols-[30%_70%] gap-1 w-full bg-white text-black lg: pt-16'>
+    <div className='grid grid-cols-1 lg:grid-cols-[30%_70%] w-full bg-white text-black lg: pt-16'>
       <Sidebar showMobile={showNav} toggleNav={toggleNav} />
       <div className={`mb-4 p-4 ${showNav ? 'pt-8 opacity-50' : null}`} onClick={() => showNav ? setShowNav(false) : null}>{children}</div>
     </div>
