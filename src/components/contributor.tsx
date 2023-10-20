@@ -7,7 +7,7 @@ import ContributorBadge from "./contributorBadge";
 
 interface IContributor {
     name: string;
-    avatar: string;
+    avatar?: string;
     roles: string[];
     profiles: {
         nexusMods?: string;
@@ -28,7 +28,7 @@ export default function ContributorTile(props: IProps) {
         <div className="p-2 border-2 border-black my-2">
             <div className="align-center text-center">
                 <Image 
-                    src={contributor.avatar}
+                    src={contributor.avatar ?? 'https://nexusmods.com/assets/images/default/avatar.png'}
                     alt={contributor.name}
                     width={64}
                     height={64}

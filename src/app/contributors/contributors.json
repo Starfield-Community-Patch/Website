@@ -1,0 +1,82 @@
+[
+    {
+        "name": "Pickysaurus",
+        "avatar": "https://forums.nexusmods.com/uploads/profile/photo-thumb-31179975.png",
+        "roles": [ "Core Team", "Founder" ],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/31179975",
+            "gitHub": "https://github.com/Pickysaurus"
+        },
+        "accolades": [
+            "First project lead",
+            "Created StarfieldPatch.dev website"
+        ]
+    },
+    {
+        "name": "Halgari",
+        "avatar": "https://avatars.githubusercontent.com/u/654621?v=4",
+        "roles": [ "Core Team", "Founder" ],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/17252164",
+            "gitHub": "https://github.com/halgari"
+        },
+        "accolades": []
+    },
+    {
+        "name": "Noggog",
+        "avatar": "https://avatars.githubusercontent.com/u/24981326?v=4",
+        "roles": [ "Core Team", "Founder" ],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/862590",
+            "gitHub": "https://github.com/Noggog"
+        },
+        "accolades": [
+            "Creator of Spriggit"
+        ]
+    },
+    {
+        "name": "SimonMagus",
+        "avatar": "https://forum.nexusmods.com/uploads/profile/photo-thumb-67410746.png",
+        "roles": [ "Core Team", "Founder" ],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/67410746"
+        },
+        "accolades": []
+    },
+    {
+        "name": "Bobbyclue",
+        "avatar": "https://avatars.githubusercontent.com/u/97621924?s=60&v=4",
+        "roles": [],
+        "profiles": {
+            "gitHub": "https://github.com/Bobbyclue"
+        },
+        "accolades": []
+    },
+    {
+        "name": "Monitor144hz",
+        "avatar": "https://forum.nexusmods.com/uploads/profile/photo-thumb-118625818.jpg?_r=1679071239",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/starfield/users/118625818"
+        },
+        "accolades": []
+    },
+    {
+        "name": "wSkeever",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/7064860"
+        },
+        "donateLink": ""
+    },
+    {
+        "name": "Krevil",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/1051880"
+        },
+        "accolades": [
+            "Trusted tester"
+        ]
+    }
+]
