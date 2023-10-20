@@ -79,5 +79,17 @@
         "accolades": [
             "Trusted tester"
         ]
+    },
+    {
+        "name": "McGuffin",
+        "roles": [],
+        "avatar": "https://forum.nexusmods.com/uploads/profile/photo-thumb-3408338.gif?_r=1454323258",
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/starfield/users/3408338"
+        },
+        "donateLink": "https://www.nexusmods.com/starfield/users/3408338?tab=about+me",
+        "accolades": [
+            "xTranslator developer - gave great guidance on how to use the tool for localisation fixes."
+        ]
     }
 ]
