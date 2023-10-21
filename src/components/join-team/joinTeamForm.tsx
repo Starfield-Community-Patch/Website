@@ -59,7 +59,13 @@ export default function JoinTeamForm(props: IProps) {
         try {
             const result = await resPromise
             setStatusCode(result.status);
-            setStatusText(result.statusText);
+            setStatusText('Loading...');
+            try {
+                await result.json().then(r => setStatusText(r.status));
+            } catch (err) {
+                if (err instanceof SyntaxError) setStatusText(result.statusText || 'Unable to understand what the SFCP web server said.');
+                else throw err;
+            }
         } catch(err) {
             console.error('Error while submitting the form:\n-----\n', err);
             setStatusText('Something went wrong. Please contact the site owner.');
