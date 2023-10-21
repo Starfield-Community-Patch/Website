@@ -84,7 +84,7 @@ export default async function IssueView(props: IIssueViewProps) {
                 </div>
                 <div className='flex items-center'><RelativeDate date={issue?.createdAt ?? 0} icon={mdiCreation} label={'Created'} /></div>
             </div>
-            <div className='[&>h2]:mt-4 [&>h2]:mb-0.5 border-2 border-black py-2 px-8'>
+            <div className='[&>h2]:mt-4 [&>h2]:mb-0.5 [&>h2]:font-orbitron border-2 border-black py-2 px-8'>
             <IssueBody body={issue?.body !== "" ? issue?.body! : '*No issue description provided.*'} />
             { 
             (issue?.labels.nodes ?? []).length 
