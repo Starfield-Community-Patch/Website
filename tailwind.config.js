@@ -39,6 +39,25 @@ module.exports = {
         'starfield-stripes': 
         'linear-gradient(rgb(200, 35, 55) 0%, rgb(200, 35, 55) 25%, rgb(224, 98, 54) 25%, rgb(224, 98, 54) 50%, rgb(215, 171, 97) 50%, rgb(215, 171, 97) 75%, rgb(47, 76, 121) 75%, rgb(47, 76, 121) 100%)',
       },
+      fontFamily: {
+        sans: [
+          'Inter',
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          'Roboto',
+          '"Helvetica Neue"',
+          'Arial',
+          '"Noto Sans"',
+          'sans-serif',
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+          '"Noto Color Emoji"',
+        ],
+        orbitron: ["Orbitron", "sans-serif"],
+      },
       transformOrigin: {
         'stripe-wipe': '100% 50%'
       },
