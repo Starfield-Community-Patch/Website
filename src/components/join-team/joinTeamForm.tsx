@@ -19,6 +19,7 @@ export default function JoinTeamForm(props: IProps) {
     const [isSubmitting, setSubmitting] = useState<boolean>(false);
     const [statusCode, setStatusCode] = useState<number|null>(null);
     const [statusText, setStatusText] = useState<string>('');
+    const [resTime, setResTime] = useState<Date|null>(null);
 
     const hasTeamsSelected = selectedTeams.length > 0;
 
@@ -57,16 +58,22 @@ export default function JoinTeamForm(props: IProps) {
 
         try {
             const result = await resPromise
-            setSubmitting(false);
             setStatusCode(result.status);
-            setStatusText(result.statusText);
+            setStatusText('Loading...');
+            try {
+                await result.json().then(r => setStatusText(r.status));
+            } catch (err) {
+                if (err instanceof SyntaxError) setStatusText(result.statusText || 'Unable to understand what the SFCP web server said.');
+                else throw err;
+            }
         } catch(err) {
             console.error('Error while submitting the form:\n-----\n', err);
-            setSubmitting(false);
             setStatusText('Something went wrong. Please contact the site owner.');
             setStatusCode(666);
-            return;
         }
+        setSubmitting(false);
+        setResTime(new Date());
+
     }, [formIsValid, hasTeamsSelected, props.org])
 
     return <div className='mt-4'>
@@ -81,17 +88,21 @@ export default function JoinTeamForm(props: IProps) {
 
         {(()=>{
             if (isSubmitting) return <p>Submitting...</p>
+            const isoString = resTime?.toISOString() ?? new Date().toISOString()
             switch(statusCode) {
                 case null:
                     return null;
-                case 0:
-                    return <>Loading...</>
                 case 201:
                     return <p>Invitation sent!</p>
                 case 401:
                     return <>
                         <p>An error has occurred. Please contact the site owner with the following information:</p>
-                        <p>Request failed at about {new Date().toISOString()} with error &quo;{statusText}&quo;.</p>
+                        <p>Request failed at about {isoString} with error &quot;{statusText}&quot;.</p>
+                    </>
+                case 403:
+                    return <>
+                        <p>It appears the website has been misconfigured. Please contact the site owner immediately with the below info:</p>
+                        <p>Request failed at about {isoString} with error &quot;{statusText}&quot;.</p>
                     </>
                 case 404:
                     return <>
@@ -103,10 +114,31 @@ export default function JoinTeamForm(props: IProps) {
                 case 422:
                     return <>
                         <p>An error has occurred. Please see the below details.</p>
-                        <p>{statusText === 'Validation Failed' ? 'The email you have submitted is invalid.' : statusText}</p>
+                        {(()=>{
+                            switch(statusText) {
+                                case 'Validation Failed':
+                                    return <p>The email you have submitted is invalid.</p>;
+                                case 'No `teams[]` form data.':
+                                    return <p>
+                                        You have not selected any teams to join.
+                                        You normally shouldn&rsquo;t be able to submit the form without a selected team so congrats on the witchcraft.
+                                    </p>;
+                                default:
+                                    return <p>Request failed at about {isoString} with error &quot;{statusText}&quot;.</p>;
+                            }
+                        })()}
                     </>
                 case 666:
-                    return <p>Something went very, very wrong. Please contact the site owner.</p>
+                    return <>
+                        <p>Something went very, very wrong. Please contact the site owner with the below info.</p>
+                        <p>Request failed at about {isoString}</p>
+                    </>
+
+                default:
+                    return <>
+                        <p>An unknown and unexpected error has ocurred. Please contact the site owner immediately with the below info:</p>
+                        <p>Request failed with status code {statusCode} at about {isoString} with error &quot;{statusText}&quot;.</p>
+                    </>
             }
         })()}
     </div>
