@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function DownloadPage() {
     return (
         <div>
-            <div>
+            <div className='mb-4'>
                 <h1 className={orb.className} id='PC'>Download on PC</h1>
                 <p>The latest version of the Community Patch will be available on Nexus Mods, Bethesda.net or GitHub as the official mirrors. </p>
                 <br />
@@ -72,11 +72,13 @@ export default function DownloadPage() {
                     With the files installed, next navigate to <code>%localappdata%\Starfield</code> (you can paste this into the address bar of Windows Explorer) and locate the file plugins.txt. Open plugins.txt and add <code>* StarfieldCommunityPatch.esm</code> below the main Starfield plugin and any DLCs.
                 </p>
             </div>
-            <div className='pt-4'>
+            <hr />
+            <div className='pt-4 mt-6'>
                 <h1 className={orb.className} id='Xbox'>Download on Xbox Series X/S</h1>
                 <div className='p-4 bg-stripe-orange my-4 border-2 border-black text-white'>
                 It is not currently possible to install the Community Patch on Xbox consoles as Bethesda.net is not yet available for Starfield. 
                 </div>
+                <div className='mb-24'>This mod will be unavailable on Xbox Series X/S consoles until Bethesda.net is available for Starfield.</div>
                 {/* <h2 className={orb.className} id='InstallXbox'>Installation on Xbox Consoles</h2> */}
             </div>
         </div>
