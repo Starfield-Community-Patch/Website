@@ -12,7 +12,7 @@ export default function Layout(props: IProps) {
         <>
             <h1 className={orb.className}>Changelog</h1>
             {props.children}
-            {props.changeList}
+            <div className="[&>h3]:mt-4 [&>h3]:mb-0.5 [&>h3]:font-orbitron">{props.changeList}</div>
         </>
     )
 }
