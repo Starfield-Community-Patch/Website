@@ -35,7 +35,7 @@ export default function IssueRow({i} : IRowProps) {
             </td>
             <td>
                 <div className="text-lg font-semibold line-clamp-1">
-                    {i.title}
+                    <a href={`/issues/${i.number}`} className="text-black">{i.title}</a>
                 </div>
                 {i.labels.nodes.length > 0 && <div className="text-xs line-clamp-2 overflow-x-auto">
                     {i.labels.nodes.map(l => <IssueLabel label={l} key={`${i.id}-${l.id}`} size="small"/>)}
