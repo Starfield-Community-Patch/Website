@@ -25,7 +25,7 @@
     {
         "name": "Noggog",
         "avatar": "https://avatars.githubusercontent.com/u/24981326?v=4",
-        "roles": [ "Core Team", "Founder" ],
+        "roles": [ "Core Team", "Founder", "Toolmaker" ],
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/users/862590",
             "gitHub": "https://github.com/Noggog"
@@ -82,7 +82,9 @@
     },
     {
         "name": "McGuffin",
-        "roles": [],
+        "roles": [
+            "Toolmaker"
+        ],
         "avatar": "https://forum.nexusmods.com/uploads/profile/photo-thumb-3408338.gif?_r=1454323258",
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/starfield/users/3408338"

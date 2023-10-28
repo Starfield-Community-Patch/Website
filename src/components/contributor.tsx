@@ -38,7 +38,7 @@ export default function ContributorTile(props: IProps) {
             <div className="text-center font-semibold text-lg">
                 {contributor.name}
             </div>
-            <div className="text-xs text-center">
+            <div className="text-xs text-center line-clamp-1 overflow-y-auto min-h-[3em]">
                 {contributor.roles.map((r) => (<ContributorBadge type={r as ('Founder' | 'Core Team')} key={`${contributor.name}-${r}`} />)) }
             </div>
             <div className="grid grid-cols-3 text-center border-b-2 border-black pb-2 mb-2 gap-1">
