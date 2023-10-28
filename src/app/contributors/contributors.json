@@ -91,5 +91,34 @@
         "accolades": [
             "xTranslator developer - gave great guidance on how to use the tool for localisation fixes."
         ]
+    },
+    {
+        "name": "grandvil",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/1656105"
+        }
+    },
+    {
+        "name": "Aurelianis",
+        "roles": [],
+        "avatar": "https://forum.nexusmods.com/uploads/profile/photo-thumb-143884143.jpg?_r=1698455925",
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/starfield/users/143884143"
+        },
+        "donateLink": "https://www.nexusmods.com/starfield/users/143884143",
+        "accolades": [
+            "Starfield Bug Fixes mod"
+        ]
+    },
+    {
+        "name": "Argonil",
+        "roles": [],
+        "avatar": "https://forum.nexusmods.com/uploads/profile/photo-thumb-3424782.jpg?_r=1478567890",
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/starfield/users/3424782"
+        },
+        "donateLink": "https://www.nexusmods.com/starfield/users/3424782",
+        "accolades": []
     }
 ]

@@ -76,7 +76,7 @@ export default function ContributorTile(props: IProps) {
                 </div>
             </div>
             <div className="text-xs">
-                <b>Notable Accolades</b>
+                <b>Notable Contributions</b>
                 <ul>
                     {contributor.accolades?.map(a => (<li key={a}>{a}</li>))}
                 </ul>
