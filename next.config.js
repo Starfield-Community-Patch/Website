@@ -5,6 +5,10 @@ const nextConfig = {
         remotePatterns: [
           { 
             protocol: 'https',
+            hostname: 'avatars.nexusmods.com'
+          },
+          { 
+            protocol: 'https',
             hostname: 'staticdelivery.nexusmods.com'
           },
           { 
