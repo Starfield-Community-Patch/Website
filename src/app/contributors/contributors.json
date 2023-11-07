@@ -52,7 +52,7 @@
             "nexusMods": "https://www.nexusmods.com/users/167469"
         },
         "donateLink": "https://www.patreon.com/ElminsterAU",
-        "accolades": "SF1Edit developer - Without this tool the patch would not be possible."        
+        "accolades": [ "SF1Edit developer - Without this tool the patch would not be possible." ]        
     },
     {
         "name": "McGuffin",
