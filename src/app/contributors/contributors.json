@@ -1,7 +1,7 @@
 [
     {
         "name": "Pickysaurus",
-        "avatar": "https://forums.nexusmods.com/uploads/profile/photo-thumb-31179975.png",
+        "avatar": "https://avatars.nexusmods.com/31179975/100",
         "roles": [ "Core Team", "Founder" ],
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/users/31179975",
@@ -36,12 +36,37 @@
     },
     {
         "name": "SimonMagus",
-        "avatar": "https://forum.nexusmods.com/uploads/profile/photo-thumb-67410746.png",
+        "avatar": "https://avatars.nexusmods.com/67410746/100",
         "roles": [ "Core Team", "Founder" ],
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/users/67410746"
         },
         "accolades": []
+    },
+    {
+        "name": "ElminsterAU",
+        "avatar": "https://avatars.nexusmods.com/167469/100",
+        "roles": [ "Toolmaker" ],
+        "profiles": {
+            "gitHub": "https://github.com/ElminsterAU",
+            "nexusMods": "https://www.nexusmods.com/users/167469"
+        },
+        "donateLink": "https://www.patreon.com/ElminsterAU",
+        "accolades": "SF1Edit developer - Without this tool the patch would not be possible."        
+    },
+    {
+        "name": "McGuffin",
+        "roles": [
+            "Toolmaker"
+        ],
+        "avatar": "https://avatars.nexusmods.com/3408338/100",
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/starfield/users/3408338"
+        },
+        "donateLink": "https://www.nexusmods.com/starfield/users/3408338?tab=about+me",
+        "accolades": [
+            "xTranslator developer - Gave great guidance on how to use the tool for localisation fixes."
+        ]
     },
     {
         "name": "Bobbyclue",
@@ -54,7 +79,7 @@
     },
     {
         "name": "Monitor144hz",
-        "avatar": "https://forum.nexusmods.com/uploads/profile/photo-thumb-118625818.jpg?_r=1679071239",
+        "avatar": "https://avatars.nexusmods.com/118625818/100",
         "roles": [],
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/starfield/users/118625818"
@@ -72,26 +97,12 @@
     {
         "name": "Krevil",
         "roles": [],
-        "avatar": "https://forum.nexusmods.com/uploads/profile/photo-thumb-1051880.jpg?_r=1623883345",
+        "avatar": "https://avatars.nexusmods.com/1051880/100",
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/users/1051880"
         },
         "accolades": [
             "Trusted tester"
-        ]
-    },
-    {
-        "name": "McGuffin",
-        "roles": [
-            "Toolmaker"
-        ],
-        "avatar": "https://forum.nexusmods.com/uploads/profile/photo-thumb-3408338.gif?_r=1454323258",
-        "profiles": {
-            "nexusMods": "https://www.nexusmods.com/starfield/users/3408338"
-        },
-        "donateLink": "https://www.nexusmods.com/starfield/users/3408338?tab=about+me",
-        "accolades": [
-            "xTranslator developer - gave great guidance on how to use the tool for localisation fixes."
         ]
     },
     {
@@ -104,7 +115,7 @@
     {
         "name": "Aurelianis",
         "roles": [],
-        "avatar": "https://forum.nexusmods.com/uploads/profile/photo-thumb-143884143.jpg?_r=1698455925",
+        "avatar": "https://avatars.nexusmods.com/143884143/100",
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/starfield/users/143884143"
         },
@@ -131,7 +142,7 @@
     {
         "name": "Argonil",
         "roles": [],
-        "avatar": "https://forum.nexusmods.com/uploads/profile/photo-thumb-3424782.jpg?_r=1478567890",
+        "avatar": "https://avatars.nexusmods.com/3424782/100",
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/starfield/users/3424782"
         },
@@ -141,7 +152,7 @@
     {
         "name": "Connerria",
         "roles": [],
-        "avatar": "https://forum.nexusmods.com/uploads/profile/photo-thumb-40981350.jpg?_r=1697817215",
+        "avatar": "https://avatars.nexusmods.com/40981350/100",
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/starfield/users/40981350"
         }
@@ -153,5 +164,15 @@
             "nexusMods": "https://www.nexusmods.com/starfield/users/1872172"
         },
         "donateLink": "https://www.patreon.com/nicholasjae"
+    },
+    {
+        "name": "DankRafft",
+        "avatar": "https://avatars.nexusmods.com/2547580/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/starfield/users/2547580"
+        },
+        "donateLink": "https://ko-fi.com/dankrafft"
+
     }
 ]
