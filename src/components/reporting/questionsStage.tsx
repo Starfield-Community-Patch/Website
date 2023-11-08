@@ -119,7 +119,7 @@ export default function QuestionStage(props: IStageProps) {
                 <h2 className={orb.className}>Game Version</h2>
                 <input 
                     type='text' 
-                    placeholder="e.g. 1.10.0" 
+                    placeholder="e.g. 1.7.36.0" 
                     className="mx-auto p-1" 
                     onChange={(e) => updateQuestion(e, 'Game Version', 10)} 
                     value={body.questions?.['Game Version']?.answer} 

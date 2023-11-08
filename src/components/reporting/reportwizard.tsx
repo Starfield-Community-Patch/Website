@@ -24,6 +24,16 @@ export interface IReportBody {
     }
 }
 
+const defaultBody: IReportBody = {
+    questions: {
+        "Game Version": {
+            title: 'Game Version',
+            answer: '1.7.36.0',
+            priority: 10
+        }
+    }
+}
+
 const stages: ReportStage[] = ['start' , 'platform' , 'type' , 'questions' , 'review']
 
 export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
@@ -32,7 +42,7 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
     const [ platform, setPlatform ] = useState<IGitHubLabel | undefined>(undefined);
     const [ type, setType ] = useState<IGitHubLabel | undefined>(undefined);
     const [ stage, setStage ] = useState<ReportStage>('start');
-    const [ body, setBody ] = useState<IReportBody>({});
+    const [ body, setBody ] = useState<IReportBody>(defaultBody);
     const [ dlcs, setDlcs ] = useState<Set<IGitHubLabel>>(new Set())
 
     const nextStage = () => {
