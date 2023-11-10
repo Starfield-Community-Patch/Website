@@ -31,7 +31,7 @@ export async function generateMetadata({ params, searchParams }: IIssueViewProps
         const trimmedBody = issue?.body.substring(0, 200);
         return ({
             title: `${issue?.title} - Issue #${id}`,
-            description: `Issue #${id} - ${issue?.title}\n${trimmedBody}${(trimmedBody?.length ?? 0) < (issue?.body.length ?? 0) ? '...' : ''}}`,
+            description: `Reported by ${issue?.NexusMods?.name ?? issue?.author.login}\n\n${trimmedBody}${(trimmedBody?.length ?? 0) < (issue?.body.length ?? 0) ? '...' : ''}`,
         })
     }
     catch(err) {
