@@ -4,10 +4,6 @@ import { getIssueList, IGitHubIssueResponse, IGitHubIssueList } from '@/util/Git
 import { ErrorWithHTTPCode } from '@/util/errors';
 
 export async function GET(request: NextRequest) {
-
-
-
-
     let issueList: IGitHubIssueResponse;
     
     try {

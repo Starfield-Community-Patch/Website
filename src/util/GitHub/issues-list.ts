@@ -42,6 +42,7 @@ export interface IGitHubIssueList {
         totalCount: number;
     }
     updatedAt: Date;
+    createdAt: Date;
     labels: {
         nodes: IGitHubLabel[]
     }
@@ -118,6 +119,7 @@ const gitHubIssuesQuery = (name: string, owner: string, filters?: GitHubIssueFil
                         'title', 
                         'body',
                         'updatedAt',
+                        'createdAt',
                         {
                             comments: ['totalCount']
                         },

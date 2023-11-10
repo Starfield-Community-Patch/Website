@@ -45,7 +45,7 @@ export default function IssueRow({i} : IRowProps) {
                     <span className="mx-1 hover:text-stripe-blue"><UserAvatar githubUser={i.author} nexusMods={i.NexusMods} size={16} />
                     {i.NexusMods?.name ?? i.author.login}
                     </span>
-                    <span className=""><RelativeDateText date={i.updatedAt} format="short" /> | </span>
+                    <span className=""><RelativeDateText date={i.createdAt} format="short" /> | </span>
                     <span className="block lg:inline">Updated <RelativeDateText date={i.updatedAt} format="short" /></span>
                 </div>
             </td>
