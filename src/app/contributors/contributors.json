@@ -174,5 +174,14 @@
         },
         "donateLink": "https://ko-fi.com/dankrafft"
 
+    },
+    {
+        "name": "ArkangelCorvus",
+        "avatar": "https://avatars.nexusmods.com/136181948/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/136181948"
+        },
+        "donateLink": ""
     }
 ]
