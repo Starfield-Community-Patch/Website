@@ -65,6 +65,7 @@ const gitHubSearchIssuesQuery = (q: string, filters?: GitHubIssueFilter ) => que
                                     comments: ['totalCount']
                                 },
                                 'updatedAt',
+                                'createdAt',
                                 {
                                     operation: 'labels',
                                     variables: {
