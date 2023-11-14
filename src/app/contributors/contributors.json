@@ -183,5 +183,15 @@
             "nexusMods": "https://www.nexusmods.com/users/136181948"
         },
         "donateLink": ""
+    },
+    {
+        "name": "bartek3456",
+        "avatar": "https://avatars.nexusmods.com/48889283/100",
+        "roles": [ "Translator" ],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/48889283"
+        },
+        "donateLink": "",
+        "accolades": [ "Polish Translation Fixes" ]
     }
 ]

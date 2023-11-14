@@ -1,7 +1,7 @@
-import { mdiStarBox, mdiStarFourPointsCircle, mdiStarFourPointsCircleOutline, mdiToolboxOutline } from "@mdi/js";
+import { mdiStarBox, mdiStarFourPointsCircle, mdiStarFourPointsCircleOutline, mdiToolboxOutline, mdiTranslate } from "@mdi/js";
 import Icon from "@mdi/react";
 
-type BadgeType = 'Founder' | 'Core Team' | 'Toolmaker';
+type BadgeType = 'Founder' | 'Core Team' | 'Toolmaker' | 'Translator';
 
 export default function ContributorBadge({ type } : { type: BadgeType }) {
     let color = '#000000';
@@ -20,6 +20,10 @@ export default function ContributorBadge({ type } : { type: BadgeType }) {
         }
         case 'Toolmaker': {
             icon = mdiToolboxOutline;
+            break;
+        }
+        case 'Translator': {
+            icon = mdiTranslate;
             break;
         }
     }
