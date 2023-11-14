@@ -193,5 +193,14 @@
         },
         "donateLink": "",
         "accolades": [ "Polish Translation Fixes" ]
+    },
+    {
+        "name": "Korodic",
+        "avatar": "https://avatars.nexusmods.com/360983/100",
+        "roles": [ "Translator" ],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/360983"
+        },
+        "donateLink": ""
     }
 ]
