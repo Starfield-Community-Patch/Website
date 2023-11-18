@@ -6,11 +6,14 @@ import CommentLoader from "./commentskeleton";
 import CommentInput from "./commentInput";
 import CommentView from "./commentView";
 import useComments from "@/hooks/useComment";
+import { Orbitron } from "next/font/google";
+
+const orb = Orbitron({ subsets: ['latin'] })
 
 export default function CommentContainer({ id, number }: { id: string, number: number }) {
     const params = useSearchParams()    
     const router = useRouter()
-    const { comments, onSubmit, pageInfo, setOffset, offset } = useComments(number, id);
+    const { comments, onSubmit, pageInfo, setOffset, offset, total } = useComments(number, id);
 
     // Set the comment pagination (if applicable)
     const before = params.get('before'); 
@@ -43,6 +46,7 @@ export default function CommentContainer({ id, number }: { id: string, number: n
 
     return (
         <div>
+            <h2 id='comments' className={`mt-4 `+orb.className}>Comments ({total ?? 0})</h2>
             {!!offset && offsetNotice()}
             <Suspense fallback={loadingComments()}>
                 <div>

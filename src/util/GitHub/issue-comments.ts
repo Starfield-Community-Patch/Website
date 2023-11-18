@@ -19,8 +19,8 @@ export interface IGitHubCommentsResponse {
 }
 
 export interface IGitHubIssueComments {
-    totalCount: number;
     comments: {
+        totalCount: number;
         pageInfo: IGitHubPageInfo;
         nodes: IGitHubComment[]
     }

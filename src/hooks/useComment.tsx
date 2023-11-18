@@ -18,6 +18,7 @@ const fetchComments = async (url: string, offset: IGitHubCommentOffsets | undefi
     if (request.ok) {
         const response: IGitHubCommentsResponse = await request.json();
         return { 
+            total: response.data?.repository.issue.comments.totalCount ?? 0,
             comments: response.data?.repository.issue.comments.nodes ?? [], 
             pageInfo: response.data?.repository.issue.comments.pageInfo ?? undefined
         }
@@ -25,6 +26,7 @@ const fetchComments = async (url: string, offset: IGitHubCommentOffsets | undefi
     else {
         console.error('Error getting comment info', { status: request.status, text: request.statusText })
         return {
+            total: 0,
             comments: [],
             pageInfo: undefined
         }
@@ -42,10 +44,10 @@ export default function useComments(number: number, id: string) {
 
     const [offset, saveOffset] = useState<IGitHubCommentOffsets | undefined>(undefined);
 
-    const { data: { comments, pageInfo }, mutate } = useSWR(
+    const { data: { comments, pageInfo, total }, mutate } = useSWR(
         `/api/comments?id=${number}`,
         (url) => fetchComments(url, offset),
-        { fallbackData: { comments: [], pageInfo: undefined } }
+        { fallbackData: { comments: [], pageInfo: undefined, total: 0 } }
     );
 
     const onSubmit = async (comment: string) => {
@@ -74,5 +76,5 @@ export default function useComments(number: number, id: string) {
         setTimeout(async () => await mutate(), 200)
     }
 
-    return { comments, onSubmit, pageInfo, offset, setOffset}
+    return { comments, total, onSubmit, pageInfo, offset, setOffset}
 }
