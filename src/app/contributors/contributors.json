@@ -147,7 +147,7 @@
             "nexusMods": "https://www.nexusmods.com/starfield/users/3424782"
         },
         "donateLink": "https://www.nexusmods.com/starfield/users/3424782",
-        "accolades": []
+        "accolades": [ "Skill and Perk fixes" ]
     },
     {
         "name": "Connerria",
@@ -202,5 +202,14 @@
             "nexusMods": "https://nexusmods.com/users/360983"
         },
         "donateLink": ""
+    },
+    {
+        "name": "SKK50",
+        "avatar": "https://avatars.nexusmods.com/46256407/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/46256407"
+        },
+        "accolades": [ "Helped with the setup of Caprica for easy script editing." ]
     }
 ]
