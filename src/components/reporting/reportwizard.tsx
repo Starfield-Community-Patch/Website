@@ -28,7 +28,7 @@ const defaultBody: IReportBody = {
     questions: {
         "Game Version": {
             title: 'Game Version',
-            answer: '1.7.36.0',
+            answer: '1.8.86.0',
             priority: 10
         }
     }
