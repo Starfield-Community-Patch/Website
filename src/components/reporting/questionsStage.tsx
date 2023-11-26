@@ -98,7 +98,7 @@ export default function QuestionStage(props: IStageProps) {
                     className="w-full mx-auto p-1" 
                     onChange={updateSummary} 
                     value={body.summary} 
-                    maxLength={1024} 
+                    maxLength={2048} 
                     placeholder="Describe the issue as clearly and concisely as possible"
                 />
                 </div>
@@ -110,7 +110,7 @@ export default function QuestionStage(props: IStageProps) {
                     className="w-full mx-auto p-1" 
                     onChange={updateDetails} 
                     value={body.details} 
-                    maxLength={1024} 
+                    maxLength={2048} 
                     placeholder="Provide any technical details such as item IDs, quest IDs and stage numbers"
                 />
                 </div>
