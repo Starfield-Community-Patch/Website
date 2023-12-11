@@ -13,6 +13,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
   const blob = await put(`Scripts\\${version}.7z`, request.body, {
     access: 'public',
+    cacheControlMaxAge: 86400
   });
 
   return NextResponse.json(blob);
