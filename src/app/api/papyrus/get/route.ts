@@ -29,7 +29,7 @@ export async function GET(request: Request): Promise<NextResponse> {
             return {...b, version}
         });
 
-        if (version) {
+        if (version !== '') {
             const match = blobs.find(b => b.version === version);
             if (!match) return NextResponse.json({ message: `No psc files found for version: ${version}. Available: ${blobs.map(b => (b as any).version).join(', ')}` }, { status: 404 });
             return NextResponse.redirect(match.url);
