@@ -25,9 +25,10 @@ export async function GET(request: Request): Promise<NextResponse> {
         if (!blobs.length) return NextResponse.json({ message: `No psc files found for version: ${version ?? 'latest'}` }, { status: 404 });
         // Get the blob we want.
         blobs = blobs.map(b => {
-            const version = b.pathname.replace('Scripts/', '');
+            const version = b.pathname.replace('Scripts/', '').replace('.7z', '');
             return {...b, version}
         });
+        // console.log(blobs)
 
         if (version !== '') {
             const match = blobs.find(b => b.version === version);
