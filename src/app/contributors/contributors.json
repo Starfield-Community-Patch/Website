@@ -69,6 +69,19 @@
         ]
     },
     {
+        "name": "zilav",
+        "roles": [
+            "Toolmaker"
+        ],
+        "avatar": "https://avatars.nexusmods.com/156622/100",
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/starfield/users/156622"
+        },
+        "accolades": [
+            "BSArch/BSArchPro developer - An essential tool for packing and releasing the mod."
+        ]
+    },
+    {
         "name": "Bobbyclue",
         "avatar": "https://avatars.githubusercontent.com/u/97621924?s=60&v=4",
         "roles": [],
