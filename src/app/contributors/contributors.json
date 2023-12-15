@@ -214,9 +214,19 @@
     },
     {
         "name": "VarekRaith",
+        "avatar": "https://avatars.nexusmods.com/1498770/100",
         "roles": [],
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/users/1498770"
         }
+    },
+    {
+        "name": "dodexahedron",
+        "avatar": "https://avatars.nexusmods.com/7667095/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/7667095"
+        },
+        "accolades": [ "Starfiedl mod - English Spelling and Grammar fixes" ]
     }
 ]
