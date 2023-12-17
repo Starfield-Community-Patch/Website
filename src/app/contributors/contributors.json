@@ -258,5 +258,13 @@
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/users/124191"
         }
+    },
+    {
+        "name": "Wartortle",
+        "avatar": "https://avatars.nexusmods.com/42492840/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/42492840"
+        }
     }
 ]
