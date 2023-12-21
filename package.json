@@ -23,8 +23,10 @@
     "postcss": "8.4.26",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-remark": "^2.1.0",
-    "remark-gfm": "^3.0.1",
+    "react-markdown": "^9.0.1",
+    "remark-gfm": "^4.0.0",
+    "remark-github": "^12.0.0",
+    "remark-remove-comments": "^1.0.1",
     "swr": "^2.2.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"

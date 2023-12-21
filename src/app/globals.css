@@ -176,3 +176,43 @@ blockquote {
   padding-top: 8px;
   padding-bottom: 8px;
 }
+
+.contains-task-list {
+  padding: 0
+}
+
+.task-list-item {
+  list-style-type: none;
+  /* padding: 2px 15px 2px 42px; */
+  margin-left: -15px;
+  margin-right: -15px;
+  input[type=checkbox] {
+    margin-left: 1rem;
+  }
+}
+
+table {
+  margin-bottom: 2em;
+  width: max-content;
+}
+th {
+  border-bottom: 2px solid #ccc;
+  font-weight: bold;
+  text-align: left;
+}
+td { border-bottom: 1px solid #ddd; }
+caption, th, td {
+  padding: 4px 10px 4px 0;
+}
+caption {
+  background: #f1f1f1;
+  padding: 10px 0;
+  margin-bottom: 1em;
+}
+
+tr,td,th {
+  vertical-align: middle;
+}
+
+/* Use this if you use span-x classes on th/td. */
+table .last { padding-right: 0; } 

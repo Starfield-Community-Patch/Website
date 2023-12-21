@@ -1,5 +1,9 @@
 import { ErrorWithHTTPCode } from "@/util/errors";
-import { useRemarkSync } from 'react-remark';
+
+import remarkGfm from 'remark-gfm'
+import remarkGithub from 'remark-github'
+import ReactMarkdown from 'react-markdown'
+import removeComments from 'remark-remove-comments';
 
 export default async function ChangeLog() {
     // Fetch the changelog from GitHub
@@ -15,9 +19,5 @@ export default async function ChangeLog() {
         throw err;
     }
 
-    const rendered = RemarkRendered(changelog);
-
-    return rendered
+    return <ReactMarkdown remarkPlugins={[removeComments, remarkGfm]}>{changelog}</ReactMarkdown>
 }
-
-const RemarkRendered = (text: string) => useRemarkSync(text);
