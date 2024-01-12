@@ -266,5 +266,13 @@
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/users/42492840"
         }
+    },
+    {
+        "name": "Deebz96",
+        "avatar": "https://avatars.nexusmods.com/15339119/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/15339119"
+        }
     }
 ]
