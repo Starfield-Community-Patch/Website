@@ -35,9 +35,17 @@
         ]
     },
     {
+        "name": "Deebz96",
+        "avatar": "https://avatars.nexusmods.com/15339119/100",
+        "roles": [ "Core Team" ],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/15339119"
+        }
+    },
+    {
         "name": "SimonMagus",
         "avatar": "https://avatars.nexusmods.com/67410746/100",
-        "roles": [ "Core Team", "Founder" ],
+        "roles": [ "Founder" ],
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/users/67410746"
         },
@@ -265,14 +273,6 @@
         "roles": [],
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/users/42492840"
-        }
-    },
-    {
-        "name": "Deebz96",
-        "avatar": "https://avatars.nexusmods.com/15339119/100",
-        "roles": [],
-        "profiles": {
-            "nexusMods": "https://nexusmods.com/users/15339119"
         }
     }
 ]
