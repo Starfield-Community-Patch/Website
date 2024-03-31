@@ -32,7 +32,7 @@ export default function Sidebar(props: ISidebarProps) {
             <Link href='/join-team' onClick={() => toggleNav(false)}><NavButton icon={mdiBriefcasePlus} label={'Join the Team'} /></Link>
             <hr />
             <Link href='https://nexusmods.com/starfield/mods/1' target='_blank'><NavButton customIcon={NexusModsMono} label={'Nexus Mods ↗'} /></Link>
-            <Link href='https://forums.nexusmods.com/index.php?/forum/6928-starfield/' target='_blank'><NavButton icon={mdiMessage} label={'Forums ↗'} /></Link>
+            <Link href='https://forums.nexusmods.com/games/14-starfield/' target='_blank'><NavButton icon={mdiMessage} label={'Forums ↗'} /></Link>
             <Link href='https://discord.gg/6R4Yq5KjW2' target='_blank'><NavButton customIcon={Discord} label={'Discord ↗'} /></Link>
             <Link href='https://www.reddit.com/r/starfieldmods/' target='_blank'><NavButton customIcon={Reddit} label={'Reddit ↗'} /></Link>  
             <Link href='https://github.com/Starfield-Community-Patch' target='_blank'><NavButton customIcon={GitHub} label={'GitHub ↗'} /></Link>    
