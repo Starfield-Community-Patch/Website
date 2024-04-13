@@ -13,16 +13,6 @@
         ]
     },
     {
-        "name": "Halgari",
-        "avatar": "https://avatars.githubusercontent.com/u/654621?v=4",
-        "roles": [ "Core Team", "Founder" ],
-        "profiles": {
-            "nexusMods": "https://nexusmods.com/users/17252164",
-            "gitHub": "https://github.com/halgari"
-        },
-        "accolades": []
-    },
-    {
         "name": "Noggog",
         "avatar": "https://avatars.githubusercontent.com/u/24981326?v=4",
         "roles": [ "Core Team", "Founder", "Toolmaker" ],
@@ -41,6 +31,28 @@
         "profiles": {
             "nexusMods": "https://nexusmods.com/users/15339119"
         }
+    },
+    {
+        "name": "Aurelianis",
+        "roles": [ "Core Team" ],
+        "avatar": "https://avatars.nexusmods.com/143884143/100",
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/starfield/users/143884143"
+        },
+        "donateLink": "https://www.nexusmods.com/starfield/users/143884143",
+        "accolades": [
+            "Starfield Bug Fixes mod"
+        ]
+    },
+    {
+        "name": "Halgari",
+        "avatar": "https://avatars.githubusercontent.com/u/654621?v=4",
+        "roles": [ "Founder" ],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/17252164",
+            "gitHub": "https://github.com/halgari"
+        },
+        "accolades": []
     },
     {
         "name": "SimonMagus",
@@ -132,18 +144,6 @@
         "profiles": {
             "nexusMods": "https://nexusmods.com/users/1656105"
         }
-    },
-    {
-        "name": "Aurelianis",
-        "roles": [],
-        "avatar": "https://avatars.nexusmods.com/143884143/100",
-        "profiles": {
-            "nexusMods": "https://www.nexusmods.com/starfield/users/143884143"
-        },
-        "donateLink": "https://www.nexusmods.com/starfield/users/143884143",
-        "accolades": [
-            "Starfield Bug Fixes mod"
-        ]
     },
     {
         "name": "SarthesArai",
