@@ -274,5 +274,13 @@
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/users/42492840"
         }
+    },
+    {
+        "name": "TERAB1T",
+        "avatar": "https://avatars.nexusmods.com/876057/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/876057"
+        }
     }
 ]
