@@ -282,5 +282,13 @@
         "profiles": {
             "nexusMods": "https://nexusmods.com/users/876057"
         }
+    },
+    {
+        "name": "youngneil1",
+        "avatar": "https://avatars.nexusmods.com/2930467/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/2930467"
+        }
     }
 ]
