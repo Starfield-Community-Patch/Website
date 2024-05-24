@@ -290,5 +290,37 @@
         "profiles": {
             "nexusMods": "https://nexusmods.com/users/2930467"
         }
+    },
+    {
+        "name": "Voodoo5150",
+        "avatar": "https://avatars.nexusmods.com/199544942/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/199544942"
+        }
+    },
+    {
+        "name": "ferrari365",
+        "avatar": "https://avatars.nexusmods.com/14801994/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/14801994"
+        }
+    },
+    {
+        "name": "EpicestGamer",
+        "avatar": "https://avatars.nexusmods.com/35311000/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/35311000"
+        }
+    },
+    {
+        "name": "CivisRomanus",
+        "avatar": "https://avatars.nexusmods.com/1201155/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/1201155"
+        }
     }
 ]
