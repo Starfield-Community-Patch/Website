@@ -322,5 +322,14 @@
         "profiles": {
             "nexusMods": "https://www.nexusmods.com/users/1201155"
         }
+    },
+    {
+        "name": "robertgk2017",
+        "avatar": "https://avatars.nexusmods.com/5544506/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://www.nexusmods.com/users/5544506"
+        },
+        "accolades": [ "Providing advice on plugin formats." ]
     }
 ]
