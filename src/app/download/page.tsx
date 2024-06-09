@@ -50,8 +50,8 @@ export default function DownloadPage() {
                         GitHub
                     </button>
                 </a>
-                <a href='#' target='_blank'>
-                    <button className='w-full' disabled title='Not yet available'>
+                <a href='https://creations.bethesda.net/en/starfield/details/a11a0cdf-5abb-4a59-9e12-e261e5aae8d5/Starfield_Community_Patch' target='_blank'>
+                    <button className='w-full'>
                         <Image
                             src={Bethesda}
                             alt={'Bethesda'}
@@ -71,14 +71,18 @@ export default function DownloadPage() {
                     To install the patch manually, extract the contents of ZIP file into the Starfield game folder (where Starfield.exe is stored). To verify it is installed properly, check the Data subfolder includes <code>StarfieldCommunityPatch.esm</code>.
                     With the files installed, next navigate to <code>%localappdata%\Starfield</code> (you can paste this into the address bar of Windows Explorer) and locate the file plugins.txt. Open plugins.txt and add <code>* StarfieldCommunityPatch.esm</code> below the main Starfield plugin and any DLCs.
                 </p>
+                <h3 className={orb.className+' mt-4'} id='PCBethesda'>Bethesda.net on PC</h3>
+                <p>
+                    To install the mod via Bethesda.net, simply go to the mod page, log into your account and select &quot;Add to library&quot;. You can also select the mod to be installed from the &quot;Creations&quot; menu at the main menu of the game. 
+                </p>
             </div>
             <hr />
             <div className='pt-4 mt-6'>
                 <h1 className={orb.className} id='Xbox'>Download on Xbox Series X/S</h1>
                 <div className='p-4 bg-stripe-orange my-4 border-2 border-black text-white'>
-                It is not currently possible to install the Community Patch on Xbox consoles as Bethesda.net is not yet available for Starfield. 
+                Bethesda.net is now available for Starfield, but none of the existing team play on Xbox. This section will be updated with instructions soon. 
                 </div>
-                <div className='mb-24'>This mod will be unavailable on Xbox Series X/S consoles until Bethesda.net is available for Starfield.</div>
+                <div className='mb-24'>This section will be updated soon.</div>
                 {/* <h2 className={orb.className} id='InstallXbox'>Installation on Xbox Consoles</h2> */}
             </div>
         </div>

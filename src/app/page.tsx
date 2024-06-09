@@ -29,12 +29,12 @@ export default function Home() {
       <hr />
       <div className='flex space-x-4 text-center place-content-around my-4'>
         <Link href='/download#PC' className='w-[40%]'><button className='p-8 bg-stripe-blue rounded-md text-xl hover:bg-stripe-orange text-white'>Download (PC)</button></Link>
-        <Link href='/download#Xbox' className='w-[40%]'><button className='p-8 bg-stripe-blue rounded-md text-xl hover:bg-stripe-orange text-white' disabled>Download (Xbox)</button></Link>
+        <Link href='/download#Xbox' className='w-[40%]'><button className='p-8 bg-stripe-blue rounded-md text-xl hover:bg-stripe-orange text-white'>Download (Xbox)</button></Link>
       </div>
-      <div className='text-center border-2 lg:mx-12 bg-stripe-orange text-white p-2'>
+      {/* <div className='text-center border-2 lg:mx-12 bg-stripe-orange text-white p-2'>
         <Icon path={mdiAlert} size={1} className='inline m-2' />
         SFCP is not yet available on Xbox Series X/S.
-      </div>
+      </div> */}
       <hr />
       <h1 className={`text-4xl text-center my-4 `+orb.className}>The Community Patch needs you!</h1>
       <p>

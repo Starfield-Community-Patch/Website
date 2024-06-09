@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Reddit from './reddit.svg'
 import Discord from './discord-mark-black.svg'
 import GitHub from './github-mark.svg'
+import Bethesda from '@/components/sidebar/Bethesda.svg';
 import NexusModsMono from './Nexus Logo Icon - Monocrom.svg'
 import { signIn, signOut, useSession } from "next-auth/react"
 import Image from 'next/image'
@@ -32,9 +33,10 @@ export default function Sidebar(props: ISidebarProps) {
             <Link href='/join-team' onClick={() => toggleNav(false)}><NavButton icon={mdiBriefcasePlus} label={'Join the Team'} /></Link>
             <hr />
             <Link href='https://nexusmods.com/starfield/mods/1' target='_blank'><NavButton customIcon={NexusModsMono} label={'Nexus Mods ↗'} /></Link>
+            <Link href='https://creations.bethesda.net/en/starfield/details/a11a0cdf-5abb-4a59-9e12-e261e5aae8d5/Starfield_Community_Patch' target='_blank'><NavButton customIcon={Bethesda} label={'Bethesda.net ↗'} /></Link>
             <Link href='https://forums.nexusmods.com/games/14-starfield/' target='_blank'><NavButton icon={mdiMessage} label={'Forums ↗'} /></Link>
             <Link href='https://discord.gg/6R4Yq5KjW2' target='_blank'><NavButton customIcon={Discord} label={'Discord ↗'} /></Link>
-            <Link href='https://www.reddit.com/r/starfieldmods/' target='_blank'><NavButton customIcon={Reddit} label={'Reddit ↗'} /></Link>  
+            {/* <Link href='https://www.reddit.com/r/starfieldmods/' target='_blank'><NavButton customIcon={Reddit} label={'Reddit ↗'} /></Link>   */}
             <Link href='https://github.com/Starfield-Community-Patch' target='_blank'><NavButton customIcon={GitHub} label={'GitHub ↗'} /></Link>    
             <div className='mt-4'>
             {status === 'authenticated' ?
