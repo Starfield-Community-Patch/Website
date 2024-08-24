@@ -79,10 +79,21 @@ export default function DownloadPage() {
             <hr />
             <div className='pt-4 mt-6'>
                 <h1 className={orb.className} id='Xbox'>Download on Xbox Series X/S</h1>
-                <div className='p-4 bg-stripe-orange my-4 border-2 border-black text-white'>
-                Bethesda.net is now available for Starfield, but none of the existing team play on Xbox. This section will be updated with instructions soon. 
+                <div className='mb-24'>
+                    This mod can be downloaded from Bethesda.net when playing on Xbox. Simply head to "Mods" at the main menu, sign in and then search for "Communtiy Patch". Follow the prompts on the screen to install it into your game.
+                    <a href='https://creations.bethesda.net/en/starfield/details/a11a0cdf-5abb-4a59-9e12-e261e5aae8d5/Starfield_Community_Patch' target='_blank'>
+                    <button className='w-full'>
+                        <Image
+                            src={Bethesda}
+                            alt={'Bethesda'}
+                            width={24}
+                            height={24}
+                            className='inline mr-2 bg-white'
+                        />
+                        Bethesda.net
+                    </button>
+                </a>
                 </div>
-                <div className='mb-24'>This section will be updated soon.</div>
                 {/* <h2 className={orb.className} id='InstallXbox'>Installation on Xbox Consoles</h2> */}
             </div>
         </div>
