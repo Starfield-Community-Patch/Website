@@ -331,5 +331,21 @@
             "nexusMods": "https://www.nexusmods.com/users/5544506"
         },
         "accolades": [ "Providing advice on plugin formats." ]
+    },
+    {
+        "name": "isLazy",
+        "avatar": "https://avatars.nexusmods.com/2950388/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/2950388"
+        }
+    },
+    {
+        "name": "paulbrock",
+        "avatar": "https://avatars.nexusmods.com/6621648/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/6621648"
+        }
     }
 ]
