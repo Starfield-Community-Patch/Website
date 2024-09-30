@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: [ '*.nexusmods.com', 'avatars.githubusercontent.com' ],
         remotePatterns: [
           { 
             protocol: 'https',
