@@ -1,6 +1,7 @@
 import Image from "next/image";
 import NexusMods from './sidebar/Nexus Icon.svg';
 import GitHub from './sidebar/github-mark.svg';
+import Reddit from './sidebar/reddit.svg'
 import Icon from "@mdi/react";
 import { mdiGift } from "@mdi/js";
 import ContributorBadge from "./contributorBadge";
@@ -12,6 +13,7 @@ interface IContributor {
     profiles: {
         nexusMods?: string;
         gitHub?: string;
+        reddit?: string;
     }
     donateLink?: string;
     accolades?: string[];
@@ -64,6 +66,19 @@ export default function ContributorTile(props: IProps) {
                     />
                     </a>
                 </div>
+                {contributor.profiles.reddit &&
+                <div className="bg-stripe-yellow p-1 rounded-md">
+                    <a href={contributor.profiles.reddit ?? '#'} target={contributor.profiles.reddit ? '_blank' : undefined}>
+                    <Image 
+                        src={Reddit}
+                        alt={'Reddit Profile'}
+                        width={24}
+                        height={24}
+                        className={`inline ${!contributor.profiles.reddit ? 'grayscale opacity-25' : null}`}
+                    />
+                    </a>
+                </div>
+                }
                 <div className="bg-stripe-yellow p-1 rounded-md">
                     <a href={contributor.donateLink ?? '#'} target={contributor.donateLink ? '_blank' : undefined}>
                     <Icon 

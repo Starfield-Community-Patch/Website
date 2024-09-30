@@ -19,6 +19,7 @@ interface IContributor {
     profiles: {
         nexusMods?: string;
         gitHub?: string;
+        reddit?: string;
     }
     donateLink?: string;
     accolades?: string[];

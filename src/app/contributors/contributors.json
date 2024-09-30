@@ -347,5 +347,73 @@
         "profiles": {
             "nexusMods": "https://nexusmods.com/users/6621648"
         }
-    }
+    },
+    {
+        "name": "xtcrefugee",
+        "avatar": "https://avatars.nexusmods.com/6375697/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/6375697"
+        }
+    },
+    {
+        "name": "EgoBallistic",
+        "avatar": "https://avatars.githubusercontent.com/u/88402375?v=4",
+        "roles": [],
+        "profiles": {
+            "gitHub": "https://github.com/EgoBallistic"
+        }
+    },
+    {
+        "name": "tdanese",
+        "avatar": "https://avatars.githubusercontent.com/u/112912272?v=4",
+        "roles": [],
+        "profiles": {
+            "gitHub": "https://github.com/tdanese"
+        }
+    },
+    {
+        "name": "thomoray",
+        "avatar": "https://avatars.nexusmods.com/189095100/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/189095100"
+        }
+    },
+    {
+        "name": "h495",
+        "avatar": "https://avatars.nexusmods.com/92010563/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/92010563"
+        }
+    },
+    {
+        "name": "SaltyMeatBoy",
+        "avatar": "https://styles.redditmedia.com/t5_dbrjk/styles/profileIcon_yyyq7xddpxa01.jpg?width=256&height=256&frame=1&auto=webp&crop=256:256,smart&s=61f1d4aef6851215e8a1597082e6fc888f8cb84a",
+        "roles": [],
+        "profiles": {
+            "reddit": "https://www.reddit.com/user/SaltyMeatBoy/"
+        },
+        "accolades": [
+            "Reddit research: https://www.reddit.com/r/Starfield/comments/1ebfh9y/psa_stache_the_astra_vendor_laredo_weapons_bug/"
+        ]
+    },
+    {
+        "name": "Keukotis",
+        "avatar": "https://avatars.nexusmods.com/851501/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/851501"
+        }
+    },
+    {
+        "name": "Pyrexo",
+        "avatar": "https://avatars.nexusmods.com/2814010/100",
+        "roles": [],
+        "profiles": {
+            "nexusMods": "https://nexusmods.com/users/2814010"
+        }
+    }    
 ]
+
