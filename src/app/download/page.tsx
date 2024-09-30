@@ -80,7 +80,7 @@ export default function DownloadPage() {
             <div className='pt-4 mt-6'>
                 <h1 className={orb.className} id='Xbox'>Download on Xbox Series X/S</h1>
                 <div className='mb-24'>
-                    This mod can be downloaded from Bethesda.net when playing on Xbox. Simply head to "Mods" at the main menu, sign in and then search for "Communtiy Patch". Follow the prompts on the screen to install it into your game.
+                    This mod can be downloaded from Bethesda.net when playing on Xbox. Simply head to &quot;Mods&quot; at the main menu, sign in and then search for &quot;Communtiy Patch&quot;. Follow the prompts on the screen to install it into your game.
                     <a href='https://creations.bethesda.net/en/starfield/details/a11a0cdf-5abb-4a59-9e12-e261e5aae8d5/Starfield_Community_Patch' target='_blank'>
                     <button className='w-full'>
                         <Image
