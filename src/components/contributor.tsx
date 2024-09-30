@@ -79,6 +79,7 @@ export default function ContributorTile(props: IProps) {
                     </a>
                 </div>
                 }
+                {contributor.donateLink && 
                 <div className="bg-stripe-yellow p-1 rounded-md">
                     <a href={contributor.donateLink ?? '#'} target={contributor.donateLink ? '_blank' : undefined}>
                     <Icon 
@@ -89,6 +90,7 @@ export default function ContributorTile(props: IProps) {
                     />
                     </a>
                 </div>
+                }
             </div>
             <div className="text-xs">
                 <b>Notable Contributions</b>
