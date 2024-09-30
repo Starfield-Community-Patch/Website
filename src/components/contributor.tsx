@@ -5,6 +5,8 @@ import Reddit from './sidebar/reddit.svg'
 import Icon from "@mdi/react";
 import { mdiGift } from "@mdi/js";
 import ContributorBadge from "./contributorBadge";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface IContributor {
     name: string;
@@ -55,6 +57,7 @@ export default function ContributorTile(props: IProps) {
                     />
                     </a>
                 </div>
+                {contributor.profiles.gitHub &&
                 <div className="bg-stripe-yellow p-1 rounded-md">
                     <a href={contributor.profiles.gitHub ?? '#'} target={contributor.profiles.gitHub ? '_blank' : undefined}>
                     <Image 
@@ -66,6 +69,7 @@ export default function ContributorTile(props: IProps) {
                     />
                     </a>
                 </div>
+                }
                 {contributor.profiles.reddit &&
                 <div className="bg-stripe-yellow p-1 rounded-md">
                     <a href={contributor.profiles.reddit ?? '#'} target={contributor.profiles.reddit ? '_blank' : undefined}>
@@ -92,10 +96,10 @@ export default function ContributorTile(props: IProps) {
                 </div>
                 }
             </div>
-            <div className="text-xs">
+            <div className="text-xs overflow-auto">
                 <b>Notable Contributions</b>
                 <ul>
-                    {contributor.accolades?.map(a => (<li key={a}>{a}</li>))}
+                    {contributor.accolades?.map((a, i) => (<li key={`${contributor.name}-${i}`}><ReactMarkdown remarkPlugins={[remarkGfm]}>{a}</ReactMarkdown></li>))}
                 </ul>
             </div>
         </div>
